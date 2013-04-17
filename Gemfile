@@ -10,6 +10,10 @@ gem "activerecord-postgres-hstore", "~> 0.7.6"    # Dynamically create fields of
 
 group :assets do
   gem "uglifier", "~> 2.0.1"
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'zurb-foundation', '~> 4.1.2'
+
 end
 
 group :development, :test do
