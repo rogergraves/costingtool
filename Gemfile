@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem "rails", "~> 3.2.13"
+gem "rails", "3.2.13"
 gem "thin", "~> 1.5.1"                            # Thin webserver, recommended by heroku
 gem "pg", "~> 0.15.1"                             # Postgres gem
 gem "heroku", "~> 2.37.2"                         # Heroku hosting

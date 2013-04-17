@@ -165,7 +165,7 @@ DEPENDENCIES
   heroku (~> 2.37.2)
   jquery-rails (~> 2.2.1)
   pg (~> 0.15.1)
-  rails (~> 3.2.13)
+  rails (= 3.2.13)
   rspec-rails (~> 2.13.0)
   selenium-webdriver (~> 2.32.1)
   thin (~> 1.5.1)
