@@ -9,19 +9,17 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
-  #serialize :data, ActiveRecord::Coders::Hstore
+  serialize :data, ActiveRecord::Coders::Hstore
   #HSTORE_ATTR_NAMESPACE = 'attribute'
-  #%w[first_name last_name].each do |key|
-  #  data_key = [HSTORE_ATTR_NAMESPACE,key].join('.')
-  #
-  #  attr_accessible key
-  #
-  #  define_method(key) do
-  #    data && data[data_key]
-  #  end
-  #
-  #  define_method("#{key}=") do |value|
-  #    self.data = (data || {}).merge(data_key => value)
-  #  end
-  #end
+  %w[first_name last_name].each do |key|
+    attr_accessible key
+
+    define_method(key) do
+      data && data[key]
+    end
+
+    define_method("#{key}=") do |value|
+      self.data = (data || {}).merge(key => value)
+    end
+  end
 end
