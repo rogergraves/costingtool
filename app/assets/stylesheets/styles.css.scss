@@ -1,0 +1,33 @@
+/* Base Styles
+========================================================================================*/
+
+$dark-background: #262626;
+$main-blue: #1082CC;
+
+/* Login Page
+========================================================================================*/
+
+.login-wrapper {
+  background: transparent;
+  width: 50%;
+  height: 50%;
+  width:400px;
+  margin:10% auto;
+}
+
+.login-fields {
+  background-color: #fff;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 7px;
+  border: 1px solid silver;
+  padding: 30px;
+}
+
+.hp_logo {
+  display:block;
+  margin:auto;
+  margin-bottom: 20px;
+}
