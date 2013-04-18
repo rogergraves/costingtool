@@ -212,7 +212,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activeadmin
+  activeadmin (~> 0.6.0)
   activerecord-postgres-hstore (~> 0.7.6)
   awesome_print
   capybara (~> 2.1.0)

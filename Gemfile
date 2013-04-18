@@ -7,7 +7,7 @@ gem "heroku", "~> 2.37.2"                         # Heroku hosting
 gem "jquery-rails", "~> 2.2.1"                    # Include jquery assets in pipeline
 gem "devise", "~> 2.2.3"                          # User authentication for users
 gem "activerecord-postgres-hstore", "~> 0.7.6"    # Dynamically create fields off your models
-gem 'activeadmin'
+gem "activeadmin", "~> 0.6.0"                     # The administration framework for Ruby on Rails
 gem "meta_search",    '>= 1.1.0.pre'
 
 group :assets do
