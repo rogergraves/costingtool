@@ -1,17 +1,23 @@
-/* Base Styles
+/* Reusable variables
 ========================================================================================*/
 
 $dark-background: #262626;
 $main-blue: #1082CC;
+
+/* Base Styles
+========================================================================================*/
+
+.page-title {
+  text-align: center;
+}
 
 /* Login Page
 ========================================================================================*/
 
 .login-wrapper {
   background: transparent;
-  width: 50%;
+  width: 25%;
   height: 50%;
-  width:350px;
   margin:10% auto;
 }
 

@@ -7,6 +7,7 @@ gem "heroku", "~> 2.37.2"                         # Heroku hosting
 gem "jquery-rails", "~> 2.2.1"                    # Include jquery assets in pipeline
 gem "devise", "~> 2.2.3"                          # User authentication for users
 gem "activerecord-postgres-hstore", "~> 0.7.6"    # Dynamically create fields off your models
+gem 'hstore-attributes'                           # Allows definition of hstore attirbutes in model
 gem "activeadmin", "~> 0.6.0"                     # The administration framework for Ruby on Rails
 gem "meta_search",    '>= 1.1.0.pre'              # Used for activeadmin. Allows simple search forms to be created
 gem "paperclip", "~> 3.4.1"                       # Easy upload management for ActiveRecord

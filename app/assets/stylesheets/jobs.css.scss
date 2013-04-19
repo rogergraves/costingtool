@@ -1,0 +1,31 @@
+// Place all the styles related to the Jobs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.jobs-wrapper {
+  background: transparent;
+  width: 50%;
+  height: 50%;
+  margin:10% auto;
+}
+
+.jobs-basket {
+  background-color: #fff;
+  border-radius: 7px;
+  border: 1px solid silver;
+  padding: 30px;
+}
+
+.jobs-table {
+  width: 100%;
+}
+
+//.hp_logo {
+//  display:block;
+//  margin:auto;
+//  margin-bottom: 20px;
+//}
+//
+//.login-button {
+//  background-color: $main-blue;
+//}

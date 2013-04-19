@@ -1,4 +1,7 @@
 Costingtool::Application.routes.draw do
+  resources :jobs
+
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -63,6 +66,6 @@ Costingtool::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 
   # Devise insisted I do this
-  root :to => "home#index"
+  #root :to => "jobs#new"
 
 end
