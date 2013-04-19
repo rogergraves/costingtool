@@ -11,16 +11,12 @@ $main-blue: #1082CC;
   background: transparent;
   width: 50%;
   height: 50%;
-  width:400px;
+  width:350px;
   margin:10% auto;
 }
 
 .login-fields {
   background-color: #fff;
-  padding-left: 25px;
-  padding-right: 25px;
-  padding-top: 10px;
-  padding-bottom: 10px;
   border-radius: 7px;
   border: 1px solid silver;
   padding: 30px;
@@ -30,4 +26,8 @@ $main-blue: #1082CC;
   display:block;
   margin:auto;
   margin-bottom: 20px;
+}
+
+.login-button {
+  background-color: $main-blue;
 }
