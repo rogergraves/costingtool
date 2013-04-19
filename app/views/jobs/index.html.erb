@@ -1,7 +1,8 @@
 <div class="jobs-wrapper">
   <div class="jobs-basket">
     <h1 class="page-title">Job Basket</h1>
-    <p id="notice"><%= notice %></p>
+    <%= link_to '<i class="foundicon-trash icon-medium"></i>'.html_safe, jobs_empty_basket_path, method: :post, data: { confirm: 'Delete all jobs?' } %>
+    <%= link_to '<i class="foundicon-plus icon-medium"></i>'.html_safe, new_job_path %>
     <table class="jobs-table">
       <% @jobs.each do |job| %>
           <tr>
@@ -11,10 +12,7 @@
           </tr>
       <% end %>
     </table>
-
     <br />
-
-    <%= link_to 'New Job', new_job_path %>
   </div>
 </div>
 

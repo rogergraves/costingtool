@@ -46,7 +46,13 @@ class JobsController < InheritedResources::Base
     else
       @jobs = current_user.jobs
     end
+  end
 
+  def empty_basket
+    if user_signed_in?
+      current_user.jobs.each {|job| job.destroy }
+    end
+    redirect_to jobs_path
   end
 
 
