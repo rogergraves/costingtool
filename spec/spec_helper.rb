@@ -35,4 +35,11 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # Based on recommendation from RailsApps Tutorials
+  # (http://railsapps.github.io/tutorial-rails-devise-rspec-cucumber.html)
+  # in order to ensure a clean database after testing
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end
