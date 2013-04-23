@@ -14,32 +14,32 @@
     <%= f.text_field :name, :autofocus => true, :placeholder => "Job Name" %>
   </div>
   <div class="field">
-    <%= f.label :run_length, :display => "inline" %><br />
-    <%= f.text_field :run_length, :display => "inline" %>
+    <%= f.text_field :run_length %>
+    <%= f.label :run_length %><br />
   </div>
   <div class="field">
-    <%= f.label :clicks %><br />
     <%= f.text_field :clicks %>
+    <%= f.label :clicks %><br />
   </div>
   <div class="field">
-    <%= f.label :book_size %><br />
     <%= f.text_field :book_size %>
+    <%= f.label :book_size %><br />
   </div>
   <div class="field">
-    <%= f.label :pages %><br />
     <%= f.text_field :pages %>
+    <%= f.label :pages %><br />
   </div>
   <div class="field">
+    <%= f.text_field :sale_price, :placeholder => "$" %>
     <%= f.label :sale_price %><br />
-    <%= f.text_field :sale_price %>
   </div>
   <div class="field">
+    <%= f.text_field :annual_growth, :placeholder => "%" %>
     <%= f.label :annual_growth %><br />
-    <%= f.text_field :annual_growth %>
   </div>
   <div class="field">
+    <%= f.text_field :job_percentage, :placeholder => "%" %>
     <%= f.label :job_percentage %><br />
-    <%= f.text_field :job_percentage %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -1,9 +1,17 @@
-<div class="jobs-wrapper">
-  <div class="jobs-basket">
-    <h1>New job</h1>
 
-    <%= render 'form' %>
 
-    <%= link_to 'Back', jobs_path %>
+<div class="nav-wrapper">
+  <div class="nav-box">
+    <nav class="top-bar">
+      <%= render 'layouts/top-bar' %>
+    </nav>
+    <div class="sidebar">
+      <%= render 'layouts/side-bar' %>
+    </div>
+    <div class="new-job">
+      <%= render 'form' %>
+
+      <%= link_to 'Back', jobs_path %>
+    </div>
   </div>
 </div>
