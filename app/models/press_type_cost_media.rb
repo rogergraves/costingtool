@@ -1,0 +1,3 @@
+class PressTypeCostMedia < PressTypeCost
+
+end
