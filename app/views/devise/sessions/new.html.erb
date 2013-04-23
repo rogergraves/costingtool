@@ -13,7 +13,14 @@
 
     <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
         <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+        <br />
     <% end -%>
+
+    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+        <!--#I added the above line to prevent people from adding a new account with an existing email.-->
+        <%= link_to "Need a login?", new_registration_path(resource_name) %><br />
+    <% end -%>
+
   </div>
 </div>
 
