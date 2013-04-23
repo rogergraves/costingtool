@@ -2,30 +2,35 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.jobs-wrapper {
-  background: transparent;
-  width: 50%;
-  height: 50%;
-  margin:10% auto;
+.jobs-area {
+  float: right;
+  width: 75%;
+  padding: 15px;
 }
 
-.jobs-basket {
-  background-color: #fff;
-  border-radius: 7px;
-  border: 1px solid silver;
-  padding: 30px;
+.new-job {
+  float: right;
+  width: 75%;
+  padding: 15px;
 }
 
 .jobs-table {
   width: 100%;
 }
 
-//.hp_logo {
-//  display:block;
-//  margin:auto;
-//  margin-bottom: 20px;
-//}
-//
-//.login-button {
-//  background-color: $main-blue;
-//}
+form#new_job div.field input {
+  width: 10%;
+  display: inline;
+  text-align: center;
+
+}
+
+form#new_job div.field label {
+  display: inline;
+
+}
+
+form#new_job div.field input#job_name{
+  width: 35%;
+  text-align: justify;
+}

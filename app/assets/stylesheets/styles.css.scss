@@ -46,3 +46,33 @@ $main-blue: #1082CC;
 .login-button {
   background-color: $main-blue;
 }
+
+/* Navigation
+========================================================================================*/
+
+.nav-wrapper {
+  background: transparent;
+  width: 50%;
+  height: 50%;
+  margin:10% auto;
+}
+
+.nav-box {
+  background-color: #fff;
+  padding: 0px 0 3px 0;
+  height: 500px;
+}
+
+.sidebar{
+  width: 25%;
+  background-color: #efefef;
+  height: 90%;
+  padding: 15px;
+  float: left;
+}
+
+.top-bar {
+  margin-bottom: 0;
+  height: 10%;
+}
+
