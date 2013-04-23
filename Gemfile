@@ -24,6 +24,7 @@ end
 
 group :development, :test do
   gem "awesome_print"                             # Nicely formatted data structures in console, for example "ap User.first"
+  gem "factory_girl_rails", "~> 4.2.1"
 end
 
 group :test do

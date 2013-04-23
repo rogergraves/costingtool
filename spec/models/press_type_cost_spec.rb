@@ -1,10 +1,9 @@
 require 'spec_helper'
 
 describe PressTypeCost do
-  let(:user) { User.create(:email => 'someone@something.com', :password => 'password') }
-  let(:press_type) { PressType.create(:name => 'My Press 2000') }
-  let(:valid_cost) { PressTypeCost.create(:description => "Hourly", :user_id => user.id,
-                                         :press_type_id => press_type.id, :cost => 10.00) }
+  let(:user) { FactoryGirl.create(:user) }
+  let(:press_type) { FactoryGirl.create(:press_type) }
+  let(:valid_cost) { PressTypeCost.create(:user_id => user.id, :press_type_id => press_type.id, :cost => 10.00) }
 
   it "should require a cost entry amount" do
     # Move to press_type_cost_spec.rb
