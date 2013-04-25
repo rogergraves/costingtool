@@ -3,8 +3,11 @@
     <h3 class="subheader">Sign up</h3>
 
     <%= semantic_form_for(resource, :as => resource_name, :url => user_registration_path(resource)) do |f| %>
-      <%= devise_error_messages! %>
-
+        <% if resource.errors[:email].present? %>
+              <% resource.errors[:email].each do |msg| %>
+                  <p class="alert label"><%= msg %></p>
+              <% end %>
+        <% end %>
       <div><%= f.email_field :email, :placeholder => "Email", :autofocus => true %></div>
 
       <div><%= f.submit "Sign up", :class => "login-button medium button radius expand" %></div>

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+  validate :check_email_domain
   has_many :jobs
   # attr_accessible :title, :body
 
@@ -38,4 +39,11 @@ class User < ActiveRecord::Base
     self.errors[:password_confirmation] << "does not match password" if password != password_confirmation
     password == password_confirmation && !password.blank?
   end
+
+  def check_email_domain
+    if !email.match(/@hp.com|@gmail.com/)
+      errors.add(:email, "This email domain is not valid")
+    end
+  end
 end
+
