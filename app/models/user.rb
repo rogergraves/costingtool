@@ -10,9 +10,13 @@ class User < ActiveRecord::Base
   has_many :jobs
   # attr_accessible :title, :body
 
+  COUNTRIES = ["American Samoa", "Australia", "Brunei", "Cambodia", "China", "Hong Kong", "Indonesia", "Japan",
+               "South Korea", "Laos", "Macau", "Malaysia", "Mongolia", "Myanmar", "New Zealand", "Pakistan",
+               "Papua New Guinea", "Philipines", "Singapore", "Republic of China", "Thailand", "Timor-leste", "Vietnam"]
+
   serialize :data, ActiveRecord::Coders::Hstore
   #HSTORE_ATTR_NAMESPACE = 'attribute'
-  %w[first_name last_name designation company department contact_number].each do |key|
+  %w[first_name last_name designation company department contact_number country].each do |key|
     attr_accessible key
 
     define_method(key) do

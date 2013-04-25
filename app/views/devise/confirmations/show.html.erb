@@ -11,19 +11,24 @@
 
 <div class="login-wrapper">
   <div class="login-fields">
-    <h3 class="subheader">You're almost done! Now create a password to securely access your account.</h3>
 
-    <%= form_for(resource, :as => resource_name, :url => confirm_path) do |f| %>
+    <h3 class="subheader">You're almost done!</h3>
+
+    <%= form_for(resource, :as => resource_name, :url => confirm_path, :html => { :class => "custom" }) do |f| %>
         <%= devise_error_messages! %>
+        <div><%= f.password_field :password, :placeholder => "Password" %></div>
+        <div><%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %></div>
 
         <div><%= f.text_field :first_name, :placeholder => "First Name" %></div>
         <div><%= f.text_field :last_name, :placeholder => "Last Name" %></div>
         <div><%= f.text_field :designation, :placeholder => "Designation" %></div>
+        <div><%= f.text_field :company, :placeholder => "Company" %></div>
         <div><%= f.text_field :department, :placeholder => "Department/Division" %></div>
+        <div>
+          <%= custom_select("Country", "user_country", "user[country]", User::COUNTRIES) %>
+        </div>
         <div><%= f.text_field :contact_number, :placeholder => "Contact Number" %></div>
 
-        <div><%= f.password_field :password, :placeholder => "Password" %></div>
-        <div><%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %></div>
         <%= f.hidden_field :confirmation_token %>
 
         <div><%= f.submit "Confirm Account", :class => "login-button medium button radius expand" %></div>
