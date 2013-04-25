@@ -16,7 +16,7 @@
         <br />
     <% end -%>
 
-    <%- if User.email.present?  %>
+    <%- if User.email.valid?  %>
         <!--#I added the above line to prevent people from adding a new account with an existing email.-->
         <%= mail_to AdminUser.email, 'Need a login?',
                     :subject => 'Requesting an Account - HP Jobs Cost Calculator' %><br />
