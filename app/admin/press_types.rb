@@ -1,6 +1,7 @@
 ActiveAdmin.register PressType do
   index do
     column :name
+    column :duty_cycle
     column :icon do |press|
       image_tag(press.icon.url(:small))
     end
@@ -10,10 +11,10 @@ ActiveAdmin.register PressType do
   show do |ad|
     attributes_table do
       row :name
+      row :duty_cycle
       row :icon do
         image_tag(ad.icon.url(:medium))
       end
-      row :icon
     end
   end
 
@@ -22,6 +23,7 @@ ActiveAdmin.register PressType do
   form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "Details" do
       f.input :name
+      f.input :duty_cycle
 
       if f.object.icon.present?
         f.input :icon, :as => :file, :hint => f.template.image_tag(f.object.icon.url(:medium))
