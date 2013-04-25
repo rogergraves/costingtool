@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   serialize :data, ActiveRecord::Coders::Hstore
   #HSTORE_ATTR_NAMESPACE = 'attribute'
-  %w[first_name last_name].each do |key|
+  %w[first_name last_name designation company department contact_number].each do |key|
     attr_accessible key
 
     define_method(key) do
@@ -22,5 +22,16 @@ class User < ActiveRecord::Base
     define_method("#{key}=") do |value|
       self.data = (data || {}).merge(key => value)
     end
+  end
+
+  def password_required?
+    super if confirmed?
+  end
+
+  def password_match?
+    self.errors[:password] << "can't be blank" if password.blank?
+    self.errors[:password_confirmation] << "can't be blank" if password_confirmation.blank?
+    self.errors[:password_confirmation] << "does not match password" if password != password_confirmation
+    password == password_confirmation && !password.blank?
   end
 end

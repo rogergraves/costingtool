@@ -6,8 +6,12 @@ Costingtool::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  devise_for :users
+  devise_for :users, :controllers => {:confirmations => 'confirmations'}
   ActiveAdmin.routes(self)
+
+  devise_scope :user do
+    put "/confirm" => "confirmations#confirm"
+  end
 
   match 'jobs/empty_basket' => 'jobs#empty_basket'
 
