@@ -3,6 +3,7 @@ ActiveAdmin.register User do
     column :email
     column :first_name
     column :last_name
+    column :country
     column :current_sign_in_at
     column :last_sign_in_at
     column :sign_in_count
@@ -14,6 +15,8 @@ ActiveAdmin.register User do
       row :email
       row :first_name
       row :last_name
+      row :country
+      row :company
       row :current_sign_in_at
       row :last_sign_in_at
       row :sign_in_count

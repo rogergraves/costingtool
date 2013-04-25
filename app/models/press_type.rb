@@ -1,5 +1,5 @@
 class PressType < ActiveRecord::Base
-  attr_accessible :name, :icon
+  attr_accessible :name, :icon, :duty_cycle
   has_many :press_type_costs
   has_many :press_type_cost_clicks
   has_many :press_type_cost_labors
@@ -11,6 +11,10 @@ class PressType < ActiveRecord::Base
       small: '100x50>'
   }
 
-  validates_presence_of :name             #
+  validates_presence_of :name
 
+  serialize :data, ActiveRecord::Coders::Hstore
+  hstore :data, :accessors => {
+      :duty_cycle => :integer     # Max usage of a press per month
+  }
 end

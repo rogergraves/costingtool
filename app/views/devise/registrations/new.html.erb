@@ -1,18 +1,18 @@
-<h2>Sign up</h2>
+<div class="login-wrapper">
+  <div class="login-fields">
+    <h3 class="subheader">Sign up</h3>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <%= semantic_form_for(resource, :as => resource_name, :url => user_registration_path(resource)) do |f| %>
+        <% if resource.errors[:email].present? %>
+              <% resource.errors[:email].each do |msg| %>
+                  <p class="alert label"><%= msg %></p>
+              <% end %>
+        <% end %>
+      <div><%= f.email_field :email, :placeholder => "Email", :autofocus => true %></div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+      <div><%= f.submit "Sign up", :class => "login-button medium button radius expand" %></div>
+    <% end %>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
