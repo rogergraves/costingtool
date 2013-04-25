@@ -1,6 +1,10 @@
 <div class="login-wrapper">
   <%= image_tag("hp_logo_small.png", :class => "hp_logo") %>
   <div class="login-fields">
+    <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}", :class => "alert label" if msg.is_a?(String) %>
+    <% end %>
+    <br />
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
         <div><% f.label :email %>
           <%= f.email_field :email, :placeholder => "Email", :autofocus => true %></div>
@@ -17,8 +21,7 @@
     <% end -%>
 
     <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-        <!--#I added the above line to prevent people from adding a new account with an existing email.-->
-        <%= link_to "Need a login?", new_registration_path(resource_name) %><br />
+        <%= link_to "Sign up", new_registration_path(resource_name) %><br />
     <% end -%>
 
   </div>
