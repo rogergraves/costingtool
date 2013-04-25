@@ -10,4 +10,7 @@ class PressType < ActiveRecord::Base
       medium: '200x100>',
       small: '100x50>'
   }
+
+  validates_presence_of :name             #
+
 end
