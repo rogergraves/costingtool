@@ -4,7 +4,15 @@
     <h3 class="subheader">You're almost done!</h3>
 
     <%= form_for(resource, :as => resource_name, :url => confirm_path, :html => { :class => "custom" }) do |f| %>
-        <%= devise_error_messages! %>
+        <% if resource.errors.present? %>
+            <% resource.errors.full_messages.each do |msg| %>
+                <% if msg == "Password is too short (minimum is 6 characters)" %>
+                    <p class="alert label"><%= "Minimum password length is 6 characters" %></p>
+                <% else %>
+                    <p class="alert label"><%= msg %></p>
+                <% end %>
+            <% end %>
+        <% end %>
         <div><%= f.password_field :password, :placeholder => "Password" %></div>
         <div><%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %></div>
 

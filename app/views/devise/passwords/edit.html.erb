@@ -4,7 +4,7 @@
     <% if resource.errors.present? %>
         <% resource.errors.full_messages.each do |msg| %>
             <% if msg == "Password is too short (minimum is 6 characters)" %>
-                <p class="alert label"><%= "Minimum length is 6 characters" %></p>
+                <p class="alert label"><%= "Minimum password length is 6 characters" %></p>
             <% else %>
                 <p class="alert label"><%= msg %></p>
             <% end %>
