@@ -19,6 +19,9 @@
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= favicon_link_tag "hpcosting.ico"  %>
     <%= csrf_meta_tags %>
+
+    <!-- the following script allows the creation of Pivotal Tracker bugs directly from the web pages -->
+    <script id="redline_js" type="text/javascript">var redline = {}; redline.project_id = 119611082;var b,d;b=document.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===document.location.protocol?"https://data":"http://www")+'.redline.cc/assets/button.js';d=document.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d);</script>
   </head>
 
   <body>

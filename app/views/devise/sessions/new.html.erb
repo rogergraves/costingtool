@@ -25,15 +25,8 @@
         <br />
     <% end -%>
 
-<<<<<<< HEAD
-    <%- if User.email.valid?  %>
-        <!--#I added the above line to prevent people from adding a new account with an existing email.-->
-        <%= mail_to AdminUser.email, 'Need a login?',
-                    :subject => 'Requesting an Account - HP Jobs Cost Calculator' %><br />
-=======
     <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
         <%= link_to "Sign up", new_registration_path(resource_name) %><br />
->>>>>>> 45d2755ea69391238d7abcc4ffed43ae0e101afa
     <% end -%>
 
   </div>
