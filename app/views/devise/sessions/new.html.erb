@@ -2,9 +2,12 @@
   <%= image_tag("hp_logo_small.png", :class => "hp_logo") %>
   <div class="login-fields">
     <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}", :class => "alert label" if msg.is_a?(String) %>
+        <% if msg == "Instructions have been sent to your email" %>
+            <%= content_tag :div, msg, :id => "flash_#{name}", :class => "radius secondary label" if msg.is_a?(String) %>
+        <% else %>
+            <%= content_tag :div, msg, :id => "flash_#{name}", :class => "alert label" if msg.is_a?(String) %>
+        <% end %>
     <% end %>
-    <br />
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
         <div><% f.label :email %>
           <%= f.email_field :email, :placeholder => "Email", :autofocus => true %></div>

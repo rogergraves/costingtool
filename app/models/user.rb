@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
 
   def check_email_domain
     if !email.match(/@hp.com|@gmail.com/)
-      errors.add(:email, "This email domain is not valid")
+      errors.add(:email, " domain is not valid")
     end
   end
 end

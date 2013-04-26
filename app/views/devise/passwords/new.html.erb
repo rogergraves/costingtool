@@ -3,7 +3,11 @@
     <h3 class="subheader">Forgot your password?</h3>
 
     <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-      <%= devise_error_messages! %>
+        <% if resource.errors[:email].present? %>
+            <% resource.errors[:email].each do |msg| %>
+                <p class="alert label"><%= "Email " + msg %></p>
+            <% end %>
+        <% end %>
 
         <div><%= f.email_field :email, :placeholder => "Email", :autofocus => true %></div>
 

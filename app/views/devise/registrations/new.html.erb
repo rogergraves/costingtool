@@ -4,7 +4,7 @@
 
     <%= semantic_form_for(resource, :as => resource_name, :url => user_registration_path(resource)) do |f| %>
         <% if resource.errors[:email].present? %>
-              <% resource.errors[:email].each do |msg| %>
+              <% resource.errors.full_messages.each do |msg| %>
                   <p class="alert label"><%= msg %></p>
               <% end %>
         <% end %>

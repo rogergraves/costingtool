@@ -1,9 +1,17 @@
 <div class="login-wrapper">
   <div class="login-fields">
     <h3 class="subheader">Change your password</h3>
+    <% if resource.errors.present? %>
+        <% resource.errors.full_messages.each do |msg| %>
+            <% if msg == "Password is too short (minimum is 6 characters)" %>
+                <p class="alert label"><%= "Minimum length is 6 characters" %></p>
+            <% else %>
+                <p class="alert label"><%= msg %></p>
+            <% end %>
+        <% end %>
+    <% end %>
 
     <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-      <%= devise_error_messages! %>
       <%= f.hidden_field :reset_password_token %>
 
       <div><%= f.password_field :password, :placeholder => "New Password", :autofocus => true %></div>
