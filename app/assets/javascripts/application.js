@@ -16,3 +16,15 @@
 //= require_tree .
 
 $(document).foundation();
+
+
+//Sign in error formatting
+if($('#flash_alert').length && $("#new_user").length){
+    $("#new_user").prepend("<br />")
+}
+
+//Reset instructions will soon be sent to your email
+if($('#flash_notice').length && $("#new_user").length){
+    $("#new_user").prepend("<br />");
+}
+
