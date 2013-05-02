@@ -23,4 +23,6 @@ doc/
 .project
 /.bundle
 /resources/*
+server.csr
+server.key
 
