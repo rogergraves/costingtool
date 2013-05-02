@@ -28,5 +28,5 @@ Development Environment Setup (Mac)
 7.  Run "bundle install"
 8.  rake db:create
 9.  rake db:migrate
-10. rake db:test:prepare (NOTE -- if you run into hstore error, try on command line: psql -d template1 -c 'create
-extension hstore;')
+10. rake db:test:prepare
+NOTE -- if you run into hstore error, try: psql -d template1 -c 'create extension hstore;'
