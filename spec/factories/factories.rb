@@ -1,4 +1,4 @@
-#FactoryGirl.define do
+FactoryGirl.define do
 #
 #  factory :user do
 #    sequence(:email) {|n| "email#{n}@factory.com" }
@@ -6,9 +6,9 @@
 #    password_confirmation 'pleaseplease'
 #  end
 #
-#  factory :press_type do
-#    name "My Press 3000"
-#  end
+  factory :press_type do
+    name "My Press 3000"
+  end
 #
 #  factory :press_type_cost do
 #    description "Hourly"
@@ -16,4 +16,4 @@
 #    press_type_id FactoryGirl.create(:press_type).id
 #    cost 10.00
 #  end
-#end
+end
