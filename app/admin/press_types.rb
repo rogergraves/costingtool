@@ -5,7 +5,10 @@ ActiveAdmin.register PressType do
     column :icon do |press|
       image_tag(press.icon.url(:small)) if press.icon.present?
     end
-    column "SPI (USD)", :spi
+    column "SPI (USD)", :spi do |press|
+      number_to_currency press.spi
+    end
+
     default_actions
   end
 
@@ -16,7 +19,9 @@ ActiveAdmin.register PressType do
       row :icon do
         image_tag(press.icon.url(:medium)) if press.icon.present?
       end
-      row :spi, :label => "SPI (USD)"
+      row "SPI (USD)", :spi do |press|
+        number_to_currency press.spi
+      end
     end
   end
 
