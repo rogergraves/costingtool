@@ -1,5 +1,5 @@
 class PressType < ActiveRecord::Base
-  attr_accessible :name, :icon, :duty_cycle
+  attr_accessible :name, :icon, :duty_cycle, :spi
   has_many :press_type_costs
   has_many :press_type_cost_clicks
   has_many :press_type_cost_labors
@@ -15,6 +15,7 @@ class PressType < ActiveRecord::Base
 
   serialize :data, ActiveRecord::Coders::Hstore
   hstore :data, :accessors => {
-      :duty_cycle => :integer     # Max usage of a press per month
+      :duty_cycle => :integer,     # Max usage of a press per month
+      :spi => :float                # Service Parts Insurance cost / month in USD
   }
 end
