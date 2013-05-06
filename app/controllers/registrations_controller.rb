@@ -11,6 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     build_resource
+    resource.current_step = "first"
 
     if resource.save
       if resource.active_for_authentication?

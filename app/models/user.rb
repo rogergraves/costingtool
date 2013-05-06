@@ -7,7 +7,16 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessor :current_step
   validate :check_email_domain
+
+  validates_presence_of :email, :if => lambda { |o| o.current_step == "first" }
+  validates_presence_of :company, :if => lambda { |o| o.current_step == "second" }
+  validates_presence_of :country, :if => lambda { |o| o.current_step == "second" }
+  validates_presence_of :password, :if => lambda { |o| o.current_step == "second" }
+  validates_presence_of :password_confirmation, :if => lambda { |o| o.current_step == "second" }
+
+
   has_many :jobs
   # attr_accessible :title, :body
 
@@ -17,7 +26,7 @@ class User < ActiveRecord::Base
 
   serialize :data, ActiveRecord::Coders::Hstore
   #HSTORE_ATTR_NAMESPACE = 'attribute'
-  %w[first_name last_name designation company department contact_number country].each do |key|
+  %w[first_name last_name designation company department contact_number country current_step].each do |key|
     attr_accessible key
 
     define_method(key) do
