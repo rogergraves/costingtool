@@ -1,20 +1,22 @@
 ActiveAdmin.register PressType do
   index do
     column :name
-    column :duty_cycle
+    column "Duty Cycle (clicks/mth)", :duty_cycle
     column :icon do |press|
-      image_tag(press.icon.url(:small))
+      image_tag(press.icon.url(:small)) if press.icon.present?
     end
+    column "SPI (USD)", :spi
     default_actions
   end
 
-  show do |ad|
+  show do |press|
     attributes_table do
       row :name
       row :duty_cycle
       row :icon do
-        image_tag(ad.icon.url(:medium))
+        image_tag(press.icon.url(:medium)) if press.icon.present?
       end
+      row :spi, :label => "SPI (USD)"
     end
   end
 
@@ -23,13 +25,15 @@ ActiveAdmin.register PressType do
   form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "Details" do
       f.input :name
-      f.input :duty_cycle
+      f.input :duty_cycle, :label => "Duty cycle (max clicks per month)"
 
       if f.object.icon.present?
         f.input :icon, :as => :file, :hint => f.template.image_tag(f.object.icon.url(:medium))
       else
         f.input :icon, :as => :file
       end
+
+      f.input :spi, :label => "SPI (USD per month) $"
 
     end
     f.buttons
