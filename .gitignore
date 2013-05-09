@@ -25,4 +25,4 @@ doc/
 /resources/*
 server.csr
 server.key
-
+*.crt
