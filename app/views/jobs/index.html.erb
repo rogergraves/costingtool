@@ -9,7 +9,7 @@
     <div class="jobs-area">
       <h1 class="page-title">Job Basket</h1>
       <%= link_to '<i class="foundicon-trash icon-medium"></i>'.html_safe, jobs_empty_basket_path, method: :post, data: { confirm: 'Delete all jobs?' } %>
-      <%= link_to '<i class="foundicon-plus icon-medium"></i>'.html_safe, new_job_path %>
+      <i class="foundicon-plus icon-medium"></i>
       <table class="jobs-table">
         <% @jobs.each do |job| %>
             <tr>
@@ -20,6 +20,9 @@
         <% end %>
       </table>
       <br />
+    </div>
+    <div class="new-job">
+      <%= render 'form' %>
     </div>
   </div>
 </div>
