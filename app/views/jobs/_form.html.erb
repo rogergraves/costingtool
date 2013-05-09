@@ -1,47 +1,64 @@
-<%= form_for(@job) do |f| %>
-  <% if @job.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
+<div class="new-job-wrapper">
+  <%= form_for(@job) do |f| %>
+    <% if @job.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
 
-      <ul>
-      <% @job.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @job.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div>
+      <h3 class="form-header subheader"> Create a New Job </h3>
+    </div>
+    <div class="field">
+      <%= f.text_field :name, :autofocus => true, :placeholder => "Job Name" %>
+    </div>
+    <div class="field">
+      <%= f.text_field :pages_per_month %>
+      <%= f.label :pages_per_month %>
+    </div>
+    <div class="field">
+      <%= f.text_field :number_of_jobs %>
+      <%= f.label :number_of_jobs_per_month %>
+    </div>
+    <div class="field">
+      <%= f.text_field :copies_per_job %>
+      <%= f.label :copies_per_job %>
+    </div>
+    <div class="field inline-field">
+      <%= f.text_field :multicolor_clicks %>
+      <%= f.label :multicolor_clicks %>
+    </div>
+    <div class="field inline-field-long">
+      <%= f.text_field :black %>
+      <%= f.label :black %>
+    </div>
+    <div class="field inline-field">
+      <%= f.text_field :number_of_pages %>
+      <%= f.label :number_of_pages_per_job %>
+    </div>
+    <div class="field inline-field-long">
+      <%= f.text_field :plex %>
+      <%= f.label :plex %>
+    </div>
+    <div class="field">
+      <%= f.text_field :sale_price %>
+      <%= f.label :sale_price_per_copy %>
+    </div>
+    <div class="field">
+      <%= f.text_field :annual_growth, :placeholder => "%" %>
+      <%= f.label :annual_growth %>
+    </div>
+    <div class="field">
+      <%= f.text_field :job_percentage, :placeholder => "%" %>
+      <%= f.label :job_percentage %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Create Job", :class => "login-button medium button radius custom-expand" %>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.text_field :name, :autofocus => true, :placeholder => "Job Name" %>
-  </div>
-  <div class="field">
-    <%= f.text_field :run_length %>
-    <%= f.label :run_length %><br />
-  </div>
-  <div class="field">
-    <%= f.text_field :clicks %>
-    <%= f.label :clicks %><br />
-  </div>
-  <div class="field">
-    <%= f.text_field :book_size %>
-    <%= f.label :book_size %><br />
-  </div>
-  <div class="field">
-    <%= f.text_field :pages %>
-    <%= f.label :pages %><br />
-  </div>
-  <div class="field">
-    <%= f.text_field :sale_price, :placeholder => "$" %>
-    <%= f.label :sale_price %><br />
-  </div>
-  <div class="field">
-    <%= f.text_field :annual_growth, :placeholder => "%" %>
-    <%= f.label :annual_growth %><br />
-  </div>
-  <div class="field">
-    <%= f.text_field :job_percentage, :placeholder => "%" %>
-    <%= f.label :job_percentage %><br />
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

@@ -44,9 +44,11 @@ class JobsController < InheritedResources::Base
     if !user_signed_in?
       redirect_to new_user_session_path
     elsif current_user.jobs.empty?
+      @job = Job.new
       Rails.logger.info("no jobs: #{current_user.jobs}")
       redirect_to new_job_path
     else
+      @job = Job.new
       Rails.logger.info("jobs: #{current_user.jobs}")
       @jobs = current_user.jobs
     end

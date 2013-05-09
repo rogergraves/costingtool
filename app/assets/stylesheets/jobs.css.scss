@@ -12,6 +12,8 @@
   float: right;
   width: 75%;
   padding: 15px;
+  display: none;
+  overflow-y: auto;
 }
 
 .jobs-table {
@@ -19,7 +21,7 @@
 }
 
 form#new_job div.field input {
-  width: 10%;
+  width: 30px;
   display: inline;
   text-align: center;
 
@@ -31,6 +33,15 @@ form#new_job div.field label {
 }
 
 form#new_job div.field input#job_name{
-  width: 35%;
+  width: 70%;
   text-align: justify;
+}
+
+.new-job-wrapper {
+  width: 39%;
+  margin-left: 20px;
+}
+
+.custom-expand {
+  width: 85%;
 }
