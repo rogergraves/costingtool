@@ -18,7 +18,7 @@ class ClicksLookupTable < ActiveRecord::Base
   validates_inclusion_of :color_range_start, :presence => true, :in => 0..6
   validates_inclusion_of :color_range_end, :presence => true, :in => 0..6
   validates :color_range_end, :numericality => { :greater_than_or_equal_to => :color_range_start}
-  validates_format_of :color_range_end => :integer
+  #validates_format_of :color_range_end =>
 
   #volume_range validations -- min: 0 (not nil), max: :nil = infinity
   validates :volume_range_start, :numericality => { :greater_than_or_equal_to => 0 }
