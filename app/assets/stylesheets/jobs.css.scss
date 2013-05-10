@@ -64,3 +64,8 @@ form#new_job div.field input#job_name{
   display: inline-block;
   margin-bottom: 0px;
 }
+
+form#new_job div.field input.disabled-appearance {
+  color: grey;
+  background-color: #F0F0F0;
+}

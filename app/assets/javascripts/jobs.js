@@ -17,6 +17,14 @@ $("input#job_copies_per_job").keyup(function() {
     pages.val(pagesTotal);
 })
 
+$("input#job_number_of_jobs").keyup(function() {
+    var jobs = $("#job_copies_per_job").val();
+    var copies = $("#job_number_of_jobs").val();
+    var pages = $("#job_pages_per_month");
+    var pagesTotal = jobs * copies;
+    pages.val(pagesTotal);
+})
+
 $("input#job_multicolor_clicks").keyup(function() {
     if ($("input#job_multicolor_clicks").val() > 6){
         alert("The maximum number of multicolor clicks is 6");
