@@ -21,10 +21,13 @@
 }
 
 form#new_job div.field input {
-  width: 30px;
+  width: 32px;
   display: inline;
   text-align: center;
+}
 
+form#new_job div.field input.float-input {
+  width: 100px;
 }
 
 form#new_job div.field {
@@ -33,19 +36,31 @@ form#new_job div.field {
 
 form#new_job div.field label {
   display: inline;
-
 }
 
 form#new_job div.field input#job_name{
-  width: 70%;
+  width: 100%;
   text-align: justify;
 }
 
 .new-job-wrapper {
-  width: 39%;
+  width: 42%;
   margin-left: 20px;
 }
 
 .custom-expand {
-  width: 85%;
+  width: 100%;
+}
+
+.plex {
+  width: 30%;
+  display: inline-block;
+  margin-bottom: 0px;
+  height: 36px;
+}
+
+.black-checkbox {
+  width: 20%;
+  display: inline-block;
+  margin-bottom: 0px;
 }
