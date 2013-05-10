@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   end
 
   def check_email_domain
-    if !email.match(/@hp.com|@gmail.com/)
+    if !email.match(/@hp.com|@gmail.com|@hunus.co.kr|@monami.com|@acacia-it.com|@norde.com.ph|@sgn.rieckermann.com.vn|@redington.co.in|@jdcsl.com|@syntax.com.cn|@infotechcinia.com|@founder.com|@bjc.co.th|@wywy.com.my|@samafitro.co.id|@currico.com.au|@grandtech.com.tw|@syntaxhk.com.hk/)
       errors.add(:email, " domain is not valid")
     end
   end
