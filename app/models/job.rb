@@ -22,8 +22,6 @@ class Job < ActiveRecord::Base
   validates_numericality_of :number_of_jobs, :copies_per_job
 
   def translate_form_inputs
-    Rails.logger.info("plex = #{self.data["plex"]}")
-    Rails.logger.info("self = #{self.ai}")
     self.black ? self.black = 1 : self.black = 0
     self.data["plex"] == "Duplex" ? self.plex = 2 : self.plex = 1
   end

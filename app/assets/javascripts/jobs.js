@@ -23,3 +23,15 @@ $("input#job_multicolor_clicks").keyup(function() {
         $("input#job_multicolor_clicks").val("");
     }
 })
+
+
+$('#job_number_of_pages').keydown(function(e) {
+    var keyCode = e.keyCode || e.which;
+
+    if (keyCode == 9) {
+        $(".custom.dropdown a.current").click();
+        $("#job_sale_price").focus();
+    }
+});
+
+
