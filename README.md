@@ -30,3 +30,8 @@ Development Environment Setup (Mac)
 9.  rake db:migrate
 10. rake db:test:prepare
 NOTE -- if you run into hstore error, try: psql -d template1 -c 'create extension hstore;'
+
+Rake Tasks
+==========
+To create a click lookup tier table (for testing purposes)
+          rake app:create_tiers
