@@ -30,6 +30,9 @@
       <%= f.text_field :copies_per_job, :class => "float-input", :required => true %>
       <%= f.label :copies_per_job %>
     </div>
+    <div class="job-size">
+      <%= custom_select("Job Size", "job_size", "job[job_size]", PressTypeCostMedia.job_sizes) %>
+    </div>
     <div class="field inline-field">
       <%= f.text_field :multicolor_clicks, :required => true %>
       <%= f.label :multicolor_clicks %>
