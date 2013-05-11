@@ -36,7 +36,7 @@ class ClicksLookup < ActiveRecord::Base
 
 
   #price validations -- min: 0, max: undefined, not nil
-  validates_numericality_of :price, :only_integer => true
+  validates_numericality_of :price
   #validates_inclusion_of :price, :presence => true, :in => { :greater_than_or_equal_to => 0 }
 
 
