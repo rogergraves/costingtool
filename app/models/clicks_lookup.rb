@@ -1,12 +1,13 @@
 class ClicksLookup < ActiveRecord::Base
-  attr_accessible :clicks_lookup_table_id, :label, :color_range_start, :color_range_end, :black,
+  attr_accessible :clicks_lookup_table_id, :click_description, :tier_label, :color_range_start, :color_range_end, :black,
       :volume_range_start, :volume_range_end, :price
 
   belongs_to :clicks_lookup_table
 
   serialize :data, ActiveRecord::Coders::Hstore
   hstore :data, :accessors => {
-      :label => :string,              # Tier label, not :nil
+      :click_description => :string,  # Describes colors used
+      :tier_label => :string,         # Tier label, not :nil
       :color_range_start => :integer, # must be between 0-6, not :nil
       :color_range_end => :integer,   # greater than or equal to start, between 0-6, not :nil
       :black => :integer,             # 0 or 1, not :nil

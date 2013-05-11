@@ -3,7 +3,8 @@ ActiveAdmin.register ClicksLookup do
   #navigation_menu :clicks_lookup_table
 
   index do |entry|
-    column :label
+    column :click_description
+    column :tier_label
     column :color_range_start
     column :color_range_end
     column :black
@@ -16,7 +17,8 @@ ActiveAdmin.register ClicksLookup do
 
   show do |entry|
     attributes_table do
-      row :label
+      row :click_description
+      row :tier_label
       row :color_range_start
       row :color_range_end
       row :black
@@ -30,7 +32,8 @@ ActiveAdmin.register ClicksLookup do
 
   form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "Details" do
-      f.input :label
+      f.input :click_description
+      f.input :tier_label
       f.input :color_range_start, :as => :select, :collection => ["0", "1", "2", "3", "4", "5", "6"]
       f.input :color_range_end, :as => :select, :collection => ["0", "1", "2", "3", "4", "5", "6"]
       f.input :black, :as => :radio, :collection => {"Yes" => 1, "No" => 0}
