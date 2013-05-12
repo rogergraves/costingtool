@@ -5,6 +5,7 @@ class PressType < ActiveRecord::Base
   has_many :press_type_cost_labors
   has_many :press_type_cost_medias
   has_many :press_type_cost_services
+  has_many :impositions, :dependent => :destroy
 
   has_attached_file :icon, styles: {
       medium: '200x100>',
