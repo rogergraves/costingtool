@@ -1,6 +1,6 @@
 ActiveAdmin.register ClicksLookup do
   belongs_to :clicks_lookup_table
-  #navigation_menu :clicks_lookup_table
+  navigation_menu :clicks_lookup_table
 
   index do |entry|
     column :click_description
