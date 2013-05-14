@@ -2,6 +2,8 @@ class Job < ActiveRecord::Base
   attr_accessible :name, :pages_per_month, :number_of_jobs, :copies_per_job, :multicolor_clicks, :black,
                   :number_of_pages, :plex, :sale_price, :annual_growth, :job_percentage, :job_size
   belongs_to :user
+  has_many :press_jobs
+
   before_save :translate_form_inputs
 
   serialize :data, ActiveRecord::Coders::Hstore
