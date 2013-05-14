@@ -29,6 +29,10 @@ class Job < ActiveRecord::Base
     self.data["plex"] == "Duplex" ? self.plex = 2 : self.plex = 1
   end
 
+  def self.available_sizes
+    ['6"x9"', '7"x10"', 'A5', 'A4', 'A3', 'B2']
+  end
+
 end
 
 
