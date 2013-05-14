@@ -1,7 +1,8 @@
 ActiveAdmin.register ClicksLookupTable do
   sidebar "Clicks Lookup Entries" do
     ul do
-      #li link_to("Create entries", new_admin_clicks_lookup_table_clicks_lookup_path(clicks_lookup_table))
+      li link_to("Create entries")
+      # new_admin_clicks_lookup_table_clicks_lookup_path(clicks_lookup_table))
       #
       #if clicks_lookup_table.clicks_lookups.present?
       #  li link_to("Edit entries", admin_clicks_lookup_table_clicks_lookup_path(clicks_lookup_table))
@@ -38,16 +39,18 @@ ActiveAdmin.register ClicksLookupTable do
 
   form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "Details" do
-      f.input :click_description
-      f.input :tier_label
-      f.input :color_range_start, :as => :select, :collection => ["0", "1", "2", "3", "4", "5", "6"]
-      f.input :color_range_end, :as => :select, :collection => ["0", "1", "2", "3", "4", "5", "6"]
-      f.input :black, :as => :radio, :collection => {"Yes" => 1, "No" => 0}
-      f.input :volume_range_start, :as => :number
-      f.input :volume_range_end, :as => :number
-      f.input :price, :as => :number, :label => "Price (USD)"
+      f.input :click_description, :label => "Click Description"
+      f.input :tier_label, :label => "Tier Label"
+      f.input :color_range_start, :as => :select, :collection => ["0", "1", "2", "3", "4", "5", "6"], :label => "Color Range Start"
+      f.input :color_range_end, :as => :select, :collection => ["0", "1", "2", "3", "4", "5", "6"], :label => "Color Range End"
+      f.input :black, :as => :radio, :collection => {"Yes" => 1, "No" => 0}, :label => "Black"
+      f.input :volume_range_start, :as => :number, :min => 0, :label => "Volume Range Start"
+      f.input :volume_range_end, :as => :number, :min => 0, :label => "Volume Range End"
+      f.input :price, :as => :number, :min => 0, :label => "Price (USD)"
     end
 
     f.buttons
   end
 end
+
+

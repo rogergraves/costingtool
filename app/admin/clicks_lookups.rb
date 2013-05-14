@@ -32,14 +32,14 @@ ActiveAdmin.register ClicksLookup do
 
   form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "Details" do
-      f.input :click_description
-      f.input :tier_label
-      f.input :color_range_start, :as => :select, :collection => ["0", "1", "2", "3", "4", "5", "6"]
-      f.input :color_range_end, :as => :select, :collection => ["0", "1", "2", "3", "4", "5", "6"]
-      f.input :black, :as => :radio, :collection => {"Yes" => 1, "No" => 0}
-      f.input :volume_range_start, :as => :number
-      f.input :volume_range_end, :as => :number
-      f.input :price, :as => :number, :label => "Price (USD)"
+      f.input :click_description, :label => "Click Description"
+      f.input :tier_label, :label => "Tier Label"
+      f.input :color_range_start, :as => :select, :collection => ["0", "1", "2", "3", "4", "5", "6"], :label => "Color Range Start"
+      f.input :color_range_end, :as => :select, :collection => ["0", "1", "2", "3", "4", "5", "6"], :label => "Color Range End"
+      f.input :black, :as => :radio, :collection => {"Yes" => 1, "No" => 0}, :label => "Black"
+      f.input :volume_range_start, :as => :number, :min => 0, :label => "Volume Range Start"
+      f.input :volume_range_end, :as => :number, :min => 0, :label => "Volume Range End"
+      f.input :price, :as => :number, :min => 0, :label => "Price (USD)"
     end
 
     f.buttons

@@ -2,6 +2,7 @@ class ClicksLookupTable < ActiveRecord::Base
   attr_accessible :click_description, :tier_label, :color_range_start, :color_range_end, :black, :volume_range_start, :volume_range_end, :price
 
   has_many :clicks_lookups
+  has_many :press_types
 
   serialize :data, ActiveRecord::Coders::Hstore
   hstore :data, :accessors => {

@@ -6,6 +6,7 @@ class PressType < ActiveRecord::Base
   has_many :press_type_cost_medias
   has_many :press_type_cost_services
   has_many :impositions, :dependent => :destroy
+  belongs_to :clicks_lookup_table
 
   has_attached_file :icon, styles: {
       medium: '200x100>',
