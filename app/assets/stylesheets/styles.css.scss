@@ -20,6 +20,13 @@ $main-blue: #1082CC;
   margin: 5px;
 }
 
+.icon-small {
+  display: inline;
+  line-height: 1.4;
+  text-align: center;
+  font-size: 15px;
+}
+
 .inline-field {
   display: inline-block;
   width: 200px;
@@ -80,6 +87,18 @@ $main-blue: #1082CC;
   padding: 15px;
   float: left;
 }
+
+.sidebar-list{
+  margin-bottom: 0px;
+}
+
+.hover-reveal {
+  display: none;
+  //&:hover {
+  //  opacity: 100;
+  //}
+}
+
 
 .top-bar {
   margin-bottom: 0;

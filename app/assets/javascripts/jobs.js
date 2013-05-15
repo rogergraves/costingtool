@@ -51,3 +51,7 @@ $('#job_number_of_pages').keydown(function(e) {
 });
 
 
+$(".job-pane").hover(function(){
+    $(".hover-reveal").toggle("slow");
+})
+

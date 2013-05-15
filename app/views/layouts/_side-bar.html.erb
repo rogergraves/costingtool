@@ -1,6 +1,19 @@
 <div class="job-pane">
   <h4>Jobs</h4>
+  <ul >
+    <% @jobs.each do |job| %>
+          <p class="sidebar-list">
+          <%=  job.name %>
+          <%= link_to '<i class="foundicon-edit icon-small"></i>'.html_safe, "#", :class => "hover-reveal", :data => { "reveal-id" => "myModal"} %>
+          <%= link_to '<i class="foundicon-trash icon-small"></i>'.html_safe, job, method: :delete, data: { confirm: 'Are you sure?' }, :class => "hover-reveal" %></p>
+    <% end %>
+  </ul>
 </div>
+<div id="myModal" class="reveal-modal small">
+  <%= render 'edit-modal' %>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+<!--<a href="#" data-reveal-id="myModal">Click Me For A Modal</a>-->
 <div class="press-pane">
   <h4>Presses</h4>
 </div>
