@@ -2,7 +2,7 @@ class PressType < ActiveRecord::Base
   attr_accessible :name, :icon, :duty_cycle, :spi
   has_many :press_jobs
   has_many :impositions, :dependent => :destroy
-  belongs_to :clicks_lookup_table
+  belongs_to :click_table
 
   has_attached_file :icon, styles: {
       medium: '200x100>',
