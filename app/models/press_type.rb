@@ -1,11 +1,8 @@
 class PressType < ActiveRecord::Base
   attr_accessible :name, :icon, :duty_cycle, :spi
-  has_many :press_type_costs
-  has_many :press_type_cost_clicks
-  has_many :press_type_cost_labors
-  has_many :press_type_cost_medias
-  has_many :press_type_cost_services
+  has_many :press_jobs
   has_many :impositions, :dependent => :destroy
+  belongs_to :clicks_lookup_table
 
   has_attached_file :icon, styles: {
       medium: '200x100>',

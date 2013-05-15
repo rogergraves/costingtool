@@ -2,6 +2,8 @@ class Job < ActiveRecord::Base
   attr_accessible :name, :pages_per_month, :number_of_jobs, :copies_per_job, :multicolor_clicks, :black,
                   :number_of_pages, :plex, :sale_price, :annual_growth, :job_percentage, :job_size
   belongs_to :user
+  has_many :press_jobs
+
   before_save :translate_form_inputs
 
   serialize :data, ActiveRecord::Coders::Hstore
@@ -25,6 +27,10 @@ class Job < ActiveRecord::Base
   def translate_form_inputs
     self.black ? self.black = 1 : self.black = 0
     self.data["plex"] == "Duplex" ? self.plex = 2 : self.plex = 1
+  end
+
+  def self.available_sizes
+    ['6"x9"', '7"x10"', 'A5', 'A4', 'A3', 'B2']
   end
 
 end
