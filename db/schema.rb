@@ -53,19 +53,6 @@ ActiveRecord::Schema.define(:version => 20130515063853) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "clicks_lookup_tables", :force => true do |t|
-    t.hstore   "data"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "clicks_lookups", :force => true do |t|
-    t.integer  "clicks_lookup_table_id"
-    t.hstore   "data"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
-  end
-
   create_table "impositions", :force => true do |t|
     t.integer  "press_type_id"
     t.string   "job_size"
