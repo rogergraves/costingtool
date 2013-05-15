@@ -1,0 +1,5 @@
+class ClickTable < ActiveRecord::Base
+  attr_accessible :description
+  has_many :ink_arrays
+
+end

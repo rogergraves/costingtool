@@ -36,4 +36,24 @@ FactoryGirl.define do
     clicks_cost 100.00
   end
 
+  factory :click_table do
+    sequence(:description) { |n| "Table #{n}" }
+  end
+
+  factory :ink_array do
+    click_table
+    sequence(:description) { |n| "Ink setup #{n}" }
+    color_range_start 3
+    color_range_end 3
+    black 1
+  end
+
+  factory :tier do
+    ink_array
+    sequence(:label) { |n| "Tier #{n}" }
+    volume_range_start 0
+    volume_range_end 1000000
+    price 1.50
+  end
+
 end
