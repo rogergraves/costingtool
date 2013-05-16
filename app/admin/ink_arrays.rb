@@ -1,11 +1,17 @@
 ActiveAdmin.register InkArray do
   belongs_to :click_table
 
-  sidebar "Tiers" do
+  sidebar "Click Tiers", :only => :show do
     ul do
-      link_to 'Tiers for this Ink Array', "#{request.protocol}#{request.host_with_port}#{request.fullpath}/tiers"
+      link_to "See Tiers for this Ink Array", admin_ink_array_tiers_path(ink_array.id)
     end
   end
+
+  #sidebar "Tiers" do
+  #  ul do
+  #    link_to 'Tiers for this Ink Array', "#{request.protocol}#{request.host_with_port}#{request.fullpath}/tiers"
+  #  end
+  #end
 
   index do
     column :click_table_id

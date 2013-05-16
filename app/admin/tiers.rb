@@ -5,8 +5,8 @@ ActiveAdmin.register Tier do
     column :ink_array_id
     column :label, :label => 'Tier Label'
     column :volume_range_start
-    column :volume_range_end, :integer
-    column :price, :float
+    column :volume_range_end
+    column :price
     default_actions
   end
 

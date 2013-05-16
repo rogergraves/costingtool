@@ -2,7 +2,7 @@ ActiveAdmin.register ClickTable do
 
   sidebar "Ink Arrays", :only => :show do
     ul do
-      link_to "Ink Arrays for this table", admin_click_table_ink_arrays_path(click_table.id)
+      link_to "View Ink Arrays for this Table", admin_click_table_ink_arrays_path(click_table.id)
     end
   end
 
