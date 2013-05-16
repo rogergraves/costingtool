@@ -8,18 +8,21 @@ ActiveAdmin.register ClickTable do
 
   index do
     column :id
+    column :click_table_name
     column :description
     default_actions
   end
 
   show do
     attributes_table do
+      row :click_table_name
       row :description
     end
   end
 
   form do |f|
     f.inputs "Click Table" do
+      f.input :click_table_name, :label => "Name"
       f.input :description
     end
     f.buttons
