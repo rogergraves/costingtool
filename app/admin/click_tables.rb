@@ -7,6 +7,7 @@ ActiveAdmin.register ClickTable do
   end
 
   index do
+    column :id
     column :description
     default_actions
   end

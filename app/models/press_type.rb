@@ -1,5 +1,5 @@
 class PressType < ActiveRecord::Base
-  attr_accessible :name, :icon, :duty_cycle, :spi
+  attr_accessible :name, :icon, :duty_cycle, :spi, :click_table_id
   has_many :press_jobs
   has_many :impositions, :dependent => :destroy
   belongs_to :click_table
@@ -13,7 +13,8 @@ class PressType < ActiveRecord::Base
 
   serialize :data, ActiveRecord::Coders::Hstore
   hstore :data, :accessors => {
-      :duty_cycle => :integer,     # Max usage of a press per month
+      :click_table_id => :integer,  #the ClickTable.id that this PressType belongs_to
+      :duty_cycle => :integer,      # Max usage of a press per month
       :spi => :float                # Service Parts Insurance cost / month in USD
   }
 end
