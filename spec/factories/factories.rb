@@ -9,6 +9,7 @@ FactoryGirl.define do
 
   factory :press_type do
     name "My Press #{1000*Random.rand(10)}"
+    click_table
   end
   
   factory :job do
