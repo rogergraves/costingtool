@@ -9,43 +9,43 @@ $(".foundicon-plus").click(function(){
 })
 
 
-$("input#job_copies_per_job").keyup(function() {
-    var jobs = $("#job_copies_per_job").val();
-    var copies = $("#job_number_of_jobs").val();
-    var pages = $("#job_pages_per_month");
+$("input#job_copies_per_job.new-selector").keyup(function() {
+    var jobs = $("#job_copies_per_job.new-selector").val();
+    var copies = $("#job_number_of_jobs.new-selector").val();
+    var pages = $("#job_pages_per_month.new-selector");
     var pagesTotal = jobs * copies;
     pages.val(pagesTotal);
 })
 
-$("input#job_number_of_jobs").keyup(function() {
-    var jobs = $("#job_copies_per_job").val();
-    var copies = $("#job_number_of_jobs").val();
-    var pages = $("#job_pages_per_month");
+$("input#job_number_of_jobs.new-selector").keyup(function() {
+    var jobs = $("#job_copies_per_job.new-selector").val();
+    var copies = $("#job_number_of_jobs.new-selector").val();
+    var pages = $("#job_pages_per_month.new-selector");
     var pagesTotal = jobs * copies;
     pages.val(pagesTotal);
 })
 
-$('#job_copies_per_job').keydown(function(e) {
+$('#job_copies_per_job.new-selector').keydown(function(e) {
     var keyCode = e.keyCode || e.which;
     if (keyCode == 9) {
-        $(".job-size div.custom.dropdown a.selector").click();
-        $("input#job_multicolor_clicks").focus();
+        $(".job-size.new-selector div.custom.dropdown a.selector").click();
+        $("div.new-selector input#job_multicolor_clicks").focus();
     }
 });
 
-$("input#job_multicolor_clicks").keyup(function() {
-    if ($("input#job_multicolor_clicks").val() > 6){
+$("input#job_multicolor_clicks.new-selector").keyup(function() {
+    if ($("input#job_multicolor_clicks.new-selector").val() > 6){
         alert("The maximum number of multicolor clicks is 6");
-        $("input#job_multicolor_clicks").val("");
+        $("div.new-selector input#job_multicolor_clicks").val("");
     }
 })
 
 
-$('#job_number_of_pages').keydown(function(e) {
+$('#job_number_of_pages.new-selector').keydown(function(e) {
     var keyCode = e.keyCode || e.which;
 
     if (keyCode == 9) {
-        $(".custom.dropdown a.current").click();
+        $(".new-selector .custom.dropdown a.current").click();
         $("#job_sale_price").focus();
     }
 });

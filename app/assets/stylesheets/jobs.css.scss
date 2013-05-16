@@ -20,25 +20,25 @@
   width: 100%;
 }
 
-form#new_job div.field input {
+div.field input {
   width: 32px;
   display: inline;
   text-align: center;
 }
 
-form#new_job div.field input.float-input {
+div.field input.float-input {
   width: 100px;
 }
 
-form#new_job div.field {
+div.field {
   height: 36px;
 }
 
-form#new_job div.field label {
+div.field label {
   display: inline;
 }
 
-form#new_job div.field input#job_name{
+div.field input#job_name{
   width: 100%;
   text-align: justify;
 }

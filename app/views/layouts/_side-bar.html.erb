@@ -4,16 +4,19 @@
     <% @jobs.each do |job| %>
           <p class="sidebar-list">
           <%=  job.name %>
-          <%= link_to '<i class="foundicon-edit icon-small"></i>'.html_safe, "#", :class => "hover-reveal", :data => { "reveal-id" => "myModal"} %>
+          <%= link_to '<i class="foundicon-edit icon-small"></i>'.html_safe, "#", :class => "hover-reveal", :data => { "reveal-id" => "#{job.css_name}-modal"} %>
           <%= link_to '<i class="foundicon-trash icon-small"></i>'.html_safe, job, method: :delete, data: { confirm: 'Are you sure?' }, :class => "hover-reveal" %></p>
     <% end %>
   </ul>
 </div>
-<div id="myModal" class="reveal-modal small">
-  <%= render 'edit-modal' %>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
-<!--<a href="#" data-reveal-id="myModal">Click Me For A Modal</a>-->
+
+<% @jobs.each do |job| %>
+    <%= content_tag :div, :id => "#{job.css_name}-modal",  :class => "reveal-modal tiny" do -%>
+        <%= render :partial => "edit-modal", :locals => { :single_job => job } %>
+        <a class="close-reveal-modal">&#215;</a>
+    <% end -%>
+<% end %>
+
 <div class="press-pane">
   <h4>Presses</h4>
 </div>

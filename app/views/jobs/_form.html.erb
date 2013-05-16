@@ -19,33 +19,33 @@
       <%= f.text_field :name, :autofocus => true, :placeholder => "Job Name", :required => true %>
     </div>
     <div class="field">
-      <%= f.text_field :pages_per_month, :readonly => true, :class => "float-input disabled-appearance", :required => true %>
+      <%= f.text_field :pages_per_month, :readonly => true, :class => "float-input disabled-appearance new-selector", :required => true %>
       <%= f.label :pages_per_month %>
     </div>
     <div class="field">
-      <%= f.text_field :number_of_jobs, :class => "float-input", :required => true %>
+      <%= f.text_field :number_of_jobs, :class => "float-input new-selector", :required => true %>
       <%= f.label :number_of_jobs_per_month %>
     </div>
     <div class="field">
-      <%= f.text_field :copies_per_job, :class => "float-input", :required => true %>
+      <%= f.text_field :copies_per_job, :class => "float-input new-selector", :required => true %>
       <%= f.label :copies_per_job %>
     </div>
-    <div class="job-size">
+    <div class="job-size new-selector">
       <%= custom_select("Job Size", "job_size", "job[job_size]", Job.available_sizes) %>
     </div>
-    <div class="field inline-field">
+    <div class="field inline-field new-selector">
       <%= f.text_field :multicolor_clicks, :required => true %>
       <%= f.label :multicolor_clicks %>
     </div>
 
-    <label for="checkbox1" class="black-checkbox"><input type="checkbox" id="black-checkbox" name="job[black]" style="display: none;"><span class="custom checkbox"></span> Black</label>
+    <label for="checkbox1" class="black-checkbox new-selector"><input type="checkbox" id="black-checkbox" name="job[black]" style="display: none;"><span class="custom checkbox"></span> Black</label>
 
 
-    <div class="field inline-field">
+    <div class="field inline-field new-selector">
       <%= f.text_field :number_of_pages, :required => true %>
       <%= f.label :number_of_pages_per_job %>
     </div>
-    <div class="plex">
+    <div class="plex new-selector">
       <%= custom_select("Plex", "plex", "job[plex]", [ "Simplex", "Duplex"]) %>
     </div>
 
