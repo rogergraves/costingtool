@@ -8,6 +8,7 @@ ActiveAdmin.register PressType do
     column "SPI (USD)", :spi do |press|
       number_to_currency press.spi
     end
+    column :click_table_id
 
     default_actions
   end
@@ -22,6 +23,7 @@ ActiveAdmin.register PressType do
       row "SPI (USD)", :spi do |press|
         number_to_currency press.spi
       end
+      row :click_table_id
     end
   end
 
@@ -39,6 +41,7 @@ ActiveAdmin.register PressType do
       end
 
       f.input :spi, :label => "SPI (USD per month) $"
+      f.input :click_table_id
 
     end
     f.buttons
