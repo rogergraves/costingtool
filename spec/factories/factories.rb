@@ -56,4 +56,8 @@ FactoryGirl.define do
     price 1.50
   end
 
+  factory :media do
+    sequence(:name) { |n| Job.available_sizes[n-1]}
+    cost_per_sheet 1.25
+  end
 end
