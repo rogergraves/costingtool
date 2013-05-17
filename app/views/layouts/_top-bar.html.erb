@@ -5,7 +5,5 @@
 
 
 <ul id="drop1" class="f-dropdown right-sided-dropdown">
-  <li><a href="#">This is a link</a></li>
-  <li><a href="#">This is another</a></li>
-  <li><a href="#">Yet another</a></li>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
 </ul>
