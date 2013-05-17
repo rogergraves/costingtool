@@ -28,3 +28,12 @@ if($('#flash_notice').length && $("#new_user").length){
     $("#new_user").prepend("<br />");
 }
 
+$(document).mouseup(function (e)
+{
+    var container = $("ul#drop1");
+
+    if (container.has(e.target).length === 0)
+    {
+        container.hide();
+    }
+});
