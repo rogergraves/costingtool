@@ -2,6 +2,7 @@ ActiveAdmin.register Tier do
   belongs_to :ink_array
 
   index do
+    selectable_column
     column :click_table
     column :ink_array
     column :label, :label => 'Tier Label'

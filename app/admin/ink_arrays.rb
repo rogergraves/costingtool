@@ -3,11 +3,12 @@ ActiveAdmin.register InkArray do
 
   sidebar "Click Tiers", :only => :show do
     ul do
-      button link_to "See Tiers", admin_ink_array_tiers_path(ink_array.id)
+      button_to "See Tiers", admin_ink_array_tiers_path(ink_array.id)
     end
   end
 
   index do
+    selectable_column
     column :click_table
     column :description
     column :color_range_start
