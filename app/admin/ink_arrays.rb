@@ -30,9 +30,9 @@ ActiveAdmin.register InkArray do
     f.inputs "Ink Array" do
       f.input :click_table, :as => :select, :collection => ClickTable.all
       f.input :description
-      f.input :color_range_start
-      f.input :color_range_end
-      f.input :black
+      f.input :color_range_start, :as => :select, :collection => [0, 1, 2, 3, 4, 5, 6]
+      f.input :color_range_end, :as => :select, :collection => [0, 1, 2, 3, 4, 5, 6]
+      f.input :black, :as => :select, :collection => [0, 1]
     end
     f.buttons
   end
