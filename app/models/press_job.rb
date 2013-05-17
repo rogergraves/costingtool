@@ -11,4 +11,48 @@ class PressJob < ActiveRecord::Base
       :spi_cost => :float,
       :clicks_cost => :float,
   }
+
+  def cost_per_sheet
+    Media.find_by_name(job_size).cost_per_sheet
+  end
+
+  def number_of_pages
+    self.job.number_of_pages
+  end
+
+  def copies_per_month
+    number_of_jobs * copies_per_job
+  end
+
+  def number_of_jobs
+    self.job.number_of_jobs
+  end
+
+  def copies_per_job
+    self.job.copies_per_job
+  end
+
+  def ups
+    self.press_type.impositions.find_by_job_size(self.job.job_size).ups
+  end
+
+  def pages_per_month
+    self.job.pages_per_month
+  end
+
+  def plex
+    self.job.plex
+  end
+
+  def job_size
+    self.job.job_size
+  end
+
+  def calculated_media_cost
+    cost_per_sheet * plex * number_of_pages * copies_per_month / ups
+  end
+
+
+
+
 end

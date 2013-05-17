@@ -11,12 +11,19 @@ FactoryGirl.define do
     name "My Press #{1000*Random.rand(10)}"
     click_table
   end
+
+  factory :imposition do
+    press_type
+    sequence(:job_size) {|n| Job.available_sizes[n-1]}
+    sequence(:ups) {|n| (7-n).to_s}
+  end
   
   factory :job do
     sequence(:name) {|n| "Job #{n}" }
     pages_per_month (1000+Random.rand(1000000))
     number_of_jobs (1000+Random.rand(100000))
     copies_per_job (100+Random.rand(10000))
+    job_size 'A5'
     multicolor_clicks Random.rand(6)
     black Random.rand(1)
     number_of_pages Random.rand(10000)
@@ -24,7 +31,6 @@ FactoryGirl.define do
     sale_price ((100+Random.rand(500))/100)
     annual_growth Random.rand(100)
     job_percentage 25
-    job_size 'A5'
   end
 
   factory :press_job do
