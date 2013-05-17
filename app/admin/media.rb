@@ -1,12 +1,12 @@
 ActiveAdmin.register Media do
 
-  index do
+  index :title => :name do
     column :name
     column :cost_per_sheet
     default_actions
   end
 
-  show do
+  show :title => :name do
     attributes_table do
       row :name
       row :cost_per_sheet

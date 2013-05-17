@@ -22,6 +22,7 @@ ActiveAdmin.register Tier do
 
   form do |f|
     f.inputs "Tier" do
+      f.input :ink_array.description, :as => :select, :collection => InkArray.all
       f.input :label, :label => 'Tier Label'
       f.input :volume_range_start
       f.input :volume_range_end

@@ -1,4 +1,5 @@
 ActiveAdmin.register PressType do
+
   index do
     column :name
     column "Duty Cycle (clicks/mth)", :duty_cycle
@@ -8,12 +9,12 @@ ActiveAdmin.register PressType do
     column "SPI (USD)", :spi do |press|
       number_to_currency press.spi
     end
-    column :click_table_id
+    column :click_table
 
     default_actions
   end
 
-  show do |press|
+  show :title => :name do |press|
     attributes_table do
       row :name
       row :duty_cycle
@@ -23,7 +24,7 @@ ActiveAdmin.register PressType do
       row "SPI (USD)", :spi do |press|
         number_to_currency press.spi
       end
-      row :click_table_id
+      row :click_table
     end
   end
 
@@ -41,8 +42,7 @@ ActiveAdmin.register PressType do
       end
 
       f.input :spi, :label => "SPI (USD per month) $"
-      f.input :click_table_id
-
+      f.input :click_table, :as => :select, :collection => ClickTable.all
     end
     f.buttons
   end

@@ -2,20 +2,20 @@ ActiveAdmin.register ClickTable do
 
   sidebar "Ink Arrays", :only => :show do
     ul do
-      link_to "View Ink Arrays for this Table", admin_click_table_ink_arrays_path(click_table.id)
+      button link_to "View Ink Arrays", admin_click_table_ink_arrays_path(click_table.id)
     end
   end
 
   index do
-    column :id
-    column :click_table_name
+    selectable_column
+    column :click_table_name, :label => "Name"
     column :description
     default_actions
   end
 
   show do
     attributes_table do
-      row :click_table_name
+      row :click_table_name, :label => "Name"
       row :description
     end
   end
@@ -29,4 +29,3 @@ ActiveAdmin.register ClickTable do
   end
 
 end
-

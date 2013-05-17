@@ -1,5 +1,5 @@
 class InkArray < ActiveRecord::Base
-  attr_accessible :black, :color_range_end, :color_range_start, :description, :click_table_id
+  attr_accessible :black, :color_range_end, :color_range_start, :description, :click_table_id, :click_table_name
   belongs_to :click_table
   has_many :tiers
 
