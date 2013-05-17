@@ -125,3 +125,15 @@ $main-blue: #1082CC;
   display: inline;
 }
 
+.right-sided-dropdown.open {
+  left: 800px !important;
+  top: 50px !important;
+}
+
+.f-dropdown.right-sided-dropdown:before {
+  left: 161px;
+}
+
+.f-dropdown.right-sided-dropdown:after {
+  left: 161px;
+}

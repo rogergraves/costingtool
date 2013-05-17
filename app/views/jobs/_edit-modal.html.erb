@@ -1,5 +1,5 @@
 <div class="edit-job-wrapper">
-  <%= form_for(single_job, :html => { :class => "custom" }) do |f| %>
+  <%= form_for(single_job, :html => { :class => "custom edit-form" }) do |f| %>
       <div class="inline-errors"></div>
       <% if single_job.errors.any? %>
           <div id="error_explanation">

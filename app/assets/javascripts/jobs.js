@@ -55,3 +55,11 @@ $(".job-pane").hover(function(){
     $(".hover-reveal").toggle("slow");
 })
 
+//$('form.edit-form').ajaxError(function(event, request, settings) {
+//    //do some stuff on error
+//})
+//
+//$('form.edit-form').bind('ajax:success', function(evt, data, status, xhr){
+//    alert("hello")
+////do some stuff on success
+//})
