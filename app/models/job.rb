@@ -7,7 +7,7 @@ class Job < ActiveRecord::Base
   validates_inclusion_of :job_size, :in => AVAILABLE_SIZES
 
   belongs_to :user
-  has_many :press_jobs
+  has_many :press_jobs, :dependent => :destroy
 
   before_save :translate_form_inputs
 

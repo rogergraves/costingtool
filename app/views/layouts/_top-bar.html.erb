@@ -5,5 +5,6 @@
 
 
 <ul id="drop1" class="f-dropdown right-sided-dropdown">
-  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <li><%= link_to "Reset Session", jobs_empty_basket_path, :method => :post, data: { confirm: 'Are you sure you want to reset session?' }%></li>
+  <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
 </ul>
