@@ -1,6 +1,13 @@
 //# Place all the behaviors and hooks related to the matching controller here.
 //# All this logic will automatically be available in application.js.
 
+if ($(".jobs-table tr").length === 0){
+    $(".jobs-area").fadeOut("slow", function(){
+        $(".new-job").fadeIn();
+        $("input#job_name").focus();
+    });
+}
+
 $(".foundicon-plus").click(function(){
     $(".jobs-area").fadeOut("slow", function(){
         $(".new-job").fadeIn();
