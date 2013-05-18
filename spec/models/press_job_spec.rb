@@ -79,9 +79,6 @@ describe PressJob do
 
         media_cost = cost_per_sheet * plex * number_of_pages * copies_per_month / ups
 
-        puts "COPIES_PER_MONTH: #{copies_per_month}"
-        puts "MEDIA_COST: $#{media_cost}"
-
         FactoryGirl.create(:imposition, :press_type => press_type, :job_size => job_size, :ups => ups)
         FactoryGirl.create(:media, :name => job_size, :cost_per_sheet => cost_per_sheet)
         job.update_attributes({

@@ -24,7 +24,8 @@ end
 
 group :development, :test do
   gem "awesome_print"                             # Nicely formatted data structures in console, for example "ap User.first"
-  gem "factory_girl_rails", "~> 4.2.1"
+  gem "factory_girl_rails", "~> 4.2.1"            # Test data generator -- see spec/factories/factories.rb
+  gem "faker", "~> 1.1.2"                         # Easy way to add fake data: names, email addresses, etc.
 end
 
 group :test do

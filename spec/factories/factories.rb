@@ -1,14 +1,17 @@
 FactoryGirl.define do
-#
-#  factory :user do
-#    sequence(:email) {|n| "email#{n}@factory.com" }
-#    password 'pleaseplease'
-#    password_confirmation 'pleaseplease'
-#  end
-#
+
+  factory :user do
+    email {|n| "fake_user_#{n}@hp.com" }
+    company Faker::Company.name
+    first_name Faker::Name.first_name
+    last_name Faker::Name.last_name
+    country User.available_countries.sample
+    password 'pleaseplease'
+    password_confirmation 'pleaseplease'
+  end
 
   factory :press_type do
-    name "My Press #{1000*Random.rand(10)}"
+    name "#{Faker::Company.catch_phrase.split(' ').map(&:capitalize).join(' ')} Press"
     click_table
     duty_cycle 1000000000
     spi 2000
@@ -16,16 +19,19 @@ FactoryGirl.define do
 
   factory :imposition do
     press_type
-    sequence(:job_size) {|n| Job.available_sizes[n-1]}
+    sequence(:job_size) do |n|
+      Job.available_sizes[(n-1)%Job.available_sizes.length]
+    end
     sequence(:ups) {|n| (7-n).to_s}
   end
   
   factory :job do
+    #user
     sequence(:name) {|n| "Job #{n}" }
     pages_per_month (1000+Random.rand(1000000))
     number_of_jobs (1000+Random.rand(100000))
     copies_per_job (100+Random.rand(10000))
-    job_size 'A5'
+    job_size Job.available_sizes.sample
     multicolor_clicks Random.rand(6)
     black Random.rand(1)
     number_of_pages Random.rand(10000)
@@ -66,7 +72,9 @@ FactoryGirl.define do
   end
 
   factory :media do
-    sequence(:name) { |n| Job.available_sizes[n-1]}
+    sequence(:name) do |n|
+      Job.available_sizes[(n-1)%Job.available_sizes.length]
+    end
     cost_per_sheet 1.25
   end
 end

@@ -54,5 +54,9 @@ class User < ActiveRecord::Base
       errors.add(:email, " domain is not valid")
     end
   end
+
+  def self.available_countries
+    COUNTRIES.to_a
+  end
 end
 
