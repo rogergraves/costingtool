@@ -25,9 +25,9 @@ describe PressJob do
 
       it "#cost_per_sheet" do
         cost = 1.00
-        Job.available_sizes.each do
+        Job.available_sizes.each_index do |index|
           cost += 0.10
-          FactoryGirl.create(:media, :cost_per_sheet => cost)
+          FactoryGirl.create(:media, :cost_per_sheet => cost, :name => Job.available_sizes[index])
         end
         press_job.cost_per_sheet.should == Media.find_by_name(press_job.job_size).cost_per_sheet
       end

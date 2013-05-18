@@ -1,14 +1,15 @@
 FactoryGirl.define do
 
-  factory :user do
-    email {|n| "fake_user_#{n}@hp.com" }
-    company Faker::Company.name
-    first_name Faker::Name.first_name
-    last_name Faker::Name.last_name
-    country User.available_countries.sample
-    password 'pleaseplease'
-    password_confirmation 'pleaseplease'
-  end
+  # BUGBUG -- ActionView::Template::Error: Missing host to link to! Please provide the :host parameter, set default_url_options[:host], or set :only_path to true
+  #factory :user do
+  #  email {|n| "fake_user_#{n}@hp.com" }
+  #  company Faker::Company.name
+  #  first_name Faker::Name.first_name
+  #  last_name Faker::Name.last_name
+  #  country User.available_countries.sample
+  #  password 'pleaseplease'
+  #  password_confirmation 'pleaseplease'
+  #end
 
   factory :press_type do
     name "#{Faker::Company.catch_phrase.split(' ').map(&:capitalize).join(' ')} Press"
@@ -72,9 +73,7 @@ FactoryGirl.define do
   end
 
   factory :media do
-    sequence(:name) do |n|
-      Job.available_sizes[(n-1)%Job.available_sizes.length]
-    end
+    name Job.available_sizes.sample
     cost_per_sheet 1.25
   end
 end
