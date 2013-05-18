@@ -10,6 +10,8 @@ FactoryGirl.define do
   factory :press_type do
     name "My Press #{1000*Random.rand(10)}"
     click_table
+    duty_cycle 1000000000
+    spi 2000
   end
 
   factory :imposition do

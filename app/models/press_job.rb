@@ -33,7 +33,7 @@ class PressJob < ActiveRecord::Base
   end
 
   def ups
-    self.press_type.impositions.find_by_job_size(self.job.job_size).ups
+    self.press_type.impositions.find_by_job_size(job_size).ups
   end
 
   def pages_per_month
