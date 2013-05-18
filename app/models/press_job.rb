@@ -51,4 +51,8 @@ class PressJob < ActiveRecord::Base
   def calculated_media_cost
     @calculated_media_cost ||= cost_per_sheet * plex * number_of_pages * copies_per_month / ups
   end
+
+  def calculated_spi_cost
+    @calculated_spi_cost ||= self.press_type.spi
+  end
 end
