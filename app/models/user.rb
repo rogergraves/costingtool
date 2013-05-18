@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  has_many :user_logs
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessor :current_step
@@ -57,6 +59,10 @@ class User < ActiveRecord::Base
 
   def self.available_countries
     COUNTRIES.to_a
+  end
+
+  def name
+    self.email
   end
 end
 
