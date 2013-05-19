@@ -33,5 +33,4 @@ NOTE -- if you run into hstore error, try: psql -d template1 -c 'create extensio
 
 Rake Tasks
 ==========
-To create a click lookup tier table (for testing purposes)
-          rake app:create_tiers
+(None currently)
