@@ -12,7 +12,7 @@
 
 <% @jobs.each do |job| %>
     <%= content_tag :div, :id => "#{job.css_name}-modal",  :class => "reveal-modal tiny" do -%>
-        <%= render :partial => "edit-modal", :locals => { :single_job => job } %>
+        <%= render :partial => "jobs/edit-modal", :locals => { :single_job => job } %>
         <a class="close-reveal-modal">&#215;</a>
     <% end -%>
 <% end %>

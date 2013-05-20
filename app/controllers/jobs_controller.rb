@@ -11,7 +11,7 @@ class JobsController < InheritedResources::Base
   def update
     @job = Job.find(params[:id])
     if @job.update_attributes(params[:job])
-      redirect_to jobs_path
+      redirect_to :back
     else
       redirect_to edit_job_path
     end

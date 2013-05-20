@@ -36,6 +36,11 @@ $main-blue: #1082CC;
   display: inline-block;
 }
 
+.progress-arrows {
+  display: block;
+  height: 30px;
+}
+
 .next-text {
   float: right;
   margin-top: 5px;
@@ -43,8 +48,21 @@ $main-blue: #1082CC;
   font-size: 24px;
 }
 
+.back-text {
+  float: left;
+  margin-top: 5px;
+  margin-right: 5px;
+  font-size: 24px;
+}
+
 .next-arrow {
   margin-right: 24px;
+}
+
+.back-arrow {
+  margin-right: 8px;
+  margin-left: 24px;
+  float: left;
 }
 
 /* Login Page

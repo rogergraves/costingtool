@@ -1,7 +1,7 @@
 //# Place all the behaviors and hooks related to the matching controller here.
 //# All this logic will automatically be available in application.js.
 
-if ($(".jobs-table tr").length === 0){
+if ($(".jobs-table").length > 0 && $(".jobs-table tr").length === 0){
     $(".jobs-area").fadeOut("slow", function(){
         $(".new-job").fadeIn();
         $("input#job_name").focus();
@@ -62,11 +62,3 @@ $(".job-pane").hover(function(){
     $(".hover-reveal").toggle("slow");
 })
 
-//$('form.edit-form').ajaxError(function(event, request, settings) {
-//    //do some stuff on error
-//})
-//
-//$('form.edit-form').bind('ajax:success', function(evt, data, status, xhr){
-//    alert("hello")
-////do some stuff on success
-//})
