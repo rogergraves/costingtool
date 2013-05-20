@@ -25,6 +25,7 @@ describe PressJob do
         press_job.calculated_spi_cost.should == press_type.spi
       end
     end
+
     context "#calculated_media_cost" do
       context "preparation" do
         it "#cost_per_sheet" do
@@ -90,12 +91,58 @@ describe PressJob do
                                     :number_of_jobs => number_of_jobs,
                                     :copies_per_job => copies_per_job,
                                     :number_of_pages => number_of_pages,
-                                    :plex => 1,
+                                    :plex => plex,
                                 })
 
           press_job.calculated_media_cost.should == media_cost
         end
       end
+    end
+
+    context "#calculated_clicks_cost" do
+      context "preparation" do
+        it "#multicolor_clicks" do
+          press_job.multicolor_clicks.should == job.multicolor_clicks
+        end
+
+        it "#black" do
+          press_job.black.should == job.black
+        end
+
+        it "#plex" do
+          press_job.plex.should == job.plex
+        end
+
+        it "#number_of_sheets" do
+          number_of_pages = 50
+          job_size = 'B2'
+          number_of_jobs = 2000
+          copies_per_job = 10
+          plex = 1
+          ups = 1
+          number_of_sheets = (number_of_pages * number_of_jobs * copies_per_job / ups).ceil
+
+          FactoryGirl.create(:imposition, :press_type => press_type, :job_size => job_size, :ups => ups)
+          job.update_attributes({
+                                    :job_size => job_size,
+                                    :number_of_jobs => number_of_jobs,
+                                    :copies_per_job => copies_per_job,
+                                    :number_of_pages => number_of_pages,
+                                    :plex => plex,
+                                })
+
+          press_job.number_of_sheets.should == number_of_sheets
+        end
+
+
+        it "#tier_multicolor_price" do
+
+        end
+
+        it "#tier_black_price"
+
+      end
+      context "execution"
     end
 
   end

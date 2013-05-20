@@ -55,4 +55,20 @@ class PressJob < ActiveRecord::Base
   def calculated_spi_cost
     @calculated_spi_cost ||= self.press_type.spi
   end
+
+  def calculated_clicks_cost
+    0.00 # Still working on this...
+  end
+
+  def multicolor_clicks
+    @multicolor_clicks ||= self.job.multicolor_clicks
+  end
+
+  def black
+    @black ||= self.job.black
+  end
+
+  def number_of_sheets
+    @number_of_sheets ||= (number_of_pages * number_of_jobs * copies_per_job / ups).ceil
+  end
 end
