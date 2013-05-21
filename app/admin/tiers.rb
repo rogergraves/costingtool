@@ -3,7 +3,7 @@ ActiveAdmin.register Tier do
 
   index do
     selectable_column
-    column :click_table
+    #column :click_table
     column :ink_array
     column :label, :label => 'Tier Label'
     column :volume_range_start
@@ -14,7 +14,7 @@ ActiveAdmin.register Tier do
 
   show do
     attributes_table do
-      row :click_table
+      #row :click_table
       row :ink_array_id
       row :label
       row :volume_range_start
