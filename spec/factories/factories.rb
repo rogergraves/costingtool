@@ -29,7 +29,6 @@ FactoryGirl.define do
   factory :job do
     #user
     sequence(:name) {|n| "Job #{n}" }
-    pages_per_month (1000+Random.rand(1000000))
     number_of_jobs (1000+Random.rand(100000))
     copies_per_job (100+Random.rand(10000))
     job_size Job.available_sizes.sample

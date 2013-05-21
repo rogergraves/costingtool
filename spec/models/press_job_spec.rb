@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe PressJob do
-  let(:job) { FactoryGirl.create(:job, :job_size => 'A4', ) }
+  let(:job) { FactoryGirl.create(:job, :job_size => 'A4', :multicolor_clicks => 3) }
   let(:press_type) { FactoryGirl.create(:press_type) }
   let(:press_job) { FactoryGirl.create(:press_job, :job => job, :press_type => press_type)}
 
@@ -134,8 +134,14 @@ describe PressJob do
           press_job.number_of_sheets.should == number_of_sheets
         end
 
+        it "#all_clicks"
 
         it "#tier_multicolor_price" do
+          #click_table = FactoryGirl.create(:click_table)
+          #ink_array1 = FactoryGirl.create(:ink_array, :color_range_start => job.multicolor_clicks-2, :color_range_end => job.multicolor_clicks-1)
+          #ink_array2 = FactoryGirl.create(:ink_array, :color_range_start => job.multicolor_clicks-1, :color_range_end => job.multicolor_clicks)
+          #ink_array3 = FactoryGirl.create(:ink_array, :color_range_start => job.multicolor_clicks+1, :color_range_end => job.multicolor_clicks+2)
+          #tier_1 = FactoryGirl.create(:tier, :label => "Correct Tier", :ink_array => ink_array2, :volume_range_start => 5000, :volume_range_end => 10000, :price => 2.00)
 
         end
 

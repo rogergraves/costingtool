@@ -1,5 +1,5 @@
 class Job < ActiveRecord::Base
-  attr_accessible :name, :pages_per_month, :number_of_jobs, :copies_per_job, :multicolor_clicks, :black,
+  attr_accessible :name, :number_of_jobs, :copies_per_job, :multicolor_clicks, :black,
                   :number_of_pages, :plex, :sale_price, :annual_growth, :job_percentage, :job_size
 
   AVAILABLE_SIZES = ['6"x9"', '7"x10"', 'A5', 'A4', 'A3', 'B2']
@@ -13,7 +13,6 @@ class Job < ActiveRecord::Base
 
   serialize :data, ActiveRecord::Coders::Hstore
   hstore :data, :accessors => {
-      :pages_per_month => :integer,
       :number_of_jobs => :integer,
       :copies_per_job => :integer,
       :job_size => :string,
@@ -39,6 +38,14 @@ class Job < ActiveRecord::Base
 
   def css_name
     self.name.downcase.split(" ").join("-")
+  end
+
+  def copies_per_month
+    self.number_of_jobs * self.copies_per_job
+  end
+
+  def pages_per_month
+    copies_per_month * self.number_of_pages
   end
 
 end
