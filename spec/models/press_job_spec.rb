@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe PressJob do
+  let(:click_table) { FactoryGirl.create(:click_table) }
   let(:job) { FactoryGirl.create(:job, :job_size => 'A4', :multicolor_clicks => 3) }
-  let(:press_type) { FactoryGirl.create(:press_type) }
+  let(:press_type) { FactoryGirl.create(:press_type, :click_table => click_table) }
   let(:press_job) { FactoryGirl.create(:press_job, :job => job, :press_type => press_type)}
 
   it "stores press_cost, media_cost, labor_cost, spi_cost and clicks_cost" do
@@ -134,15 +135,26 @@ describe PressJob do
           press_job.number_of_sheets.should == number_of_sheets
         end
 
-        it "#all_clicks"
+        it "#all_job_pages_per_month" do
+          job2 = FactoryGirl.create(:job, :user => job.user)
+          job3 = FactoryGirl.create(:job, :user => job.user)
+          FactoryGirl.create(:job) # Create some unrelated job with different user
+          job_basket_pages_per_month = job.pages_per_month + job2.pages_per_month + job3.pages_per_month
+          press_job.job_basket_pages_per_month.should == job_basket_pages_per_month
+        end
 
         it "#tier_multicolor_price" do
-          #click_table = FactoryGirl.create(:click_table)
-          #ink_array1 = FactoryGirl.create(:ink_array, :color_range_start => job.multicolor_clicks-2, :color_range_end => job.multicolor_clicks-1)
-          #ink_array2 = FactoryGirl.create(:ink_array, :color_range_start => job.multicolor_clicks-1, :color_range_end => job.multicolor_clicks)
-          #ink_array3 = FactoryGirl.create(:ink_array, :color_range_start => job.multicolor_clicks+1, :color_range_end => job.multicolor_clicks+2)
-          #tier_1 = FactoryGirl.create(:tier, :label => "Correct Tier", :ink_array => ink_array2, :volume_range_start => 5000, :volume_range_end => 10000, :price => 2.00)
+          FactoryGirl.create(:ink_array, :click_table => click_table, :color_range_start => job.multicolor_clicks-2, :color_range_end => job.multicolor_clicks-1)
+          valid_ink_array = FactoryGirl.create(:ink_array, :description => "Valid ink array", :click_table => click_table, :color_range_start => job.multicolor_clicks-1, :color_range_end => job.multicolor_clicks)
+          FactoryGirl.create(:ink_array, :click_table => click_table, :color_range_start => job.multicolor_clicks+1, :color_range_end => job.multicolor_clicks+2)
 
+          FactoryGirl.create(:tier, :ink_array => valid_ink_array, :volume_range_start => 0, :volume_range_end => press_job.job_basket_pages_per_month-500)
+          valid_tier = FactoryGirl.create(:tier, :label => "Correct Tier", :ink_array => valid_ink_array, :volume_range_start => press_job.job_basket_pages_per_month-499, :volume_range_end => press_job.job_basket_pages_per_month+500, :price => 2.00)
+          FactoryGirl.create(:tier, :ink_array => valid_ink_array, :volume_range_start => 0, :volume_range_end => press_job.job_basket_pages_per_month+501, :volume_range_end => press_job.job_basket_pages_per_month+1000)
+
+          press_job.click_table.should == click_table
+          press_job.ink_array.should == valid_ink_array
+          ap press_job.ink_array
         end
 
         it "#tier_black_price"

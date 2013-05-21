@@ -1,15 +1,17 @@
 FactoryGirl.define do
 
-  # BUGBUG -- ActionView::Template::Error: Missing host to link to! Please provide the :host parameter, set default_url_options[:host], or set :only_path to true
-  #factory :user do
-  #  email {|n| "fake_user_#{n}@hp.com" }
-  #  company Faker::Company.name
-  #  first_name Faker::Name.first_name
-  #  last_name Faker::Name.last_name
-  #  country User.available_countries.sample
-  #  password 'pleaseplease'
-  #  password_confirmation 'pleaseplease'
-  #end
+  factory :user do
+    email {|n| "fake_user_#{n}@hp.com" }
+    company Faker::Company.name
+    first_name Faker::Name.first_name
+    last_name Faker::Name.last_name
+    country User.available_countries.sample
+    password 'pleaseplease'
+    password_confirmation 'pleaseplease'
+    after(:create) do |user|
+      user.skip_confirmation!
+    end
+  end
 
   factory :press_type do
     name "#{Faker::Company.catch_phrase.split(' ').map(&:capitalize).join(' ')} Press"
@@ -27,17 +29,17 @@ FactoryGirl.define do
   end
   
   factory :job do
-    #user
+    user
     sequence(:name) {|n| "Job #{n}" }
-    number_of_jobs (1000+Random.rand(100000))
-    copies_per_job (100+Random.rand(10000))
+    number_of_jobs (1000+Random.rand(1000))
+    copies_per_job (100+Random.rand(100))
     job_size Job.available_sizes.sample
     multicolor_clicks Random.rand(6)
     black Random.rand(1)
-    number_of_pages Random.rand(10000)
+    number_of_pages Random.rand(20)
     plex 1+Random.rand(1)
     sale_price ((100+Random.rand(500))/100)
-    annual_growth Random.rand(100)
+    annual_growth Random.rand(30)
     job_percentage 25
   end
 

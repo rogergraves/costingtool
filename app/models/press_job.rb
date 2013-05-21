@@ -56,6 +56,33 @@ class PressJob < ActiveRecord::Base
     @calculated_spi_cost ||= self.press_type.spi
   end
 
+  def job_basket_pages_per_month
+    @job_basket_pages_per_month ||= user_jobs_pages_per_month
+  end
+
+  def user_jobs_pages_per_month
+    total = 0
+    self.job.user.jobs.each do |job|
+      total += job.pages_per_month
+    end
+
+    total
+  end
+
+  def click_table
+    @click_table ||= self.press_type.click_table
+  end
+
+  def ink_array
+    @ink_array ||= calculate_ink_array
+  end
+
+  def calculate_ink_array
+    click_table.ink_arrays.each do |ink_array|
+      return ink_array if ink_array.color_range_start >= multicolor_clicks && ink_array.color_range_end <= multicolor_clicks && ink_array.black == black
+    end
+  end
+
   def calculated_clicks_cost
     0.00 # Still working on this...
   end
