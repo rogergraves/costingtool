@@ -1,16 +1,21 @@
 ActiveAdmin.register InkArray do
   belongs_to :click_table
 
-  sidebar "Click Tiers", :only => :show do
+  breadcrumb do
+    [
+        link_to("ADMIN", '/admin'), link_to(click_table.click_table_name, admin_click_table_path(click_table.id)), ink_array.description
+    ]
+  end
+
+  sidebar "Tiers", :only => :show do
     ul do
-      button_to "See Tiers", admin_ink_array_tiers_path(ink_array.id)
+      button_to "Add New Tier", admin_ink_array_tiers_path(ink_array.id)
     end
   end
 
   index do
-    selectable_column
-    column :click_table
-    column :description
+    column("Ink Array Description") {|ink_array| link_to ink_array.description, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
+    column("for Click Table") {|ct| link_to click_table.click_table_name, admin_click_table_path(ct.click_table_id)   }
     column :color_range_start
     column :color_range_end
     column :black
@@ -19,12 +24,23 @@ ActiveAdmin.register InkArray do
 
   show do
     attributes_table do
-      row :click_table
-      row :description
+      row("Ink Array Description") {|ink_array| link_to ink_array.description, edit_admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
+      row("Belongs to Click Table") {|ct| link_to click_table.click_table_name, admin_click_table_path(ct.click_table_id)   }
       row :color_range_start
       row :color_range_end
       row :black
     end
+
+    panel "Tiers" do
+      table_for(Tier.find_all_by_ink_array_id(ink_array.id)) do
+        column("Tier Level", :sort_by => :label ) {|tier| link_to tier.label, admin_ink_array_tier_path(tier.ink_array_id, tier.id) }
+        column :volume_range_start
+        column :volume_range_end
+        column :price
+      end
+    end
+
+
   end
 
   form do |f|

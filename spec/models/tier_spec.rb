@@ -20,6 +20,11 @@ describe Tier do
     tier.volume_range_end = nil
     tier.should be_valid
   end
+
+  it "can have a black_price" do
+    tier = FactoryGirl.create(:tier, :black_price => 0.95)
+    tier.black_price.should == 0.95
+  end
 end
 
 

@@ -1,0 +1,34 @@
+<div class="nav-wrapper">
+  <div class="nav-box">
+    <nav class="top-bar">
+      <%= render 'layouts/top-bar' %>
+    </nav>
+    <div class="sidebar">
+      <%= render 'layouts/side-bar' %>
+    </div>
+    <div class="press_jobs-area">
+      <h1 class="page-title">Select a press</h1>
+      <form class="custom press-jobs-table">
+        <% @presses.each do |press| %>
+            <label for="checkbox1" class="press-checkbox">
+              <input type="checkbox" id="checkbox1" style="display: none;">
+              <span class="custom checkbox"></span> <%= press.name %>
+            </label>
+        <% end %>
+      </form>
+      <br />
+    </div>
+    <div class="progress-arrows">
+      <div class="next-page press-selection">
+        <%= link_to '<i class="foundicon-right-arrow icon-medium next-arrow press-cost-summary"></i>'.html_safe, "#" %>
+        <p class="next-text"> Continue </p>
+      </div>
+      <div class="previous-page">
+        <%= link_to '<i class="foundicon-left-arrow icon-medium back-arrow"></i>'.html_safe, jobs_path %>
+        <p class="back-text"> Back </p>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+

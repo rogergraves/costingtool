@@ -15,6 +15,22 @@ describe Job do
     end
   end
 
+  context "method" do
+    let(:job) { FactoryGirl.create(:job) }
+
+    it '#copies_per_month' do
+      copies_per_month = job.number_of_jobs * job.copies_per_job
+      copies_per_month.should > 0
+      job.copies_per_month.should == copies_per_month
+    end
+
+    it '#pages_per_month' do
+      pages_per_month = job.number_of_jobs * job.copies_per_job * job.number_of_pages
+      pages_per_month.should > 0
+      job.pages_per_month.should == pages_per_month
+    end
+  end
+
 
 
 end
