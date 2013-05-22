@@ -198,12 +198,10 @@ describe PressJob do
             it "#black_tier_price" do
               press_job.black_tier_price.should == 1.00
             end
-
           end
 
           context "execution" do
             it '#calculated_clicks_cost' do
-              puts "\n\n!!!!!!!!!!!!!!!!!!!!!!!!! click_table.ink_arrays: #{click_table.ink_arrays.ai}"
               generate_ups_for press_type
               press_job.reload
               calculated_clicks_cost = ((@black_tier_price * job.black) + (@color_tier_price * job.multicolor_clicks)) * press_job.number_of_sheets * job.plex
