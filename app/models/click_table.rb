@@ -1,7 +1,6 @@
 class ClickTable < ActiveRecord::Base
   attr_accessible :description, :click_table_name
   has_many :ink_arrays
-  #has_many :tiers, :through => :ink_arrays
   has_many :press_types
 
   def display_name

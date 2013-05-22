@@ -12,6 +12,23 @@ class PressJob < ActiveRecord::Base
       :clicks_cost => :float,
   }
 
+  # Calculations -----------------------------------------------------------------------------------------
+
+  def calculated_media_cost # :media_cost
+    @calculated_media_cost ||= cost_per_sheet * plex * number_of_pages * copies_per_month / ups
+  end
+
+  def calculated_spi_cost # :spi_cost
+    @calculated_spi_cost ||= self.press_type.spi
+  end
+
+  def calculated_clicks_cost # :clicks_cost
+    ((black_tier_price * black) + (color_tier_price * multicolor_clicks)) * number_of_sheets * plex
+  end
+
+
+  # Support Methods --------------------------------------------------------------------------------------
+
   def cost_per_sheet
     @cost_per_sheet ||= Media.find_by_name(job_size).cost_per_sheet
   end
@@ -48,13 +65,6 @@ class PressJob < ActiveRecord::Base
     @job_size ||= self.job.job_size
   end
 
-  def calculated_media_cost
-    @calculated_media_cost ||= cost_per_sheet * plex * number_of_pages * copies_per_month / ups
-  end
-
-  def calculated_spi_cost
-    @calculated_spi_cost ||= self.press_type.spi
-  end
 
   def job_basket_pages_per_month
     @job_basket_pages_per_month ||= user_jobs_pages_per_month
@@ -77,14 +87,16 @@ class PressJob < ActiveRecord::Base
     @ink_array ||= calculate_ink_array
   end
 
-  def calculate_ink_array
-    click_table.ink_arrays.each do |ink_array|
-      return ink_array if ink_array.color_range_start >= multicolor_clicks && ink_array.color_range_end <= multicolor_clicks && ink_array.black == black
-    end
+  def tier
+    @tier ||= calculate_tier
   end
 
-  def calculated_clicks_cost
-    0.00 # Still working on this...
+  def color_tier_price
+    @color_tier_price ||= (tier.price || 0.00)
+  end
+
+  def black_tier_price
+    @black_tier_price ||= (tier.black_price || 0.00)
   end
 
   def multicolor_clicks
@@ -98,4 +110,34 @@ class PressJob < ActiveRecord::Base
   def number_of_sheets
     @number_of_sheets ||= (number_of_pages * number_of_jobs * copies_per_job / ups).ceil
   end
+
+  # ------------------------------------------------------------------------------------------------------------------
+  private
+
+  def calculate_tier
+    valid_tier = nil
+    ink_array.tiers.each do |tier|
+      if tier.volume_range_start <= job_basket_pages_per_month && tier.volume_range_end >= job_basket_pages_per_month
+        valid_tier = tier
+        break
+      end
+    end
+
+    valid_tier
+  end
+
+  def calculate_ink_array
+    valid_ink_array = nil
+
+    click_table.ink_arrays.each do |ink_array|
+      if ink_array.color_range_start <= multicolor_clicks && ink_array.color_range_end >= multicolor_clicks && ink_array.black == black
+        valid_ink_array = ink_array
+        break
+      end
+    end
+
+    valid_ink_array
+  end
+
+
 end
