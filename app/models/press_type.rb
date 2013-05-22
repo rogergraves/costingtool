@@ -13,7 +13,6 @@ class PressType < ActiveRecord::Base
 
   serialize :data, ActiveRecord::Coders::Hstore
   hstore :data, :accessors => {
-      :click_table_id => :integer,  #the ClickTable.id that this PressType belongs_to
       :duty_cycle => :integer,      # Max usage of a press per month
       :spi => :float                # Service Parts Insurance cost / month in USD
   }

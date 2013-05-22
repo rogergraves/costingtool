@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521232424) do
+ActiveRecord::Schema.define(:version => 20130522212855) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -51,6 +51,19 @@ ActiveRecord::Schema.define(:version => 20130521232424) do
     t.hstore   "data"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "clicks_lookup_tables", :force => true do |t|
+    t.hstore   "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "clicks_lookups", :force => true do |t|
+    t.integer  "clicks_lookup_table_id"
+    t.hstore   "data"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
   end
 
   create_table "impositions", :force => true do |t|
@@ -104,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20130521232424) do
     t.integer  "icon_file_size"
     t.datetime "icon_updated_at"
     t.hstore   "data"
+    t.integer  "click_table_id"
   end
 
   create_table "tiers", :force => true do |t|
