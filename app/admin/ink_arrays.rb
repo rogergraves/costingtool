@@ -1,10 +1,12 @@
 ActiveAdmin.register InkArray do
   belongs_to :click_table
+
   breadcrumb do
     [
         link_to("ADMIN", '/admin'), link_to(click_table.click_table_name, admin_click_table_path(click_table.id)), ink_array.description
     ]
   end
+
   sidebar "Tiers", :only => :show do
     ul do
       button_to "Add New Tier", admin_ink_array_tiers_path(ink_array.id)
