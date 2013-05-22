@@ -14,6 +14,7 @@ ActiveAdmin.register ClickTable do
   end
 
   show do
+
     attributes_table do
       row :click_table_name, :label => "Name"
       row :description
@@ -24,17 +25,20 @@ ActiveAdmin.register ClickTable do
         column(:description) {|ink_array| link_to ink_array.description, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
         column :color_range_start
         column :color_range_end
-        column :black
+        column :black do |value|
+          value.black == 0? "No" : "Yes"
         end
-        button_to("Add New Ink Array"){|ink_array| link_to ink_array.description, new_admin_click_table_ink_array_path(ink_array.click_table_id) }
+      end
+      strong { link_to "Add an Ink Array", new_admin_click_table_ink_array_path(click_table.id)}
     end
 
   end
 
-  sidebar "Links", :only => :show do
-      #button_to "Add an Ink Array", edit_admin_click_table_ink_array_path(click_table.id, ink_array.id )
-      #li link_to "Add a New Tier", admin_click_table_ink_arrays_path(click_table.id)
-  end
+  #sidebar "Links", :only => :show do
+  #  ul do
+  #    button_to "Add New Ink Array", new_admin_click_table_ink_array_path(click_table.id)
+  #  end
+  #end
 
 end
 

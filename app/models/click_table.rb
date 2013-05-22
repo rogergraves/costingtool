@@ -3,6 +3,8 @@ class ClickTable < ActiveRecord::Base
   has_many :ink_arrays
   has_many :press_types
 
+  validates_presence_of :click_table_name
+
   def display_name
     self.click_table_name
   end
