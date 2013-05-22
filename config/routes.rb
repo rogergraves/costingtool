@@ -15,6 +15,7 @@ Costingtool::Application.routes.draw do
   end
 
   match 'jobs/empty_basket' => 'jobs#empty_basket'
+  match 'press_jobs/log_presses' => 'press_jobs#log_presses'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

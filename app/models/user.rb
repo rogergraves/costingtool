@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessor :current_step
+  attr_accessor :current_step, :presses
   validate :check_email_domain
 
   validates_presence_of :email, :if => lambda { |o| o.current_step == "first" }
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 
   serialize :data, ActiveRecord::Coders::Hstore
   #HSTORE_ATTR_NAMESPACE = 'attribute'
-  %w[first_name last_name designation company department contact_number country current_step].each do |key|
+  %w[first_name last_name designation company department contact_number country current_step presses].each do |key|
     attr_accessible key
 
     define_method(key) do

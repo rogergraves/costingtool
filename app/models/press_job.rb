@@ -12,6 +12,18 @@ class PressJob < ActiveRecord::Base
       :clicks_cost => :float,
   }
 
+  def self.get_presses(params, user)
+    presses = params["presses"].split('"')
+    presses.each do |press|
+      if press.length < 2
+        presses.delete(press)
+      end
+    end
+    user.current_step = "third"
+    user.presses = presses
+    user.save!
+  end
+
   def cost_per_sheet
     @cost_per_sheet ||= Media.find_by_name(job_size).cost_per_sheet
   end
