@@ -61,6 +61,19 @@ class User < ActiveRecord::Base
     COUNTRIES.to_a
   end
 
+  def press_types
+    presses = []
+    self.presses.split(",").each do |press|
+      presses.push(press.gsub(/[^0-9a-z ]/i, '').strip)
+    end
+    press_ids = []
+    presses.each do |p|
+      assoc_press = PressType.where(:name => p).first
+      press_ids.push(assoc_press)
+    end
+    press_ids
+  end
+
   def name
     self.email
   end

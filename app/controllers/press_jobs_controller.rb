@@ -10,9 +10,11 @@ class PressJobsController < InheritedResources::Base
   end
 
   def index
-    @press_job = Job.new
-    @presses =  PressType.all || []
+    @press_types =  PressType.all || []
     @jobs = current_user.jobs || []
+    current_user.press_types
+    @presses = current_user.press_types
+    @press_jobs = PressJob.generate_press_jobs(@jobs, @presses)
   end
 
   def log_presses

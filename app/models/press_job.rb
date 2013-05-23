@@ -1,5 +1,5 @@
 class PressJob < ActiveRecord::Base
-  attr_accessible :job_id, :press_type_id, :press_cost, :media_cost, :labor_cost, :spi_cost, :clicks_cost
+  attr_accessible :job_id, :press_type_id, :press_cost, :media_cost, :labor_cost, :spi_cost, :clicks_cost, :press_type
   belongs_to :job
   belongs_to :press_type
 
@@ -122,6 +122,15 @@ class PressJob < ActiveRecord::Base
     user.presses = presses
     user.save!
   end
+
+  def self.generate_press_jobs(jobs, presses)
+    jobs.each do |job|
+      presses.each do |press|
+        job.press_jobs.create(:press_type => press)
+      end
+    end
+  end
+
 
   # ------------------------------------------------------------------------------------------------------------------
   private
