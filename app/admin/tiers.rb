@@ -2,7 +2,7 @@ ActiveAdmin.register Tier do
   belongs_to :ink_array
 
   breadcrumb do
-    [ link_to("ADMIN", '/admin'), link_to(ink_array.click_table.display_name, admin_click_table_path(ink_array.click_table_id)), link_to(ink_array.description, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id)) ]
+    [ link_to("ADMIN", '/admin'), link_to(ink_array.click_table.name, admin_click_table_path(ink_array.click_table_id)), link_to(ink_array.description, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id)) ]
   end
 
   index do

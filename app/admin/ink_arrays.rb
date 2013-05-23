@@ -2,13 +2,13 @@ ActiveAdmin.register InkArray do
   belongs_to :click_table
 
   breadcrumb do
-    [ link_to("ADMIN", '/admin'), link_to(click_table.click_table_name, admin_click_table_path(click_table.id)) ]
+    [ link_to("ADMIN", '/admin'), link_to(click_table.name, admin_click_table_path(click_table.id)) ]
   end
 
 
   index do
     column("Ink Array Description") {|ink_array| link_to ink_array.description, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
-    column("for Click Table") {|ct| link_to click_table.click_table_name, admin_click_table_path(ct.click_table_id)   }
+    column("for Click Table") {|ct| link_to click_table.name, admin_click_table_path(ct.click_table_id)   }
     column :color_range_start
     column :color_range_end
     column :black do |value|
@@ -22,7 +22,7 @@ ActiveAdmin.register InkArray do
 
     attributes_table do
       row("Ink Array Description") {|ink_array| link_to ink_array.description, edit_admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
-      row("Belongs to Click Table") {|ct| link_to click_table.click_table_name, admin_click_table_path(ct.click_table_id)   }
+      row("Belongs to Click Table") {|ct| link_to click_table.name, admin_click_table_path(ct.click_table_id)   }
       row :color_range_start
       row :color_range_end
       row :black do |value|
@@ -41,8 +41,8 @@ ActiveAdmin.register InkArray do
           column :black_price
         end
       end
-         strong{ link_to "Add New Tier", new_admin_ink_array_tier_path(ink_array.id)}
-      end
+      strong{ link_to "Add New Tier", new_admin_ink_array_tier_path(ink_array.id)}
+    end
 
   end
 
@@ -53,14 +53,13 @@ ActiveAdmin.register InkArray do
       f.input :color_range_start, :as => :select, :collection => [0, 1, 2, 3, 4, 5, 6]
       f.input :color_range_end, :as => :select, :collection => [0, 1, 2, 3, 4, 5, 6]
       f.input :black, :as => :radio, :collection => { " No" => 0, " Yes" => 1 }
-    end
-    f.buttons
-  end
+      end
+      f.buttons
+      end
 
-  #sidebar "Tiers", :only => :show do
-  #  ul do
-  #    button_to "Add New Tier", admin_ink_array_tiers_path(ink_array.id)
-  #  end
-  #end
-
-end
+      #sidebar "Tiers", :only => :show do
+      #  ul do
+      #    button_to "Add New Tier", admin_ink_array_tiers_path(ink_array.id)
+      #  end
+      #end
+      end

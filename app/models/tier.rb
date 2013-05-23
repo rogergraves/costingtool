@@ -1,5 +1,5 @@
 class Tier < ActiveRecord::Base
-  attr_accessible :label, :price, :volume_range_end, :volume_range_start, :ink_array_id, :ink_array_name, :click_table_id, :click_table_name, :black_price
+  attr_accessible :label, :price, :volume_range_end, :volume_range_start, :ink_array_id, :black_price
   belongs_to :ink_array
   delegate :click_table, :to => :ink_array, :allow_nil => true
 

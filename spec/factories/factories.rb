@@ -55,7 +55,7 @@ FactoryGirl.define do
 
   factory :click_table do
     sequence(:description) { |n| "Table #{n}" }
-    click_table_name Faker::Company.catch_phrase
+    name Faker::Company.catch_phrase
   end
 
   factory :ink_array do

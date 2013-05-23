@@ -1,13 +1,13 @@
 ActiveAdmin.register ClickTable do
 
   index do
-    column(:click_table_name, :sortable => :click_table_name) { |click_table| link_to click_table.click_table_name, admin_click_table_path(click_table.id) }
+    column(:name, :sortable => :name) { |click_table| link_to click_table.name, admin_click_table_path(click_table.id) }
     column :description
   end
 
   form do |f|
     f.inputs "Click Table" do
-      f.input :click_table_name, :label => "Name"
+      f.input :name, :label => "Name"
       f.input :description
     end
     f.buttons
@@ -16,7 +16,7 @@ ActiveAdmin.register ClickTable do
   show do
 
     attributes_table do
-      row :click_table_name, :label => "Name"
+      row :name, :label => "Name"
       row :description
     end
 

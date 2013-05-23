@@ -47,3 +47,4 @@ ActiveAdmin.register PressType do
     f.buttons
   end
 end
+

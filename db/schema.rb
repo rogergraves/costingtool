@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522212855) do
+ActiveRecord::Schema.define(:version => 20130522221944) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -51,19 +51,6 @@ ActiveRecord::Schema.define(:version => 20130522212855) do
     t.hstore   "data"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-  end
-
-  create_table "clicks_lookup_tables", :force => true do |t|
-    t.hstore   "data"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "clicks_lookups", :force => true do |t|
-    t.integer  "clicks_lookup_table_id"
-    t.hstore   "data"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
   end
 
   create_table "impositions", :force => true do |t|
