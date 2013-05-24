@@ -68,7 +68,7 @@ FactoryGirl.define do
 
   factory :tier do
     ink_array
-    sequence(:label) { |n| "Tier #{n}" }
+    sequence(:name) { |n| "Tier #{n}" }
     volume_range_start 0
     volume_range_end 1000000
     price 1.50

@@ -36,7 +36,8 @@ ActiveAdmin.register InkArray do
 
     panel "Tiers" do
       table_for(Tier.find_all_by_ink_array_id(ink_array.id)) do
-        column("Tier Level", :sort_by => :label ) {|tier| link_to tier.label, admin_ink_array_tier_path(tier.ink_array_id, tier.id) }
+        column("Tier Level", :sort_by => :name ) {|tier| link_to tier.name,
+                                                                 admin_ink_array_tier_path(tier.ink_array_id, tier.id) }
         column :volume_range_start
         column :volume_range_end
         column :price
