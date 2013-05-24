@@ -173,7 +173,7 @@ describe PressJob do
             press_job.valid?
 
             FactoryGirl.create(:ink_array, :click_table => click_table, :color_range_start => job.multicolor_clicks-2, :color_range_end => job.multicolor_clicks-1)
-            @valid_ink_array = FactoryGirl.create(:ink_array, :description => "Valid ink array", :click_table => click_table, :color_range_start => job.multicolor_clicks-1, :color_range_end => job.multicolor_clicks, :black => 1)
+            @valid_ink_array = FactoryGirl.create(:ink_array, :name => "Valid ink array", :click_table => click_table, :color_range_start => job.multicolor_clicks-1, :color_range_end => job.multicolor_clicks, :black => 1)
             FactoryGirl.create(:ink_array, :click_table => click_table, :color_range_start => job.multicolor_clicks+1, :color_range_end => job.multicolor_clicks+2)
 
             FactoryGirl.create(:tier, :ink_array => @valid_ink_array, :volume_range_start => 0, :volume_range_end => press_job.job_basket_pages_per_month-500)

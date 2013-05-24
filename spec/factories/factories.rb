@@ -60,7 +60,7 @@ FactoryGirl.define do
 
   factory :ink_array do
     click_table
-    sequence(:description) { |n| "Ink setup #{n}" }
+    sequence(:name) { |n| "Ink setup #{n}" }
     color_range_start 3
     color_range_end 3
     black 1

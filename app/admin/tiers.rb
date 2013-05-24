@@ -1,8 +1,10 @@
 ActiveAdmin.register Tier do
   belongs_to :ink_array
 
+  filter false
+
   breadcrumb do
-    [ link_to("ADMIN", '/admin'), link_to(ink_array.click_table.name, admin_click_table_path(ink_array.click_table_id)), link_to(ink_array.description, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id)) ]
+    [ link_to("ADMIN", '/admin'), link_to(ink_array.click_table.name, admin_click_table_path(ink_array.click_table_id)), link_to(ink_array.name, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id)) ]
   end
 
   index do
@@ -18,7 +20,7 @@ ActiveAdmin.register Tier do
 
   show :title => :label do
     attributes_table do
-      row("Ink Array") {|tier| link_to tier.ink_array.description, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
+      row("Ink Array") {|tier| link_to tier.ink_array.name, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
       row :label
       row :volume_range_start
       row :volume_range_end
@@ -26,7 +28,7 @@ ActiveAdmin.register Tier do
       if ink_array.black > 0
         row :black_price
       end
-      em { link_to "Back to View All (#{ink_array.description})", admin_click_table_ink_array_path(ink_array
+      em { link_to "Back to View All (#{ink_array.name})", admin_click_table_ink_array_path(ink_array
                                                                                                .click_table_id,
                                                                                ink_array.id) }
     end
