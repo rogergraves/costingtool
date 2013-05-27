@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522221944) do
+ActiveRecord::Schema.define(:version => 20130524031212) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(:version => 20130522221944) do
 
   create_table "ink_arrays", :force => true do |t|
     t.integer  "click_table_id"
-    t.string   "description"
+    t.string   "name"
     t.integer  "color_range_start"
     t.integer  "color_range_end"
     t.integer  "black"
@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(:version => 20130522221944) do
 
   create_table "tiers", :force => true do |t|
     t.integer  "ink_array_id"
-    t.string   "label"
+    t.string   "name"
     t.integer  "volume_range_start"
     t.integer  "volume_range_end"
     t.float    "price"

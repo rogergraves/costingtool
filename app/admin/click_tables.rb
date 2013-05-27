@@ -1,7 +1,8 @@
 ActiveAdmin.register ClickTable do
 
   index do
-    column(:name, :sortable => :name) { |click_table| link_to click_table.name, admin_click_table_path(click_table.id) }
+    column("Name", :sortable => :name, :sortable => :description) { |click_table| link_to click_table.name,
+                                                                    admin_click_table_path(click_table.id) }
     column :description
   end
 
@@ -13,6 +14,7 @@ ActiveAdmin.register ClickTable do
     f.buttons
   end
 
+
   show do
 
     attributes_table do
@@ -22,7 +24,7 @@ ActiveAdmin.register ClickTable do
 
     panel "Ink Arrays" do
       table_for(InkArray.find_all_by_click_table_id(click_table.id)) do
-        column(:description) {|ink_array| link_to ink_array.description, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
+        column(:name) {|ink_array| link_to ink_array.name, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
         column :color_range_start
         column :color_range_end
         column :black do |value|

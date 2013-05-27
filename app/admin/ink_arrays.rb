@@ -7,8 +7,9 @@ ActiveAdmin.register InkArray do
 
 
   index do
-    column("Ink Array Description") {|ink_array| link_to ink_array.description, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
-    column("for Click Table") {|ct| link_to click_table.name, admin_click_table_path(ct.click_table_id)   }
+    column("Ink Array") {|ink_array| link_to ink_array.name, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
+    column("for Click Table") {|clicktable| link_to click_table.name, admin_click_table_path(clicktable
+                                                                                             .click_table_id) }
     column :color_range_start
     column :color_range_end
     column :black do |value|
@@ -21,8 +22,10 @@ ActiveAdmin.register InkArray do
   show do
 
     attributes_table do
-      row("Ink Array Description") {|ink_array| link_to ink_array.description, edit_admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
-      row("Belongs to Click Table") {|ct| link_to click_table.name, admin_click_table_path(ct.click_table_id)   }
+      row("Ink Array") {|ink_array| link_to ink_array.name, edit_admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
+      row("Belongs to Click Table") {|clicktable| link_to click_table.name,
+                                                          admin_click_table_path(clicktable.click_table_id)
+      }
       row :color_range_start
       row :color_range_end
       row :black do |value|
@@ -33,7 +36,8 @@ ActiveAdmin.register InkArray do
 
     panel "Tiers" do
       table_for(Tier.find_all_by_ink_array_id(ink_array.id)) do
-        column("Tier Level", :sort_by => :label ) {|tier| link_to tier.label, admin_ink_array_tier_path(tier.ink_array_id, tier.id) }
+        column("Tier Level", :sort_by => :name ) {|tier| link_to tier.name,
+                                                                 admin_ink_array_tier_path(tier.ink_array_id, tier.id) }
         column :volume_range_start
         column :volume_range_end
         column :price
@@ -49,7 +53,7 @@ ActiveAdmin.register InkArray do
   form do |f|
     f.inputs "Ink Array" do
       f.input :click_table, :as => :select, :collection => ClickTable.all
-      f.input :description
+      f.input :name
       f.input :color_range_start, :as => :select, :collection => [0, 1, 2, 3, 4, 5, 6]
       f.input :color_range_end, :as => :select, :collection => [0, 1, 2, 3, 4, 5, 6]
       f.input :black, :as => :radio, :collection => { " No" => 0, " Yes" => 1 }
