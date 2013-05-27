@@ -2,8 +2,8 @@ namespace :app do
   task :reset_click_tables => :environment do
     ClickTable.destroy_all
 
-    puts 'Adding... Tiered Pricing -72xx'
-    table1 = ClickTable.create(:name => 'Tiered Pricing -72xx', :description => 'Tiered Pricing -72xx')
+    puts 'Adding... Tiered Pricing 72xx'
+    table1 = ClickTable.create(:name => '72xx Click Pricing', :description => 'Tiered Pricing for -72xx')
 
     puts 'Create ink arrays...'
     table1_array1 = InkArray.create(:click_table_id => table1.id, :name => 'Multicolor', :color_range_start => 1, :color_range_end => nil, :black => 0)
