@@ -33,4 +33,5 @@ NOTE -- if you run into hstore error, try: psql -d template1 -c 'create extensio
 
 Rake Tasks
 ==========
-(None currently)
+To wipe out the click tables and put in most recent table data we have:
+                $ rake app:reset_click_tables
