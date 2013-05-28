@@ -1,6 +1,8 @@
 ActiveAdmin.register InkArray do
   belongs_to :click_table
 
+  config.clear_sidebar_sections!
+
   breadcrumb do
     [ link_to("ADMIN", '/admin'), link_to(click_table.name, admin_click_table_path(click_table.id)) ]
   end

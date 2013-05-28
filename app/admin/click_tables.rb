@@ -1,5 +1,7 @@
 ActiveAdmin.register ClickTable do
 
+  config.clear_sidebar_sections!
+
   index do
     column("Name", :sortable => :name, :sortable => :description) { |click_table| link_to click_table.name,
                                                                     admin_click_table_path(click_table.id) }

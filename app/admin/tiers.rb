@@ -29,9 +29,7 @@ ActiveAdmin.register Tier do
       if ink_array.black > 0
         row :black_price, :label => "Price: Black"
       end
-      em { link_to "Back to View All (#{ink_array.name})", admin_click_table_ink_array_path(ink_array
-                                                                                               .click_table_id,
-                                                                               ink_array.id) }
+      em { link_to "Back to View All (#{ink_array.name})", admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
     end
   end
 
