@@ -1,11 +1,6 @@
 ActiveAdmin.register Imposition do
 
-
-  sidebar "Job Sizes", :only => :show do
-    ul do
-      button link_to "View All Impositions", admin_impositions_path
-    end
-  end
+  config.clear_sidebar_sections!
 
   index do
     column :press_type
@@ -20,6 +15,7 @@ ActiveAdmin.register Imposition do
       row :job_size
       row :ups
     end
+    em { link_to "View All Impositions", admin_impositions_path() }
   end
 
   form do |f|
