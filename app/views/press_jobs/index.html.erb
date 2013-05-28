@@ -7,9 +7,10 @@
       <%= render 'layouts/side-bar' %>
     </div>
     <div class="press_jobs-area">
-      <h1 class="page-title">Press Cost Summary</h1>
-
-      <br />
+      <h3 class="page-title">Press Cost Summary</h3>
+      <div class="first-job">
+        <%= render :partial => 'layouts/press-cost-summary', :locals => { :job => @jobs.first } %>
+      </div>
     </div>
     <div class="progress-arrows">
       <div class="next-page press-selection">
@@ -24,3 +25,5 @@
   </div>
 </div>
 </div>
+
+

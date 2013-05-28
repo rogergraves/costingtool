@@ -84,6 +84,7 @@ class PressJob < ActiveRecord::Base
   end
 
   def ink_array
+    Rails.logger.info("ink_array: #{calculate_ink_array}")
     @ink_array ||= calculate_ink_array
   end
 
@@ -129,7 +130,7 @@ class PressJob < ActiveRecord::Base
         new_press_job = job.press_jobs.create(:press_type => press)
         new_press_job.media_cost  = new_press_job.calculated_media_cost
         new_press_job.spi_cost  = new_press_job.calculated_spi_cost
-        #new_press_job.calculated_clicks_cost  = new_press_job.calculated_clicks_cost
+        new_press_job.calculated_clicks_cost  = new_press_job.calculated_clicks_cost
         new_press_job.save
         end
     end
@@ -153,6 +154,7 @@ class PressJob < ActiveRecord::Base
 
   def calculate_ink_array
     valid_ink_array = nil
+    Rails.logger.info("click_table.ink_arrays: #{click_table.ink_arrays}")
 
     click_table.ink_arrays.each do |ink_array|
       if ink_array.color_range_start <= multicolor_clicks && ink_array.color_range_end >= multicolor_clicks && ink_array.black == black

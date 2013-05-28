@@ -7,7 +7,7 @@
       <%= render 'layouts/side-bar' %>
     </div>
     <div class="jobs-area">
-      <h1 class="page-title">Job Basket</h1>
+      <h3 class="page-title">Job Basket</h3>
       <%= link_to '<i class="foundicon-trash icon-medium"></i>'.html_safe, jobs_empty_basket_path, method: :post, data: { confirm: 'Delete all jobs?' } %>
       <%= link_to '<i class="foundicon-plus icon-medium"></i>'.html_safe, "#" %>
       <table class="jobs-table">
