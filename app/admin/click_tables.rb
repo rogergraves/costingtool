@@ -17,33 +17,43 @@ ActiveAdmin.register ClickTable do
     f.buttons
   end
 
-
-  show do
-
-    attributes_table do
-      row :name, :label => "Name"
-      row :description
-    end
-
-    panel "Ink Arrays" do
-      table_for(InkArray.find_all_by_click_table_id(click_table.id)) do
-        column(:name) {|ink_array| link_to ink_array.name, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
-        column :color_range_start
-        column :color_range_end
-        column :black do |value|
-          value.black == 0? "No" : "Yes"
+    show do
+      columns do
+        column :span => 3 do
+          attributes_table do
+              row :name, :label => "Name"
+              row :description
+              #row "INK ARRAYS" do
+              #  table_for(InkArray.find_all_by_click_table_id(click_table.id)) do
+              #    column(:name) { |ink_array| link_to ink_array.name, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
+              #    column :color_range_start
+              #    column :color_range_end
+              #    column :black do |value|
+              #      value.black == 0 ? "No" : "Yes"
+              #    end
+              #  end
+              #end
+              strong { link_to "View All Presses", admin_press_types_path() }
+          end
         end
-      end
-      strong { link_to "Add an Ink Array", new_admin_click_table_ink_array_path(click_table.id)}
-    end
 
-  end
+        column :span => 2 do
+          panel "Ink Arrays" do
+            table_for(InkArray.find_all_by_click_table_id(click_table.id)) do
+              column(:name) { |ink_array| link_to ink_array.name, admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
+              #column :color_range_start
+              #column :color_range_end
+              column :black do |value|
+                  value.black == 0 ? "No" : "Yes"
+              end
+            end
+              strong { link_to "Add an Ink Array", new_admin_click_table_ink_array_path(click_table.id) }
+          end
+        end
 
-  #sidebar "Links", :only => :show do
-  #  ul do
-  #    button_to "Add New Ink Array", new_admin_click_table_ink_array_path(click_table.id)
-  #  end
-  #end
+      end # columns
+
+    end # show
 
 end
 

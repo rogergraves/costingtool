@@ -21,9 +21,9 @@
 }
 
 div.field input {
-  width: 32px;
+  width: 72px;
   display: inline;
-  text-align: center;
+  text-align: right;
 }
 
 div.field input.float-input {
@@ -39,12 +39,12 @@ div.field label {
 }
 
 div.field input#job_name{
-  width: 100%;
-  text-align: justify;
+  width: 412px;
+  text-align: left;
 }
 
 .new-job-wrapper {
-  width: 42%;
+  width: 482px;
   margin-left: 20px;
 }
 
@@ -53,20 +53,23 @@ div.field input#job_name{
 }
 
 .plex {
-  width: 30%;
+  width: 110px;
   display: inline-block;
   margin-bottom: 0px;
   height: 36px;
+  margin-left: 48px
 }
 
 .job-size div.custom.dropdown {
   margin-bottom: 3px;
+  width: 412px;
 }
 
 .black-checkbox {
   width: 20%;
   display: inline-block;
   margin-bottom: 0px;
+  margin-left: 10%
 }
 
 form#new_job div.field input.disabled-appearance {
