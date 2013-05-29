@@ -28,6 +28,7 @@ if($('#flash_notice').length && $("#new_user").length){
     $("#new_user").prepend("<br />");
 }
 
+//Allows users to click outside of modal to close it
 $(document).mouseup(function (e)
 {
     var container = $("ul#drop1");

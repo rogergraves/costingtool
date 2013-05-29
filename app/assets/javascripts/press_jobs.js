@@ -13,11 +13,8 @@ $("span.custom.checkbox").click(function(){
 
 
 $(".next-arrow.press-cost-summary").click(function(){
-    console.log("clicked1")
     var press_types = $(".custom.press-jobs-table label span.checked")
-    console.log("clicked2")
     var presses = getPresses(press_types)
-    console.log("clicked3")
 
     $.ajax({
         type: "POST",
