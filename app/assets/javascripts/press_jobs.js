@@ -39,12 +39,30 @@ function getPresses(pressList){
 
 
 $(".foundicon-right-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").click(function(){
-    $(".first-job").hide();
-    $(".other-jobs-container").fadeIn();
+    var slideOne = $(".first-job")
+    var slideTwo = $($(".other-jobs-container")[0])
+    var slideThree = $($(".other-jobs-container")[1])
+
+    if(slideOne.css("display") != "none"){
+        slideOne.hide();
+        slideTwo.fadeIn();
+    } else if(slideTwo.css("display") != "none") {
+        slideTwo.hide();
+        slideThree.fadeIn();
+    }
 })
 
 
 $(".foundicon-left-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").click(function(){
-    $(".other-jobs-container").hide();
-    $(".first-job").fadeIn();
+    var slideOne = $(".first-job")
+    var slideTwo = $($(".other-jobs-container")[0])
+    var slideThree = $($(".other-jobs-container")[1])
+
+    if(slideTwo.css("display") != "none"){
+        slideTwo.hide();
+        slideOne.fadeIn();
+    } else if(slideThree.css("display") != "none") {
+        slideThree.hide();
+        slideTwo.fadeIn();
+    }
 })
