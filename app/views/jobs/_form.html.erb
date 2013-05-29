@@ -63,6 +63,7 @@
     </div>
     <div class="actions">
       <%= f.submit "Create Job", :class => "login-button medium button radius custom-expand", :style => "width: 180px; margin-top: 1em;" %>
+      <%= link_to "cancel", "#", :onclick => "cancelNewJob()" %>
     </div>
   <% end %>
 </div>

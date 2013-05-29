@@ -67,6 +67,11 @@ Number.prototype.formatWithCommas = function(sep) {
     return n.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, sep || ',');
 }
 
+function cancelNewJob() {
+    $(".new-job").hide();
+    $(".jobs-area").show();
+}
+
 $(document).ready(function() {
     var update_calcs = function() {
         var number_of_jobs = $('#number_of_jobs').val() || 0;
