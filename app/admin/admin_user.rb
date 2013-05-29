@@ -1,5 +1,6 @@
 ActiveAdmin.register AdminUser do
     menu :parent => "Setup", :priority => 4
+    config.clear_sidebar_sections!
 
   index do                            
     column :email                     

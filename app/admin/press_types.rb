@@ -17,27 +17,41 @@ ActiveAdmin.register PressType do
   end
 
   show :title => :name do |press|
-    attributes_table do
-      row :name
-      row :duty_cycle
-      row :icon do
-        image_tag(press.icon.url(:medium)) if press.icon.present?
+    columns do
+      column do
+        attributes_table do
+          row :name
+          #row :duty_cycle
+          #row "SPI (USD)", :spi do |press|
+          #  number_to_currency press.spi
+          #end
+          row :click_table
+          row :icon do
+            image_tag(press.icon.url(:medium)) if press.icon.present?
+          end
+          em { link_to "View All Press Types", admin_press_types_path() }
+        end
       end
-      row "SPI (USD)", :spi do |press|
-        number_to_currency press.spi
-      end
-      row :click_table
-      em { link_to "View All Press Types", admin_press_types_path() }
-    end
 
+      #column do
+      #  attributes_table do
+      #    row :icon do
+      #      image_tag(press.icon.url(:medium)) if press.icon.present?
+      #    end
+      #  end
+      #end
 
-    panel "Impositions" do
-      table_for(Imposition.find_all_by_press_type_id(press_type.id)) do
-        column :job_size
-        column :ups
+      column do
+        panel "Impositions" do
+          table_for(Imposition.find_all_by_press_type_id(press_type.id)) do
+            column :job_size
+            column :ups
+          end
+          em { link_to 'Create New Imposition', new_admin_imposition_path() }
+        end
       end
-      em { link_to 'Create New Imposition', new_admin_imposition_path() }
-    end
+
+    end # columns
 
   end
 
@@ -45,13 +59,11 @@ ActiveAdmin.register PressType do
     f.inputs "Details" do
       f.input :name
       f.input :duty_cycle, :label => "Duty Cycle", :hint => 'max clicks per month'
-
       if f.object.icon.present?
         f.input :icon, :as => :file, :hint => f.template.image_tag(f.object.icon.url(:medium))
       else
         f.input :icon, :as => :file
       end
-
       f.input :spi, :label => "SPI", :hint => "(USD per month)"
       f.input :click_table, :as => :select, :collection => ClickTable.all
     end

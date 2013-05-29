@@ -1,7 +1,7 @@
 ActiveAdmin.register UserLog do
     menu :parent => "Setup", :priority => 3
 
-    #config.clear_action_items!
+    #config.clear_sidebar_sections!
     actions :all, :except => [:new]
 
   index do
