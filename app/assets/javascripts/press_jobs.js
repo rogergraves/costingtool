@@ -42,6 +42,8 @@ $(".foundicon-right-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").cli
     var slideOne = $(".first-job")
     var slideTwo = $($(".other-jobs-container")[0])
     var slideThree = $($(".other-jobs-container")[1])
+    var slideFour = $($(".other-jobs-container")[2])
+    var slideFive = $($(".other-jobs-container")[3])
 
     if(slideOne.css("display") != "none"){
         slideOne.hide();
@@ -49,6 +51,12 @@ $(".foundicon-right-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").cli
     } else if(slideTwo.css("display") != "none") {
         slideTwo.hide();
         slideThree.fadeIn();
+    } else if(slideThree.css("display") != "none") {
+        slideThree.hide();
+        slideFour.fadeIn();
+    } else if(slideFour.css("display") != "none") {
+        slideFour.hide();
+        slideFive.fadeIn();
     }
 })
 
@@ -57,6 +65,8 @@ $(".foundicon-left-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").clic
     var slideOne = $(".first-job")
     var slideTwo = $($(".other-jobs-container")[0])
     var slideThree = $($(".other-jobs-container")[1])
+    var slideFour = $($(".other-jobs-container")[2])
+    var slideFive = $($(".other-jobs-container")[3])
 
     if(slideTwo.css("display") != "none"){
         slideTwo.hide();
@@ -64,5 +74,11 @@ $(".foundicon-left-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").clic
     } else if(slideThree.css("display") != "none") {
         slideThree.hide();
         slideTwo.fadeIn();
+    } else if(slideFour.css("display") != "none") {
+        slideFour.hide();
+        slideThree.fadeIn();
+    } else if(slideFive.css("display") != "none") {
+        slideFive.hide();
+        slideFour.fadeIn();
     }
 })
