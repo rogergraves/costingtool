@@ -1,4 +1,6 @@
 ActiveAdmin.register User do
+  menu :parent => "Setup", :priority => 2
+
   index do
     column :email
     column :first_name

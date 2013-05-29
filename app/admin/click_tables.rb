@@ -1,4 +1,5 @@
 ActiveAdmin.register ClickTable do
+    menu :priority => 3
 
   config.clear_sidebar_sections!
 

@@ -1,4 +1,5 @@
 ActiveAdmin.register Media do
+    menu :label => "Media Costs", :parent => "Press Types", :priority => 1
 
   index :title => :name do
       column :name
@@ -10,6 +11,7 @@ ActiveAdmin.register Media do
     attributes_table do
       row :name
       row :cost_per_sheet
+      em { link_to 'View All Media Costs', admin_media_path() }
     end
   end
 

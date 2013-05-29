@@ -1,6 +1,5 @@
 ActiveAdmin.register Imposition do
-
-    menu false
+    menu :parent => "Press Types", :priority => 2
 
   config.clear_sidebar_sections!
 

@@ -1,4 +1,6 @@
-ActiveAdmin.register AdminUser do     
+ActiveAdmin.register AdminUser do
+    menu :parent => "Setup", :priority => 4
+
   index do                            
     column :email                     
     column :current_sign_in_at        

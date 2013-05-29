@@ -1,6 +1,8 @@
 ActiveAdmin.register UserLog do
+    menu :parent => "Setup", :priority => 3
 
-    menu false
+    #config.clear_action_items!
+    actions :all, :except => [:new]
 
   index do
     column :user
