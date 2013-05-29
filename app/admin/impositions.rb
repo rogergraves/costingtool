@@ -1,5 +1,7 @@
 ActiveAdmin.register Imposition do
 
+    menu false
+
   config.clear_sidebar_sections!
 
   index do

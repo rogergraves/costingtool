@@ -35,6 +35,7 @@ ActiveAdmin.register PressType do
         column :job_size
         column :ups
       end
+        em { link_to 'Edit Impositions', edit_admin_imposition_path(Imposition.find_by_press_type_id(press_type.id)) }
     end
 
   end
