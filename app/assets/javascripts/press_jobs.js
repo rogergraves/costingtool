@@ -39,3 +39,15 @@ function getPresses(pressList){
     })
     return cleanList
 }
+
+
+$(".foundicon-right-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").click(function(){
+    $(".first-job").hide();
+    $(".other-jobs-container").fadeIn();
+})
+
+
+$(".foundicon-left-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").click(function(){
+    $(".other-jobs-container").hide();
+    $(".first-job").fadeIn();
+})

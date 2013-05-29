@@ -55,7 +55,23 @@
   margin: 0 auto;
 }
 
-table tr th, table tr td {
+.press-job-values-table td {
   padding-top: 0px;
   padding-bottom: 0px;
+}
+
+.press-cost-summary-navigation {
+  height: 30px;
+}
+
+h3.subheader.inline-header {
+  display: inline;
+}
+
+.icon-tiny.next-arrow.press-cost-summary-carousel {
+  margin-right: 6px;
+}
+
+.other-jobs-container {
+  display: none;
 }
