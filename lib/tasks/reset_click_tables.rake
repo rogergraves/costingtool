@@ -9,7 +9,7 @@ namespace :app do
     #end
 
 
-    puts 'Adding... Tiered Pricing 72xx'
+    puts 'Adding... Click Tables...  72xx'
     table1 = ClickTable.create(:name => '72xx Click Pricing', :description => 'Tiered Pricing for -72xx')
 
     puts 'Create 72xx ink arrays...'
@@ -80,7 +80,7 @@ namespace :app do
 
     table5 = PressType.create(:name => 'HP Indigo 7600 Digital Press', :duty_cycle => 5000000, :spi => 4000, :click_table_id => table3.id)
 
-    table6 = PressType.create(:name => 'HP Indigo W7250 Digital Press', :duty_cycle => 10000000, :spi => 7100, :click_table_id => table1.id)
+    #table6 = PressType.create(:name => 'HP Indigo W7250 Digital Press', :duty_cycle => 10000000, :spi => 7100, :click_table_id => table1.id)
 
     table7 = PressType.create(:name => 'HP Indigo 10000 Digital Press', :duty_cycle => 10000000, :spi => 6000, :click_table_id => table2.id)
 
