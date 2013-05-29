@@ -21,7 +21,7 @@
 }
 
 div.field input {
-  width: 15%;
+  width: 72px;
   display: inline;
   text-align: right;
 }
@@ -39,12 +39,12 @@ div.field label {
 }
 
 div.field input#job_name{
-  width: 75%;
-  text-align: justify;
+  width: 412px;
+  text-align: left;
 }
 
 .new-job-wrapper {
-  width: 75%;
+  width: 482px;
   margin-left: 20px;
 }
 
@@ -62,7 +62,7 @@ div.field input#job_name{
 
 .job-size div.custom.dropdown {
   margin-bottom: 3px;
-  width: 75%;
+  width: 412px;
 }
 
 .black-checkbox {
