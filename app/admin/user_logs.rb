@@ -1,5 +1,7 @@
 ActiveAdmin.register UserLog do
 
+    menu false
+
   index do
     column :user
     column :action
