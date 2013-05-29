@@ -1,4 +1,5 @@
 ActiveAdmin.register PressType do
+    menu :priority => 2
 
   config.clear_sidebar_sections!
 
@@ -35,7 +36,7 @@ ActiveAdmin.register PressType do
         column :job_size
         column :ups
       end
-        em { link_to 'Edit Impositions', edit_admin_imposition_path(Imposition.find_by_press_type_id(press_type.id)) }
+      em { link_to 'Create New Imposition', new_admin_imposition_path() }
     end
 
   end
