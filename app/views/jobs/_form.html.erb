@@ -12,18 +12,22 @@
         </ul>
       </div>
     <% end %>
+    <div class="per-month">
+      <div class="per-month-title">Copies per month: <div class="per-month-total" id="copies_per_month">0</div></div>
+      <div class="per-month-title">Pages per month: <div class="per-month-total" id="pages_per_month">0</div></div>
+    </div>
     <div>
-      <h3 class="form-header subheader"> Create a New Job </h3>
+      <h3 class="form-header subheader">Create a New Job </h3>
     </div>
     <div class="field">
       <%= f.text_field :name, :autofocus => true, :placeholder => "Job Name", :required => true %>
     </div>
     <div class="field">
-      <%= f.text_field :number_of_jobs, :class => "float-input new-selector", :required => true %>
+      <%= f.text_field :number_of_jobs, :class => "float-input new-selector", :id => :number_of_jobs, :required => true %>
       <%= f.label :number_of_jobs_per_month %>
     </div>
     <div class="field">
-      <%= f.text_field :copies_per_job, :class => "float-input new-selector", :required => true %>
+      <%= f.text_field :copies_per_job, :class => "float-input new-selector", :id => :copies_per_job, :required => true %>
       <%= f.label :copies_per_job %>
     </div>
     <div class="job-size new-selector">
@@ -38,7 +42,7 @@
 
 
     <div class="field inline-field new-selector">
-      <%= f.text_field :number_of_pages, :required => true %>
+      <%= f.text_field :number_of_pages, :id => :number_of_pages, :required => true %>
       <%= f.label :number_of_pages_per_job %>
     </div>
     <div class="plex new-selector">

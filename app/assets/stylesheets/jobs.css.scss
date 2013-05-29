@@ -43,6 +43,25 @@ div.field input#job_name{
   text-align: left;
 }
 
+div.per-month {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+div.per-month-title {
+  display: inline-table;
+  margin-left: 10px;
+  color: #6f6f6f;
+  font-size: 11px;
+  font-style: italic;
+}
+
+div.per-month-total {
+  display: inline-table;
+  font-weight: bold;
+}
+
 .new-job-wrapper {
   width: 482px;
   margin-left: 20px;
