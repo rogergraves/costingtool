@@ -1,0 +1,62 @@
+<div class="press-cost-summary-container">
+  <div class="press-cost-summary-navigation" >
+    <%= link_to '<i class="foundicon-left-arrow icon-tiny next-arrow press-cost-summary-carousel"></i>'.html_safe, "#" %>
+    <h3 class="subheader inline-header"><%= job.name %></h3>
+    <%= link_to '<i class="foundicon-right-arrow icon-tiny next-arrow press-cost-summary-carousel"></i>'.html_safe, "#" %>
+  </div>
+  <div class="left-press">
+    <%= image_tag("#{job.press_jobs[0].press_type.icon.url(:small) if job.press_jobs[0].press_type.icon.present?}") %>
+    <h4 class="subheader"><%= job.press_jobs[0].press_type.name %> </h4>
+    <table class="press-job-values-table">
+          <tr>
+            <td width="150"><p>Press Cost</p></td>
+            <td width="50"><kbd class="press-job-values">Update</kbd></td>
+          </tr>
+          <tr>
+            <td width="150"><p>Media</p></td>
+            <td width="50"><kbd class="press-job-values">$<%= job.press_jobs[0].media_cost %></kbd></td>
+          </tr>
+          <tr>
+            <td width="150"><p>Labor</p></td>
+            <td width="50"><kbd class="press-job-values">Update</kbd></td>
+          </tr>
+          <tr>
+            <td width="150"><p>Service</p></td>
+            <td width="50"><kbd class="press-job-values">$<%= job.press_jobs[0].spi_cost %></kbd></td>
+          </tr>
+          <tr>
+            <td width="150"><p>Clicks/CPP</p></td>
+            <td width="50"><kbd class="press-job-values">$<%= job.press_jobs[0].clicks_cost %></kbd></td>
+          </tr>
+    </table>
+  </div>
+  <div class="right-press">
+    <%= image_tag("#{job.press_jobs[1].press_type.icon.url(:small) if job.press_jobs[1].press_type.icon.present?}") %>
+    <h4 class="subheader"><%= job.press_jobs[1].press_type.name %> </h4>
+    <table class="press-job-values-table">
+      <tr>
+        <td width="150"><p>Press Cost</p></td>
+        <td width="50"><kbd class="press-job-values">Update</kbd></td>
+      </tr>
+      <tr>
+        <td width="150"><p>Media</p></td>
+        <td width="50"><kbd class="press-job-values">$<%= job.press_jobs[1].media_cost %></kbd></td>
+      </tr>
+      <tr>
+        <td width="150"><p>Labor</p></td>
+        <td width="50"><kbd class="press-job-values">Update</kbd></td>
+      </tr>
+      <tr>
+        <td width="150"><p>Service</p></td>
+        <td width="50"><kbd class="press-job-values">$<%= job.press_jobs[1].spi_cost %></kbd></td>
+      </tr>
+      <tr>
+        <td width="150"><p>Clicks/CPP</p></td>
+        <td width="50"><kbd class="press-job-values">$<%= job.press_jobs[1].clicks_cost %></kbd></td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+
