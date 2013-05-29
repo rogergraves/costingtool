@@ -75,3 +75,38 @@ h3.subheader.inline-header {
 .other-jobs-container {
   display: none;
 }
+
+input.press-job-values {
+  margin-bottom: 0;
+  background-color: #9dcde9;
+  color: white;
+  text-align: right;
+  display: inline;
+  float: right;
+  font-family: "Consolas", "Menlo", "Courier", monospace;
+  font-size: 0.9375em;
+  padding: 0.125em 0.25em 0em;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border-color: #dbdbdb;
+  border-style: solid;
+  font-family: "Consolas", "Menlo", "Courier", monospace;
+  border-width: 1px;
+}
+input.press-job-values:focus  {
+  margin-bottom: 0;
+  background-color: #9dcde9;
+  color: white;
+  text-align: right;
+  display: inline;
+  float: right;
+  font-family: "Consolas", "Menlo", "Courier", monospace;
+  font-size: 0.9375em;
+  padding: 0.125em 0.25em 0em;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border-color: #dbdbdb;
+  border-style: solid;
+  font-family: "Consolas", "Menlo", "Courier", monospace;
+  border-width: 1px;
+}

@@ -7,54 +7,58 @@
   <div class="left-press">
     <%= image_tag("#{job.press_jobs[0].press_type.icon.url(:small) if job.press_jobs[0].press_type.icon.present?}") %>
     <h4 class="subheader"><%= job.press_jobs[0].press_type.name %> </h4>
-    <table class="press-job-values-table">
-          <tr>
-            <td width="150"><p>Press Cost</p></td>
-            <td width="50"><kbd class="press-job-values">Update</kbd></td>
-          </tr>
-          <tr>
-            <td width="150"><p>Media</p></td>
-            <td width="50"><kbd class="press-job-values">$<%= job.press_jobs[0].media_cost %></kbd></td>
-          </tr>
-          <tr>
-            <td width="150"><p>Labor</p></td>
-            <td width="50"><kbd class="press-job-values">Update</kbd></td>
-          </tr>
-          <tr>
-            <td width="150"><p>Service</p></td>
-            <td width="50"><kbd class="press-job-values">$<%= job.press_jobs[0].spi_cost %></kbd></td>
-          </tr>
-          <tr>
-            <td width="150"><p>Clicks/CPP</p></td>
-            <td width="50"><kbd class="press-job-values">$<%= job.press_jobs[0].clicks_cost %></kbd></td>
-          </tr>
-    </table>
+    <%= form_for(job.press_jobs[0]) do |f| %>
+        <table class="press-job-values-table">
+              <tr>
+                <td width="100"><p>Press Cost</p></td>
+                <td width="100"><%= f.text_field :press_cost, :class => "press-job-values", :required => true, :placeholder => "Update" %></td>
+              </tr>
+              <tr>
+                <td width="100"><p>Media</p></td>
+                <td width="100"><%= f.text_field :media_cost, :class => "press-job-values", :required => true, :placeholder => "#{job.press_jobs[0].media_cost}" %></td>
+              </tr>
+              <tr>
+                <td width="100"><p>Labor</p></td>
+                <td width="100"><%= f.text_field :labor_cost, :class => "press-job-values", :required => true, :placeholder => "Update" %></td>
+              </tr>
+              <tr>
+                <td width="100"><p>Service</p></td>
+                <td width="100"><%= f.text_field :spi_cost, :class => "press-job-values", :required => true, :placeholder => "#{job.press_jobs[0].spi_cost}" %></td>
+              </tr>
+              <tr>
+                <td width="100"><p>Clicks/CPP</p></td>
+                <td width="100"><%= f.text_field :clicks_cost, :class => "press-job-values", :required => true, :placeholder => "#{job.press_jobs[0].clicks_cost}" %></td>
+              </tr>
+        </table>
+    <% end %>
   </div>
   <div class="right-press">
     <%= image_tag("#{job.press_jobs[1].press_type.icon.url(:small) if job.press_jobs[1].press_type.icon.present?}") %>
     <h4 class="subheader"><%= job.press_jobs[1].press_type.name %> </h4>
-    <table class="press-job-values-table">
-      <tr>
-        <td width="150"><p>Press Cost</p></td>
-        <td width="50"><kbd class="press-job-values">Update</kbd></td>
-      </tr>
-      <tr>
-        <td width="150"><p>Media</p></td>
-        <td width="50"><kbd class="press-job-values">$<%= job.press_jobs[1].media_cost %></kbd></td>
-      </tr>
-      <tr>
-        <td width="150"><p>Labor</p></td>
-        <td width="50"><kbd class="press-job-values">Update</kbd></td>
-      </tr>
-      <tr>
-        <td width="150"><p>Service</p></td>
-        <td width="50"><kbd class="press-job-values">$<%= job.press_jobs[1].spi_cost %></kbd></td>
-      </tr>
-      <tr>
-        <td width="150"><p>Clicks/CPP</p></td>
-        <td width="50"><kbd class="press-job-values">$<%= job.press_jobs[1].clicks_cost %></kbd></td>
-      </tr>
-    </table>
+    <%= form_for(job.press_jobs[1]) do |f| %>
+        <table class="press-job-values-table">
+          <tr>
+            <td width="100"><p>Press Cost</p></td>
+            <td width="100"><%= f.text_field :press_cost, :class => "press-job-values", :required => true, :placeholder => "Update" %></td>
+          </tr>
+          <tr>
+            <td width="100"><p>Media</p></td>
+            <td width="100"><%= f.text_field :media_cost, :class => "press-job-values", :required => true, :placeholder => "#{job.press_jobs[1].media_cost}" %></td>
+          </tr>
+          <tr>
+            <td width="100"><p>Labor</p></td>
+            <td width="100"><%= f.text_field :labor_cost, :class => "press-job-values", :required => true, :placeholder => "Update" %></td>
+          </tr>
+          <tr>
+            <td width="100"><p>Service</p></td>
+            <td width="100"><%= f.text_field :spi_cost, :class => "press-job-values", :required => true, :placeholder => "#{job.press_jobs[1].spi_cost}" %></td>
+          </tr>
+          <tr>
+            <td width="100"><p>Clicks/CPP</p></td>
+            <td width="100"><%= f.text_field :clicks_cost, :class => "press-job-values", :required => true, :placeholder => "#{job.press_jobs[1].clicks_cost}" %></td>
+          </tr>
+        </table>
+    <% end %>
   </div>
 
 </div>
