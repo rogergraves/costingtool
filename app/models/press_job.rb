@@ -135,6 +135,32 @@ class PressJob < ActiveRecord::Base
     end
   end
 
+  def self.oldest(press_jobs)
+    oldie = nil
+    press_jobs.each do |press_job|
+      oldie ||= press_job
+      oldie = press_job if oldie.created_at < press_job.created_at
+    end
+    oldie
+  end
+
+  def self.newest(press_jobs)
+    baby = nil
+    press_jobs.each do |press_job|
+      baby ||= press_job
+      baby = press_job if baby.created_at > press_job.created_at
+    end
+    baby
+  end
+
+  def self.has_press_jobs(jobs)
+    has_job = false
+    jobs.each do |job|
+      has_job = true if job.press_jobs.length > 1
+    end
+    has_job
+  end
+
 
   # ------------------------------------------------------------------------------------------------------------------
   private

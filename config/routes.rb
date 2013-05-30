@@ -1,7 +1,7 @@
 Costingtool::Application.routes.draw do
   resources :jobs
   root :to => "jobs#index"
-  resources :press_jobs, :only => [:index, :new, :create, :show]
+  resources :press_jobs, :only => [:index, :new, :create, :show, :update]
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

@@ -14,7 +14,20 @@ class PressJobsController < InheritedResources::Base
     @jobs = current_user.jobs || []
     current_user.press_types
     @presses = current_user.press_types
-    @press_jobs = PressJob.generate_press_jobs(@jobs, @presses)
+    @press_jobs = PressJob.generate_press_jobs(@jobs, @presses) if !PressJob.has_press_jobs(@jobs)
+  end
+
+  def update
+    @press_job = PressJob.find(params[:id])
+    if user_signed_in?
+      respond_to do |format|
+        format.js do
+          render :nothing => true, :status => 200 if @press_job.update_attributes(params[:press_job])
+        end
+      end
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def log_presses

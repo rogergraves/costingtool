@@ -82,3 +82,10 @@ $(".foundicon-left-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").clic
         slideFour.fadeIn();
     }
 })
+
+
+
+
+$("input.press-job-values").change(function(){
+    $(this).parents("form").submit();
+})
