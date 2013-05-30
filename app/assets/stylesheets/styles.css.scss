@@ -167,3 +167,26 @@ $main-blue: #1082CC;
 .f-dropdown.right-sided-dropdown:after {
   left: 161px;
 }
+
+/* Completion Steps
+========================================================================================*/
+
+.step {
+  color: #999;
+  display: inline-block;
+  padding: 10px;
+  width: 19%;
+  background-color: #ccc;
+  height: 100%;
+  border: 2px #eee solid;
+  font-size: 75%;
+}
+
+.completion-steps {
+  text-align: center;
+}
+
+.selected-step {
+  background-color: #9dcde9;
+  color: white;
+}

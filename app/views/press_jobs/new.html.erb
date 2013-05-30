@@ -7,6 +7,9 @@
       <%= render 'layouts/side-bar' %>
     </div>
     <div class="press_jobs-area">
+      <div class="completion-steps">
+        <%= render 'layouts/steps' %>
+      </div>
       <h3 class="page-title">Select a press</h3>
       <form class="custom press-jobs-table">
         <% @presses.each do |press| %>

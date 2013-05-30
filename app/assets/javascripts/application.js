@@ -38,3 +38,22 @@ $(document).mouseup(function (e)
         container.hide();
     }
 });
+
+//determines completion steps
+
+var stage = document.location.pathname
+
+switch (stage) {
+    case "/jobs":
+        $(".step.job-basket").addClass("selected-step")
+        break;
+    case "/press_jobs/new":
+        $(".step.job-basket").addClass("selected-step")
+        $(".step.press-select").addClass("selected-step")
+        break;
+    case "/press_jobs":
+        $(".step.job-basket").addClass("selected-step")
+        $(".step.press-select").addClass("selected-step")
+        $(".step.press-cost-summary").addClass("selected-step")
+        break;
+}
