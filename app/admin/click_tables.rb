@@ -33,7 +33,7 @@ ActiveAdmin.register ClickTable do
               #    end
               #  end
               #end
-              strong { link_to "View All Presses", admin_press_types_path() }
+              strong { link_to "View All Click Tables", admin_click_tables_path() }
           end
         end
 

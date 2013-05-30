@@ -207,8 +207,23 @@ describe PressJob do
               calculated_clicks_cost = ((@black_tier_price * job.black) + (@color_tier_price * job.multicolor_clicks)) * press_job.number_of_sheets * job.plex
               press_job.calculated_clicks_cost.should == calculated_clicks_cost
             end
-          end
 
+            it "#calculated_clicks_cost with a tier that has a nil value for :volume_range_end" do
+              @valid_tier.update_attributes(:volume_range_end => nil)
+              generate_ups_for press_type
+              press_job.reload
+              calculated_clicks_cost = ((@black_tier_price * job.black) + (@color_tier_price * job.multicolor_clicks)) * press_job.number_of_sheets * job.plex
+              press_job.calculated_clicks_cost.should == calculated_clicks_cost
+            end
+
+            it "#calculated_clicks_cost with a ink array that has a nil value for :color_range_end" do
+              @valid_ink_array.update_attributes(:color_range_end => nil)
+              generate_ups_for press_type
+              press_job.reload
+              calculated_clicks_cost = ((@black_tier_price * job.black) + (@color_tier_price * job.multicolor_clicks)) * press_job.number_of_sheets * job.plex
+              press_job.calculated_clicks_cost.should == calculated_clicks_cost
+            end
+          end
         end
       end
     end
