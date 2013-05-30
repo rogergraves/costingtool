@@ -57,10 +57,11 @@ ActiveAdmin.register InkArray do
   end   # show
 
   form do |f|
+    f.semantic_errors *f.object.errors.keys
     f.inputs "Ink Array" do
       f.input :click_table, :as => :select, :collection => ClickTable.all
       f.input :name
-      f.input :color_range_start, :as => :select, :collection => [0, 1, 2, 3, 4, 5, 6]
+      f.input :color_range_start, :as => :select, :collection => [0, 1, 2, 3, 4, 5, 6], :default => 0
       f.input :color_range_end, :as => :select, :collection => [0, 1, 2, 3, 4, 5, 6]
       f.input :black, :as => :radio, :collection => { " No" => 0, " Yes" => 1 }
     end
