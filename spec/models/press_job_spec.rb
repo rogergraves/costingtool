@@ -31,16 +31,18 @@ describe PressJob do
     press_job.valid?.should be_true
   end
 
-  it "returns the cost per sheet in Media if not present locally" do
-    FactoryGirl.create(:media, :name => 'A4', :cost_per_sheet => 0.50)
-    press_job.cost_per_sheet.should == 0.50
-  end
+  context :cost_per_sheet do
+    it "returns what is stored in Media if not present locally" do
+      FactoryGirl.create(:media, :name => 'A4', :cost_per_sheet => 0.50)
+      press_job.cost_per_sheet.should == 0.50
+    end
 
-  it "allows overriding of cost per sheet" do
-    FactoryGirl.create(:media, :name => 'A4', :cost_per_sheet => 0.50)
-    press_job.cost_per_sheet.should == 0.50
-    press_job.update_attributes(:cost_per_sheet => 2.00)
-    press_job.reload.cost_per_sheet.should == 2.00
+    it "allows overriding by user" do
+      FactoryGirl.create(:media, :name => 'A4', :cost_per_sheet => 0.50)
+      press_job.cost_per_sheet.should == 0.50
+      press_job.update_attributes(:cost_per_sheet => 2.00)
+      press_job.reload.cost_per_sheet.should == 2.00
+    end
   end
 
   context "relationships" do
@@ -177,6 +179,7 @@ describe PressJob do
           before do
             @black_tier_price = 1.00
             @color_tier_price = 2.00
+            @click_price = (@color_tier_price * job.multicolor_clicks) + (@black_tier_price * job.black)
 
             # Make sure to let() objects instantiate
             click_table.valid?
@@ -191,6 +194,16 @@ describe PressJob do
             FactoryGirl.create(:tier, :ink_array => @valid_ink_array, :volume_range_start => 0, :volume_range_end => press_job.job_basket_pages_per_month-500)
             @valid_tier = FactoryGirl.create(:tier, :name => "Correct Tier", :ink_array => @valid_ink_array, :volume_range_start => press_job.job_basket_pages_per_month-499, :volume_range_end => press_job.job_basket_pages_per_month+500, :price => @color_tier_price, :black_price => @black_tier_price)
             FactoryGirl.create(:tier, :ink_array => @valid_ink_array, :volume_range_start => press_job.job_basket_pages_per_month+501, :volume_range_end => press_job.job_basket_pages_per_month+1000)
+          end
+
+          context :clicks_cost do
+            it "if not stored locally, calculates" do
+              press_job.click_price.should == @click_price
+            end
+            it "can be overriden locally" do
+              press_job.update_attributes(:click_price => (@click_price+2.00))
+              press_job.reload.click_price.should == (@click_price+2.00)
+            end
           end
 
           context "setup" do

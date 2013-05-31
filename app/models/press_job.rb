@@ -1,5 +1,5 @@
 class PressJob < ActiveRecord::Base
-  attr_accessible :job_id, :press_type_id, :press_cost, :media_cost, :labor_cost, :spi_cost, :clicks_cost, :press_type, :cost_per_sheet
+  attr_accessible :job_id, :press_type_id, :press_cost, :media_cost, :labor_cost, :spi_cost, :clicks_cost, :press_type, :cost_per_sheet, :click_price
   belongs_to :job
   belongs_to :press_type
 
@@ -11,6 +11,7 @@ class PressJob < ActiveRecord::Base
       :spi_cost => :float,
       :clicks_cost => :float,
       :cost_per_sheet => :float,
+      :click_price => :float,
   }
 
   # Calculations -----------------------------------------------------------------------------------------
@@ -24,10 +25,18 @@ class PressJob < ActiveRecord::Base
   end
 
   def calculated_clicks_cost # :clicks_cost
-    ((black_tier_price * black) + (color_tier_price * multicolor_clicks)) * number_of_sheets * plex
+    click_price * number_of_sheets * plex
   end
 
   # Support Methods --------------------------------------------------------------------------------------
+
+  def click_price
+    self[:click_price] || ((black_tier_price * black) + (color_tier_price * multicolor_clicks))
+  end
+
+  def click_price= val
+    self[:click_price] =  val
+  end
 
   def cost_per_sheet
     self[:cost_per_sheet] || Media.find_by_name(job_size).cost_per_sheet
@@ -35,7 +44,6 @@ class PressJob < ActiveRecord::Base
 
   def cost_per_sheet= val
     self[:cost_per_sheet] = val
-    self.save
   end
 
   def number_of_pages
