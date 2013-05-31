@@ -38,6 +38,11 @@ class PressJob < ActiveRecord::Base
     self[:cost_per_sheet] || Media.find_by_name(job_size).cost_per_sheet
   end
 
+  def cost_per_sheet= val
+    self[:cost_per_sheet] = val
+    self.save
+  end
+
   def number_of_pages
     @number_of_pages ||= self.job.number_of_pages
   end
