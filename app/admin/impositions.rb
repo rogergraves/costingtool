@@ -3,12 +3,19 @@ ActiveAdmin.register Imposition do
 
   config.clear_sidebar_sections!
 
-  index do
-    column :press_type
-    column :job_size
-    column :ups
-    default_actions
-  end
+    index do
+      panel "Impositions" do
+        table_for(PressType.find_by_press_type_id(impositions.press_type_id)) do
+          column :job_size
+          column :ups
+        end
+    #column :press_type
+    #column :job_size
+    #column :ups
+    #default_actions
+      end
+    end
+
 
   show do
     attributes_table do
