@@ -27,11 +27,6 @@ class PressJob < ActiveRecord::Base
     ((black_tier_price * black) + (color_tier_price * multicolor_clicks)) * number_of_sheets * plex
   end
 
-  def calculate_cost_per_sheet # :cost_per_sheet
-    Media.find_by_name(job_size).cost_per_sheet || 0.0
-  end
-
-
   # Support Methods --------------------------------------------------------------------------------------
 
   def cost_per_sheet
