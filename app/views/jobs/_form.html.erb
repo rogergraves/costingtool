@@ -58,7 +58,7 @@
       <%= f.label :annual_growth %>
     </div>
     <div class="field">
-      <%= f.text_field :job_percentage, :placeholder => "%", :required => true %>
+      <%= f.text_field :job_percentage, :placeholder => User.remaining_job_percentage(@jobs), :required => true %>
       <%= f.label :job_percentage %>
     </div>
     <div class="actions">

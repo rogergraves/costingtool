@@ -57,6 +57,15 @@ $('#job_number_of_pages.new-selector').keydown(function(e) {
     }
 });
 
+$("input#job_job_percentage").change(function(e){
+    current_target = $(e.currentTarget)
+    var placeholder =  current_target.attr("placeholder")
+    if(current_target.val() > placeholder) {
+        alert("You cannot assign more than " + placeholder + "%");
+        current_target.val(placeholder);
+    }
+})
+
 
 $(".job-pane").hover(function(){
     $(".hover-reveal").toggle("slow");

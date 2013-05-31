@@ -61,6 +61,16 @@ class User < ActiveRecord::Base
     COUNTRIES.to_a
   end
 
+  def self.remaining_job_percentage jobs
+    remainder = 100
+    if jobs
+      jobs.each  do|job|
+        remainder -= job.job_percentage
+      end
+    end
+    remainder
+  end
+
   def press_types
     presses = []
     self.presses.split(",").each do |press|

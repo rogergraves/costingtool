@@ -3,6 +3,7 @@ class JobsController < InheritedResources::Base
   def new
     if user_signed_in?
       @job = Job.new
+      @jobs = current_user.jobs || []
     else
       redirect_to new_user_session_path
     end
