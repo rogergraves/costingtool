@@ -35,11 +35,12 @@ ActiveAdmin.register Tier do
 
   form do |f|
     f.inputs "Tier" do
-      f.input :ink_array, :disabled => true
+      f.input :ink_array, :as => :select, :collection => InkArray.scoped_by_click_table_id(ink_array.click_table_id),
+              :include_blank => false
       f.input :name, :label => "Tier Level"
-      f.input :volume_range_start, :label => "Volume Range Start"
-      f.input :volume_range_end, :label => "Volume Range End"
-      f.input :price
+      f.input :volume_range_start, :label => "Volume Range Start", :min => 0, :default => 0
+      f.input :volume_range_end, :label => "Volume Range End", :min => 0
+      f.input :price, :min => 0
       if ink_array.black > 0
         f.input :black_price, :label => "Price: Black"
       end

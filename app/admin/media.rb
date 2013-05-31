@@ -18,8 +18,8 @@ ActiveAdmin.register Media do
 
   form do |f|
     f.inputs "Media" do
-        f.input :name, :as => :select, :collection => Job.available_sizes
-      f.input :cost_per_sheet, :hint => "cost per sheet = cost per ream / sheets per ream"
+        f.input :name, :as => :select, :collection => Job.available_sizes, :include_blank => false
+      f.input :cost_per_sheet, :hint => "cost per sheet = cost per ream / sheets per ream", :min => 0
     end
     f.buttons
   end
