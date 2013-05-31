@@ -58,11 +58,11 @@ $('#job_number_of_pages.new-selector').keydown(function(e) {
 });
 
 $("input#job_job_percentage").change(function(e){
-    current_target = $(e.currentTarget)
-    var placeholder =  current_target.attr("placeholder")
-    if(current_target.val() > placeholder) {
+    current_target = parseInt($(e.currentTarget))
+    var placeholder =  parseInt($(e.currentTarget).attr("placeholder"))
+    if(parseInt($(e.currentTarget).val()) > placeholder) {
         alert("You cannot assign more than " + placeholder + "%");
-        current_target.val(placeholder);
+        $(e.currentTarget).val(placeholder);
     }
 })
 
