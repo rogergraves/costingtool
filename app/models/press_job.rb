@@ -10,8 +10,6 @@ class PressJob < ActiveRecord::Base
       :labor_cost => :float,
       :spi_cost => :float,
       :clicks_cost => :float,
-      :cost_per_sheet => :float,
-      :click_price => :float,
   }
 
   # Calculations -----------------------------------------------------------------------------------------

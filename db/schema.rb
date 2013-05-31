@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524031212) do
+ActiveRecord::Schema.define(:version => 20130531064739) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -53,6 +53,19 @@ ActiveRecord::Schema.define(:version => 20130524031212) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "clicks_lookup_tables", :force => true do |t|
+    t.hstore   "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "clicks_lookups", :force => true do |t|
+    t.integer  "clicks_lookup_table_id"
+    t.hstore   "data"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
   create_table "impositions", :force => true do |t|
     t.integer  "press_type_id"
     t.string   "job_size"
@@ -91,8 +104,10 @@ ActiveRecord::Schema.define(:version => 20130524031212) do
     t.integer  "press_type_id"
     t.integer  "job_id"
     t.hstore   "data"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.float    "cost_per_sheet"
+    t.float    "click_price"
   end
 
   create_table "press_types", :force => true do |t|
