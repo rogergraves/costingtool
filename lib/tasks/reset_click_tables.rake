@@ -110,9 +110,13 @@ namespace :app do
     table25 = Imposition.create(:press_type_id => table7.id, :job_size => 'B2', :ups => 1)
 
 
-    puts 'Creating Media (Cost / Sheet) B2 and A3 sizes'
+    puts 'Creating Media (Cost / Sheet) B2 and A3 sizes + fictitious amounts for A4, A5, 7x10, 6x9'
     table26 = Media.create(:cost_per_sheet => 0.10, :name => 'B2')
     table27 = Media.create(:cost_per_sheet => 0.08, :name => 'A3')
+    table28 = Media.create(:cost_per_sheet => 0.07, :name => 'A4')
+    table29 = Media.create(:cost_per_sheet => 0.06, :name => 'A5')
+    table30 = Media.create(:cost_per_sheet => 0.15, :name => '7"x10"')
+    table31 = Media.create(:cost_per_sheet => 0.12, :name => '6"x9"')
 
     puts '***...done raking...***'
 
