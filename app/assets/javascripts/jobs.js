@@ -15,7 +15,6 @@ $(".foundicon-plus").click(function(){
     });
 })
 
-
 $("input#job_copies_per_job.new-selector").keyup(function() {
     var jobs = $("#job_copies_per_job.new-selector").val();
     var copies = $("#job_number_of_jobs.new-selector").val();
@@ -32,13 +31,28 @@ $("input#job_number_of_jobs.new-selector").keyup(function() {
     pages.val(pagesTotal);
 })
 
-$('#job_copies_per_job.new-selector').keydown(function(e) {
+//Tabbing Logic
+
+$('#copies_per_job.new-selector').keydown(function(e) {
+    console.log("in keydown")
     var keyCode = e.keyCode || e.which;
+    console.log("keyCode: ", keyCode)
     if (keyCode == 9) {
         $(".job-size.new-selector div.custom.dropdown a.selector").click();
         $("div.new-selector input#job_multicolor_clicks").focus();
     }
 });
+
+$('#number_of_pages').keydown(function(e) {
+    var keyCode = e.keyCode || e.which;
+
+    if (keyCode == 9) {
+        $(".new-selector .custom.dropdown a.current").click();
+        $("input#job_sale_price").focus();
+    }
+});
+
+// end of tabbing logic
 
 $("input#job_multicolor_clicks.new-selector").keyup(function() {
     if ($("input#job_multicolor_clicks.new-selector").val() > 6){
@@ -47,15 +61,6 @@ $("input#job_multicolor_clicks.new-selector").keyup(function() {
     }
 })
 
-
-$('#job_number_of_pages.new-selector').keydown(function(e) {
-    var keyCode = e.keyCode || e.which;
-
-    if (keyCode == 9) {
-        $(".new-selector .custom.dropdown a.current").click();
-        $("#job_sale_price").focus();
-    }
-});
 
 $("input#job_job_percentage").change(function(e){
     current_target = parseInt($(e.currentTarget))
