@@ -137,9 +137,9 @@ class PressJob < ActiveRecord::Base
     jobs.each do |job|
       presses.each do |press|
         new_press_job = job.press_jobs.create(:press_type => press)
-        new_press_job.media_cost  = new_press_job.calculated_media_cost.floor
-        new_press_job.spi_cost  = new_press_job.calculated_spi_cost.floor
-        new_press_job.clicks_cost  = new_press_job.calculated_clicks_cost.floor
+        new_press_job.media_cost  = new_press_job.calculated_media_cost
+        new_press_job.spi_cost  = new_press_job.calculated_spi_cost
+        new_press_job.clicks_cost  = new_press_job.calculated_clicks_cost
         new_press_job.save
         end
     end
