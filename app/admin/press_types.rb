@@ -29,17 +29,9 @@ ActiveAdmin.register PressType do
           row :icon do
             image_tag(press.icon.url(:medium)) if press.icon.present?
           end
-          em { link_to "View All Press Types", admin_press_types_path() }
+          strong em { link_to "View All Press Types", admin_press_types_path() }
         end
       end
-
-      #column do
-      #  attributes_table do
-      #    row :icon do
-      #      image_tag(press.icon.url(:medium)) if press.icon.present?
-      #    end
-      #  end
-      #end
 
       column do
         panel "Impositions" do
@@ -47,7 +39,7 @@ ActiveAdmin.register PressType do
             column :job_size
             column :ups
           end
-          em { link_to 'Create New Imposition', new_admin_imposition_path() }
+          strong em { link_to 'Create New Imposition', new_admin_imposition_path() }
         end
       end
 

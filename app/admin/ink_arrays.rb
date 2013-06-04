@@ -33,6 +33,7 @@ ActiveAdmin.register InkArray do
           row :black do |value|
               value.black == 0 ? "No" : "Yes"
           end
+          strong em { link_to "View All Ink Arrays", admin_click_table_path(ink_array.click_table_id) }
         end
       end
 
@@ -47,7 +48,7 @@ ActiveAdmin.register InkArray do
                 column :black_price
             end
           end
-            strong { link_to "Add New Tier", new_admin_ink_array_tier_path(ink_array.id) }
+            strong em { link_to "Add New Tier", new_admin_ink_array_tier_path(ink_array.id) }
         end
       end
 

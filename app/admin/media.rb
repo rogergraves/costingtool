@@ -12,7 +12,7 @@ ActiveAdmin.register Media do
     attributes_table do
       row :name
       row :cost_per_sheet
-      em { link_to 'View All Media Costs', admin_media_path() }
+      strong em { link_to 'View All Media Costs', admin_media_path() }
     end
   end
 

@@ -23,7 +23,7 @@ ActiveAdmin.register ClickTable do
           attributes_table do
               row :name, :label => "Name"
               row :description
-              strong { link_to "View All Click Tables", admin_click_tables_path() }
+              strong em{ link_to "View All Click Tables", admin_click_tables_path() }
           end
         end
 
@@ -37,7 +37,7 @@ ActiveAdmin.register ClickTable do
                   value.black == 0 ? "No" : "Yes"
               end
             end
-              strong { link_to "Add an Ink Array", new_admin_click_table_ink_array_path(click_table.id) }
+              strong em { link_to "Add an Ink Array", new_admin_click_table_ink_array_path(click_table.id) }
           end
         end
 
