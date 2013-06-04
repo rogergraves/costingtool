@@ -34,9 +34,7 @@ $("input#job_number_of_jobs.new-selector").keyup(function() {
 //Tabbing Logic
 
 $('#copies_per_job.new-selector').keydown(function(e) {
-    console.log("in keydown")
     var keyCode = e.keyCode || e.which;
-    console.log("keyCode: ", keyCode)
     if (keyCode == 9) {
         $(".job-size.new-selector div.custom.dropdown a.selector").click();
         $("div.new-selector input#job_multicolor_clicks").focus();
@@ -49,6 +47,28 @@ $('#number_of_pages').keydown(function(e) {
     if (keyCode == 9) {
         $(".new-selector .custom.dropdown a.current").click();
         $("input#job_sale_price").focus();
+    }
+});
+
+$('input#job_copies_per_job').keydown(function(e) {
+    var form = $(e.target.form)
+    var selector = $(form.context[6].nextSibling.childNodes[1])
+    var next = $(form.context[7])
+    var keyCode = e.keyCode || e.which;
+    if (keyCode == 9) {
+        selector.click();
+        next.focus();
+    }
+});
+
+$('#job_number_of_pages').keydown(function(e) {
+    var form = $(e.target.form)
+    var selector = $(form.context[10].nextSibling.childNodes[1])
+    var next = $(form.context[11])
+    var keyCode = e.keyCode || e.which;
+    if (keyCode == 9) {
+        selector.click();
+        next.focus();
     }
 });
 
