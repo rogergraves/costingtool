@@ -44,7 +44,7 @@ $(document).mouseup(function (e)
 var stage = document.location.pathname
 
 switch (stage) {
-    case "/jobs":
+    case "/jobs": case "/": case "":
         $(".step.job-basket").addClass("selected-step")
         break;
     case "/press_jobs/new":
