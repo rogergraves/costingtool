@@ -26,8 +26,8 @@
                 <td width="100"><%= f.text_field :spi_cost, :class => "press-job-values", :id => "update_spi_cost_#{PressJob.newest(job.press_jobs).id}", :placeholder => "#{PressJob.newest(job.press_jobs).spi_cost}" %></td>
               </tr>
               <tr>
-                <td width="200"><p style="font-size: small;">Clicks/CPP</p></td>
-                <td width="100"><%= f.text_field :clicks_cost, :class => "press-job-values", :id => "update_clicks_cost_#{PressJob.newest(job.press_jobs).id}", :placeholder => "#{PressJob.newest(job.press_jobs).clicks_cost}" %></td>
+                <td width="200"><p style="font-size: small;">Click Price</p></td>
+                <td width="100"><%= f.text_field :click_price, :class => "press-job-values", :id => "update_click_price_#{PressJob.newest(job.press_jobs).id}", :placeholder => "#{PressJob.newest(job.press_jobs).click_price}" %></td>
               </tr>
         </table>
     <% end %>
@@ -54,8 +54,8 @@
             <td width="100"><%= f.text_field :spi_cost, :class => "press-job-values", :id => "update_spi_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "#{PressJob.oldest(job.press_jobs).spi_cost}" %></td>
           </tr>
           <tr>
-            <td width="100"><p style="font-size: small;">Clicks/CPP</p></td>
-            <td width="100"><%= f.text_field :clicks_cost, :class => "press-job-values", :id => "update_clicks_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "#{PressJob.oldest(job.press_jobs).clicks_cost}" %></td>
+            <td width="100"><p style="font-size: small;">Clicks Price</p></td>
+            <td width="100"><%= f.text_field :click_price, :class => "press-job-values", :id => "update_click_price_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "#{PressJob.oldest(job.press_jobs).click_price}" %></td>
           </tr>
         </table>
     <% end %>
