@@ -1,5 +1,6 @@
 ActiveAdmin.register Imposition do
     menu false
+    scope :all, :default => true
 
   config.clear_sidebar_sections!
 
@@ -10,13 +11,15 @@ ActiveAdmin.register Imposition do
     end
 
 
+
+
   show do
     attributes_table do
       row :press_type
       row :job_size
       row :ups
     end
-    em { link_to "View All Impositions", admin_impositions_path() }
+    strong em { link_to "View All Presses", admin_press_types_path() }
   end
 
   form do |f|

@@ -1,5 +1,5 @@
 ActiveAdmin.register Media do
-    menu :label => "Media Costs", :parent => "Press Types", :priority => 1
+    menu :label => "Media Costs", :parent => "Press Setup", :priority => 2
     config.clear_sidebar_sections!
 
   index :title => :name do

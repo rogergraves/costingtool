@@ -1,6 +1,5 @@
 ActiveAdmin.register PressType, { :sort_order => :id_asc } do
-    menu :priority => 2
-
+    menu :parent => "Press Setup", :priority => 0
 
   config.clear_sidebar_sections!
 
@@ -14,7 +13,7 @@ ActiveAdmin.register PressType, { :sort_order => :id_asc } do
       number_to_currency press.spi
     end
     column :click_table
-    default_actions
+    #default_actions
   end
 
   show :title => :name do |press|

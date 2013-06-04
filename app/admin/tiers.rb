@@ -1,5 +1,6 @@
 ActiveAdmin.register Tier do
   belongs_to :ink_array
+  menu false
 
   config.clear_sidebar_sections!
 
