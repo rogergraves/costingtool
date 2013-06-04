@@ -22,6 +22,19 @@ describe PressJob do
     end
   end
 
+  def generate_impositions_for(inc_press_type, number_of_pages = 50, job_size = 'B2',
+      number_of_jobs = 2000, copies_per_job = 10, plex = 1, ups = 1)
+
+    FactoryGirl.create(:imposition, :press_type => inc_press_type, :job_size => job_size, :ups => ups)
+    job.update_attributes({
+                              :job_size => job_size,
+                              :number_of_jobs => number_of_jobs,
+                              :copies_per_job => copies_per_job,
+                              :number_of_pages => number_of_pages,
+                              :plex => plex,
+                          })
+  end
+
   let(:click_table) { FactoryGirl.create(:click_table) }
   let(:job) { FactoryGirl.create(:job, :job_size => 'A4', :multicolor_clicks => 3) }
   let(:press_type) { FactoryGirl.create(:press_type, :click_table => click_table) }
@@ -153,16 +166,10 @@ describe PressJob do
           copies_per_job = 10
           plex = 1
           ups = 1
-          number_of_sheets = (number_of_pages * number_of_jobs * copies_per_job / ups).ceil
 
-          FactoryGirl.create(:imposition, :press_type => press_type, :job_size => job_size, :ups => ups)
-          job.update_attributes({
-                                    :job_size => job_size,
-                                    :number_of_jobs => number_of_jobs,
-                                    :copies_per_job => copies_per_job,
-                                    :number_of_pages => number_of_pages,
-                                    :plex => plex,
-                                })
+          generate_impositions_for(press_type, number_of_pages, job_size, number_of_jobs, copies_per_job, plex, ups)
+
+          number_of_sheets = (number_of_pages * number_of_jobs * copies_per_job / ups).ceil
 
           press_job.number_of_sheets.should == number_of_sheets
         end
@@ -250,6 +257,54 @@ describe PressJob do
             end
           end
         end
+      end
+    end
+
+    context "#calculated_total_cost" do
+      before do
+        @black_tier_price = 1.00
+        @color_tier_price = 2.00
+        @click_price = (@color_tier_price * job.multicolor_clicks) + (@black_tier_price * job.black)
+
+        # Make sure to let() objects instantiate
+        click_table.valid?
+        job.valid?
+        press_type.valid?
+        press_job.valid?
+
+        FactoryGirl.create(:ink_array, :click_table => click_table, :color_range_start => job.multicolor_clicks-2, :color_range_end => job.multicolor_clicks-1)
+        @valid_ink_array = FactoryGirl.create(:ink_array, :name => "Valid ink array", :click_table => click_table, :color_range_start => job.multicolor_clicks-1, :color_range_end => job.multicolor_clicks, :black => 1)
+        FactoryGirl.create(:ink_array, :click_table => click_table, :color_range_start => job.multicolor_clicks+1, :color_range_end => job.multicolor_clicks+2)
+
+        FactoryGirl.create(:tier, :ink_array => @valid_ink_array, :volume_range_start => 0, :volume_range_end => press_job.job_basket_pages_per_month-500)
+        @valid_tier = FactoryGirl.create(:tier, :name => "Correct Tier", :ink_array => @valid_ink_array, :volume_range_start => press_job.job_basket_pages_per_month-499, :volume_range_end => press_job.job_basket_pages_per_month+500, :price => @color_tier_price, :black_price => @black_tier_price)
+        FactoryGirl.create(:tier, :ink_array => @valid_ink_array, :volume_range_start => press_job.job_basket_pages_per_month+501, :volume_range_end => press_job.job_basket_pages_per_month+1000)
+      end
+
+      it "should be sum of: #press_cost + :calculated_media_cost + :labor_cost + :spi_cost + :calculated_clicks_cost" do
+        job_size = 'B2'
+        number_of_jobs = 2000
+        copies_per_job = 10
+        plex = 1
+
+        cost_per_sheet = 0.1
+        number_of_pages = 50
+        copies_per_month = number_of_jobs * copies_per_job
+        ups = 1
+
+        FactoryGirl.create(:media, :name => job_size, :cost_per_sheet => cost_per_sheet)
+        job.update_attributes({
+                                  :job_size => job_size,
+                                  :number_of_jobs => number_of_jobs,
+                                  :copies_per_job => copies_per_job,
+                                  :number_of_pages => number_of_pages,
+                                  :plex => plex,
+                              })
+
+        generate_ups_for press_type
+        press_job.reload
+
+        press_job.calculated_total_cost.should == (press_job.press_cost + press_job.calculated_media_cost + press_job.labor_cost + press_job.spi_cost + press_job.calculated_clicks_cost)
       end
     end
 
