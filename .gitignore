@@ -26,3 +26,4 @@ doc/
 server.csr
 server.key
 *.crt
+*.key
