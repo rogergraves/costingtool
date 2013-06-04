@@ -5,7 +5,7 @@
     <%= link_to '<i class="foundicon-right-arrow icon-tiny next-arrow press-cost-summary-carousel"></i>'.html_safe, "#" %>
   </div>
   <div class="left-press">
-    <%#= image_tag("#{PressJob.newest(job.press_jobs).press_type.icon.url(:small) if PressJob.newest(job.press_jobs).press_type.icon.present?}") %>
+    <%= image_tag("#{PressJob.newest(job.press_jobs).press_type.icon.url(:small) if PressJob.newest(job.press_jobs).press_type.icon.present?}") %>
     <h4 class="subheader"><%= PressJob.newest(job.press_jobs).press_type.name %> </h4>
     <%= form_for(PressJob.newest(job.press_jobs), :remote => true) do |f| %>
         <table class="cost-analysis-table">
@@ -27,7 +27,7 @@
           </tr>
           <tr>
             <td width="150"><p>Clicks</p></td>
-            <td width="100"><%= "$#{PressJob.newest(job.press_jobs).clicks_cost}"%></td>
+            <td width="100"><%= "$#{PressJob.newest(job.press_jobs).calculated_clicks_cost.round(2)}"%></td>
           </tr>
           <tr>
             <td width="150"><strong>Total</strong></td>
@@ -56,7 +56,7 @@
     <% end %>
   </div>
   <div class="right-press">
-    <%#= image_tag("#{PressJob.oldest(job.press_jobs).press_type.icon.url(:small) if PressJob.oldest(job.press_jobs).press_type.icon.present?}") %>
+    <%= image_tag("#{PressJob.oldest(job.press_jobs).press_type.icon.url(:small) if PressJob.oldest(job.press_jobs).press_type.icon.present?}") %>
     <h4 class="subheader"><%= PressJob.oldest(job.press_jobs).press_type.name %> </h4>
     <%= form_for(PressJob.oldest(job.press_jobs), :remote => true) do |f| %>
         <table class="cost-analysis-table">
@@ -78,7 +78,7 @@
           </tr>
           <tr>
             <td width="150"><p>Clicks</p></td>
-            <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).clicks_cost}"%></td>
+            <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).calculated_clicks_cost.round(2)}"%></td>
           </tr>
           <tr>
             <td width="150"><strong>Total</strong></td>
