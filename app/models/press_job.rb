@@ -30,6 +30,10 @@ class PressJob < ActiveRecord::Base
     press_cost + calculated_media_cost + labor_cost + spi_cost + calculated_clicks_cost
   end
 
+  def calculated_cost_per_copy
+    calculated_total_cost / copies_per_month
+  end
+
   # Support Methods --------------------------------------------------------------------------------------
 
   def click_price

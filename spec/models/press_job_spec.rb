@@ -260,7 +260,7 @@ describe PressJob do
       end
     end
 
-    context "#calculated_total_cost" do
+    context "Supporting cost" do
       before do
         @black_tier_price = 1.00
         @color_tier_price = 2.00
@@ -279,9 +279,7 @@ describe PressJob do
         FactoryGirl.create(:tier, :ink_array => @valid_ink_array, :volume_range_start => 0, :volume_range_end => press_job.job_basket_pages_per_month-500)
         @valid_tier = FactoryGirl.create(:tier, :name => "Correct Tier", :ink_array => @valid_ink_array, :volume_range_start => press_job.job_basket_pages_per_month-499, :volume_range_end => press_job.job_basket_pages_per_month+500, :price => @color_tier_price, :black_price => @black_tier_price)
         FactoryGirl.create(:tier, :ink_array => @valid_ink_array, :volume_range_start => press_job.job_basket_pages_per_month+501, :volume_range_end => press_job.job_basket_pages_per_month+1000)
-      end
 
-      it "should be sum of: #press_cost + :calculated_media_cost + :labor_cost + :spi_cost + :calculated_clicks_cost" do
         job_size = 'B2'
         number_of_jobs = 2000
         copies_per_job = 10
@@ -303,8 +301,14 @@ describe PressJob do
 
         generate_ups_for press_type
         press_job.reload
+      end
 
+      it "#calculated_total_cost" do
         press_job.calculated_total_cost.should == (press_job.press_cost + press_job.calculated_media_cost + press_job.labor_cost + press_job.spi_cost + press_job.calculated_clicks_cost)
+      end
+
+      it "#cost_per_copy" do
+        press_job.calculated_cost_per_copy.should == (press_job.calculated_total_cost / press_job.copies_per_month)
       end
     end
 
