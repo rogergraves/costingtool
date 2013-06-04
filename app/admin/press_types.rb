@@ -1,5 +1,6 @@
-ActiveAdmin.register PressType do
+ActiveAdmin.register PressType, { :sort_order => :id_asc } do
     menu :priority => 2
+
 
   config.clear_sidebar_sections!
 
@@ -7,13 +8,13 @@ ActiveAdmin.register PressType do
     column :icon do |press|
       image_tag(press.icon.url(:small)) if press.icon.present?
     end
-    column("Name") {|press_type| link_to press_type.name, admin_press_type_path(press_type.id) }
-    column "Duty Cycle (clicks/mth)", :duty_cycle
+    column("Name"){|press_type| link_to press_type.name, admin_press_type_path(press_type.id) }
+    column "Duty Cycle (clicks/mth)", :duty_cycle, :sortable => false
     column "SPI (USD)", :spi do |press|
       number_to_currency press.spi
     end
     column :click_table
-    # default_actions
+    default_actions
   end
 
   show :title => :name do |press|
