@@ -13,6 +13,7 @@ gem "activeadmin", "~> 0.6.0"                     # The administration framework
 gem "meta_search",    '>= 1.1.0.pre'              # Used for activeadmin. Allows simple search forms to be created
 gem "paperclip", "~> 3.4.1"                       # Easy upload management for ActiveRecord
 gem "aws-sdk", "~> 1.9.1"                         # Allows integration with AWS for S3 bucket uploads
+gem "rack-ssl-enforcer", "~> 0.2.5"               # Add easy ability to force SSL
 
 group :assets do
   gem "uglifier", "~> 2.0.1"

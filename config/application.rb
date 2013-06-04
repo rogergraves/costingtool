@@ -67,5 +67,8 @@ module Costingtool
 
     # If you are deploying Rails 3.1+ on Heroku, you may want to set (devise says)
     config.assets.initialize_on_precompile = false
+
+    # Force SSL on production server
+    config.middleware.use Rack::SslEnforcer, :only_hosts => 'www.indigoroi.com'
   end
 end
