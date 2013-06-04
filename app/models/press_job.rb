@@ -26,6 +26,10 @@ class PressJob < ActiveRecord::Base
     click_price * number_of_sheets * plex
   end
 
+  def calculated_total_cost
+    press_cost + calculated_media_cost + labor_cost + spi_cost + calculated_clicks_cost
+  end
+
   # Support Methods --------------------------------------------------------------------------------------
 
   def click_price
