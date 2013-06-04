@@ -23,13 +23,13 @@
       </div>
     </div>
     <div class="progress-arrows">
-      <div class="next-page press-selection">
-        <%= link_to '<i class="foundicon-right-arrow icon-medium next-arrow press-cost-summary"></i>'.html_safe, "#" %>
-        <p class="next-text"> Continue </p>
-      </div>
       <div class="previous-page">
         <%= link_to '<i class="foundicon-left-arrow icon-medium back-arrow"></i>'.html_safe, new_press_job_path %>
         <p class="back-text"> Back </p>
+      </div>
+      <div class="next-page">
+        <%= link_to '<i class="foundicon-right-arrow icon-medium next-arrow cost-analysis"></i>'.html_safe, cost_analyses_path %>
+        <p class="next-text"> Continue </p>
       </div>
     </div>
   </div>

@@ -56,4 +56,10 @@ switch (stage) {
         $(".step.press-select").addClass("selected-step")
         $(".step.press-cost-summary").addClass("selected-step")
         break;
+    case "/cost_analyses":
+        $(".step.job-basket").addClass("selected-step")
+        $(".step.press-select").addClass("selected-step")
+        $(".step.press-cost-summary").addClass("selected-step")
+        $(".step.cost-analysis").addClass("selected-step")
+        break;
 }

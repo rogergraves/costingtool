@@ -15,7 +15,7 @@
               </tr>
               <tr>
                 <td width="200"><p style="font-size: small;"><%= job.job_size %> Cost / Sheet</p></td>
-                <td width="100"><%= f.text_field :media_cost, :class => "press-job-values", :id => "update_media_cost_#{PressJob.newest(job.press_jobs).id}", :placeholder => "#{PressJob.newest(job.press_jobs).media_cost}" %></td>
+                <td width="100"><%= f.text_field :cost_per_sheet, :class => "press-job-values", :id => "update_cost_per_sheet_#{PressJob.newest(job.press_jobs).id}", :placeholder => "$#{PressJob.newest(job.press_jobs).cost_per_sheet}" %></td>
               </tr>
               <tr>
                 <td width="200"><p style="font-size: small;">Monthly Labor Cost</p></td>
@@ -43,7 +43,7 @@
           </tr>
           <tr>
 			<td width="200"><p style="font-size: small;"><%= job.job_size %> Cost / Sheet</p></td>
-            <td width="100"><%= f.text_field :media_cost, :class => "press-job-values", :id => "update_media_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "#{PressJob.oldest(job.press_jobs).media_cost}" %></td>
+            <td width="100"><%= f.text_field :cost_per_sheet, :class => "press-job-values", :id => "update_cost_per_sheet_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{PressJob.oldest(job.press_jobs).cost_per_sheet}" %></td>
           </tr>
           <tr>
 			<td width="200"><p style="font-size: small;">Monthly Labor Cost</p></td>
