@@ -307,8 +307,12 @@ describe PressJob do
         press_job.calculated_total_cost.should == (press_job.press_cost + press_job.calculated_media_cost + press_job.labor_cost + press_job.spi_cost + press_job.calculated_clicks_cost)
       end
 
-      it "#cost_per_copy" do
+      it "#calculated_cost_per_copy" do
         press_job.calculated_cost_per_copy.should == (press_job.calculated_total_cost / press_job.copies_per_month)
+      end
+
+      it "#calculated_cost_per_job" do
+        press_job.calculated_cost_per_job.should == (press_job.calculated_cost_per_copy / press_job.number_of_jobs)
       end
     end
 
