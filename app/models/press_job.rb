@@ -35,7 +35,7 @@ class PressJob < ActiveRecord::Base
     calculated_cost_per_copy / number_of_jobs
   end
 
-  # Support Methods --------------------------------------------------------------------------------------
+  # Calcs Support Methods --------------------------------------------------------------------------------------
 
   def click_price
     self[:click_price] || ((black_tier_price * black) + (color_tier_price * multicolor_clicks))
@@ -130,6 +130,13 @@ class PressJob < ActiveRecord::Base
     @number_of_sheets ||= (number_of_pages * number_of_jobs * copies_per_job / ups).ceil
   end
 
+# Class methods -----------------------------------------------------------------------------------------
+
+  def self.clean_for_user(user)
+    user.jobs.each do |job|
+      job.press_jobs.destroy_all
+    end
+  end
 
   def self.get_presses(params, user)
     presses = params["presses"].split('"')
