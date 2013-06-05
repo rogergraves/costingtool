@@ -9,4 +9,23 @@ module ApplicationHelper
       "</select><div class=\"custom dropdown\"><a href=\"#\" class=\"current\">#{label}</a><a href=\"#\" class=\"selector\"></a><ul><li class=\"disabled\">This is a dropdown</li><li class=\"selected\">This is another option</li><li>This is another option too</li><li>Look, a third option</li></ul></div>
       ".html_safe
   end
+
+  def current_process_step
+    case request.env['PATH_INFO']
+      when ""
+        return 1
+      when "/"
+        return 1
+      when "/jobs"
+        return 1
+      when '/jobs'
+        return 1
+      when '/press_jobs/new'
+        return 2
+      when '/press_jobs'
+        return 3
+      when '/cost_analyses'
+        return 4
+    end
+  end
 end

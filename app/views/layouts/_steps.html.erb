@@ -1,12 +1,12 @@
 <div class="step job-basket">
-  <%= link_to("1. Job Basket", jobs_path) %>
+  <%= current_process_step > 1 ? link_to("1. Job Basket", jobs_path) : "1. Job Basket" %>
 </div>
 <div class="step press-select">
-  <%= link_to("2. Press Select", new_press_job_path) %>
+  <%= current_process_step > 2 ? link_to("2. Press Select", new_press_job_path) : "2. Press Select" %>
 </div>
 <div class="step press-cost-summary">
-  <%= link_to("3. Press Summary", press_jobs_path) %>
+  <%= current_process_step > 3 ? link_to("3. Press Summary", press_jobs_path) : "3. Press Summary" %>
 </div>
 <div class="step cost-analysis ">
-  <%= link_to("4. Cost Analysis", cost_analyses_path) %>
+  <%= current_process_step > 4 ? link_to("4. Cost Analysis", cost_analyses_path) : "4. Cost Analysis" %>
 </div>
