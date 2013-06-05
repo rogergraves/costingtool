@@ -26,7 +26,7 @@
         <%= f.label :number_of_jobs_per_month %>
       </div>
       <div class="field">
-        <%= f.text_field :copies_per_job, :class => "float-input", :id => "copies_per_job_edit_job_#{single_job.id}", :required => true %>
+        <%= f.text_field :copies_per_job, :class => "float-input copies_per_job_edit_job", :id => "copies_per_job_edit_job_#{single_job.id}", :required => true %>
         <%= f.label :copies_per_job %>
       </div>
       <div class="job-size">
@@ -40,7 +40,7 @@
       <label for="checkbox1" class="black-checkbox"><input type="checkbox" id="black-checkbox" name="job[black]" style="display: none;"><span class="custom checkbox"></span> Black</label>
 
 
-      <div class="field inline-field">
+      <div class="field inline-field number_of_pages_edit_job">
         <%= f.text_field :number_of_pages, :id => "number_of_pages_edit_job_#{single_job.id}", :required => true %>
         <%= f.label :number_of_pages_per_job %>
       </div>

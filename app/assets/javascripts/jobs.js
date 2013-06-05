@@ -33,7 +33,7 @@ $("input#job_number_of_jobs.new-selector").keyup(function() {
 
 //Tabbing Logic
 
-$('#copies_per_job.new-selector').keydown(function(e) {
+$('#copies_per_job_new_job.new-selector').keydown(function(e) {
     var keyCode = e.keyCode || e.which;
     if (keyCode == 9) {
         $(".job-size.new-selector div.custom.dropdown a.selector").click();
@@ -41,16 +41,15 @@ $('#copies_per_job.new-selector').keydown(function(e) {
     }
 });
 
-$('#number_of_pages').keydown(function(e) {
+$('#number_of_pages_new_job').keydown(function(e) {
     var keyCode = e.keyCode || e.which;
-
     if (keyCode == 9) {
         $(".new-selector .custom.dropdown a.current").click();
         $("input#job_sale_price").focus();
     }
 });
 
-$('input#job_copies_per_job').keydown(function(e) {
+$('.copies_per_job_edit_job').keydown(function(e) {
     var form = $(e.target.form)
     var selector = $(form.context[6].nextSibling.childNodes[1])
     var next = $(form.context[7])
@@ -61,7 +60,7 @@ $('input#job_copies_per_job').keydown(function(e) {
     }
 });
 
-$('#job_number_of_pages').keydown(function(e) {
+$('.number_of_pages_edit_job').keydown(function(e) {
     var form = $(e.target.form)
     var selector = $(form.context[10].nextSibling.childNodes[1])
     var next = $(form.context[11])
