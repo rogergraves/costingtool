@@ -130,6 +130,7 @@ class PressJob < ActiveRecord::Base
     @number_of_sheets ||= (number_of_pages * number_of_jobs * copies_per_job / ups).ceil
   end
 
+
   def self.get_presses(params, user)
     presses = params["presses"].split('"')
     presses.each do |press|
@@ -148,6 +149,7 @@ class PressJob < ActiveRecord::Base
         new_press_job = job.press_jobs.create(:press_type => press)
         new_press_job.media_cost  = new_press_job.calculated_media_cost
         new_press_job.clicks_cost  = new_press_job.calculated_clicks_cost
+        new_press_job.spi_cost  = new_press_job.calculated_spi_cost
         new_press_job.labor_cost = 0
         new_press_job.press_cost = 0
         new_press_job.save!
