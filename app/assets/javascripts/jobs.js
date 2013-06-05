@@ -107,28 +107,24 @@ function cancelNewJob() {
 }
 
 $(document).ready(function() {
-    var update_calcs = function() {
-        var number_of_jobs = $('#number_of_jobs').val() || 0;
-        var copies_per_job = $('#copies_per_job').val() || 0;
-        var number_of_pages = $('#number_of_pages').val() || 0;
+    $('form').each(function() {
+        var id = this.id
 
-        $('#copies_per_month').text((copies_per_job * number_of_jobs).formatWithCommas());
-        $('#pages_per_month').text((copies_per_job * number_of_jobs * number_of_pages).formatWithCommas());
+        var number_of_jobs_obj = $('#number_of_jobs_'+id);
+        var copies_per_job_obj = $('#copies_per_job_'+id);
+        var number_of_pages_obj = $('#number_of_pages_'+id);
 
-    }
+        $.each([number_of_jobs_obj, copies_per_job_obj, number_of_pages_obj], function(index, obj) {
+            obj.change(function() {
+                obj.val(obj.val().replace(/[^0-9]/gi, ''));
 
-    $('#number_of_jobs').change(update_calcs);
-    $('#copies_per_job').change(update_calcs);
-    $('#number_of_pages').change(update_calcs);
+                var number_of_jobs = $('#number_of_jobs_'+id).val() || 0;
+                var copies_per_job = $('#copies_per_job_'+id).val() || 0;
+                var number_of_pages = $('#number_of_pages_'+id).val() || 0;
 
-    // Only allow integers to be entered
-    $('#number_of_jobs').bind('input', function() {
-        $(this).val($(this).val().replace(/[^0-9]/gi, ''));
-    });
-    $('#copies_per_job').bind('input', function() {
-        $(this).val($(this).val().replace(/[^0-9]/gi, ''));
-    });
-    $('#number_of_pages').bind('input', function() {
-        $(this).val($(this).val().replace(/[^0-9]/gi, ''));
+                $('#copies_per_month_'+id).text((copies_per_job * number_of_jobs).formatWithCommas());
+                $('#pages_per_month_'+id).text((copies_per_job * number_of_jobs * number_of_pages).formatWithCommas());
+            });
+        });
     });
 });

@@ -14,15 +14,19 @@
       <div>
         <h3 class="form-header subheader"> Edit Job </h3>
       </div>
+    <div class="per-month">
+      <div class="per-month-title">Copies per month: <div class="per-month-total" id="copies_per_month_edit_job_<%= single_job.id %>"><%= number_with_delimiter(single_job.copies_per_month, :delimiter => ',') %></div></div>
+      <div class="per-month-title">Pages per month: <div class="per-month-total" id="pages_per_month_edit_job_<%= single_job.id %>"><%= number_with_delimiter(single_job.pages_per_month, :delimiter => ',') %></div></div>
+    </div>
       <div class="field">
         <%= f.text_field :name, :autofocus => true, :placeholder => "Job Name", :required => true %>
       </div>
       <div class="field">
-        <%= f.text_field :number_of_jobs, :class => "float-input", :required => true %>
+        <%= f.text_field :number_of_jobs, :class => "float-input", :id => "number_of_jobs_edit_job_#{single_job.id}", :required => true %>
         <%= f.label :number_of_jobs_per_month %>
       </div>
       <div class="field">
-        <%= f.text_field :copies_per_job, :class => "float-input", :required => true %>
+        <%= f.text_field :copies_per_job, :class => "float-input", :id => "copies_per_job_edit_job_#{single_job.id}", :required => true %>
         <%= f.label :copies_per_job %>
       </div>
       <div class="job-size">
@@ -37,7 +41,7 @@
 
 
       <div class="field inline-field">
-        <%= f.text_field :number_of_pages, :required => true %>
+        <%= f.text_field :number_of_pages, :id => "number_of_pages_edit_job_#{single_job.id}", :required => true %>
         <%= f.label :number_of_pages_per_job %>
       </div>
       <div class="plex">
