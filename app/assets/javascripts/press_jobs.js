@@ -6,7 +6,7 @@ $("span.custom.checkbox").click(function(){
             }
         })
     }
-    else {
+    else if($(".next-page").length < 2) {
         $(".next-page").fadeIn();
     }
 })
