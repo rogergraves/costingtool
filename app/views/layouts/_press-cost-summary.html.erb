@@ -23,7 +23,7 @@
               </tr>
               <tr>
                 <td width="200"><p style="font-size: small;">Monthly SPI</p></td>
-                <td width="100"><%= f.text_field :spi_cost, :class => "press-job-values", :id => "update_spi_cost_#{PressJob.newest(job.press_jobs).id}", :placeholder => "#{PressJob.newest(job.press_jobs).spi_cost}" %></td>
+                <td width="100"><%= f.text_field :spi_cost, :class => "press-job-values", :id => "update_spi_cost_#{PressJob.newest(job.press_jobs).id}", :placeholder => "$#{PressJob.newest(job.press_jobs).calculated_spi_cost}" %></td>
               </tr>
               <tr>
                 <td width="200"><p style="font-size: small;">Click Price</p></td>
@@ -51,7 +51,7 @@
           </tr>
           <tr>
 			<td width="200"><p style="font-size: small;">Monthly SPI</p></td>
-            <td width="100"><%= f.text_field :spi_cost, :class => "press-job-values", :id => "update_spi_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "#{PressJob.oldest(job.press_jobs).spi_cost}" %></td>
+            <td width="100"><%= f.text_field :spi_cost, :class => "press-job-values", :id => "update_spi_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{PressJob.oldest(job.press_jobs).calculated_spi_cost}" %></td>
           </tr>
           <tr>
             <td width="100"><p style="font-size: small;">Clicks Price</p></td>

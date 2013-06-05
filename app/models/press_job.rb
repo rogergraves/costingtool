@@ -5,10 +5,7 @@ class PressJob < ActiveRecord::Base
 
   serialize :data, ActiveRecord::Coders::Hstore
   hstore :data, :accessors => {
-      :press_cost => :float,
       :media_cost => :float,
-      :labor_cost => :float,
-      :spi_cost => :float,
       :clicks_cost => :float,
   }
 
@@ -150,11 +147,10 @@ class PressJob < ActiveRecord::Base
       presses.each do |press|
         new_press_job = job.press_jobs.create(:press_type => press)
         new_press_job.media_cost  = new_press_job.calculated_media_cost
-        new_press_job.spi_cost  = new_press_job.calculated_spi_cost
         new_press_job.clicks_cost  = new_press_job.calculated_clicks_cost
         new_press_job.labor_cost = 0
         new_press_job.press_cost = 0
-        new_press_job.save
+        new_press_job.save!
         end
     end
   end

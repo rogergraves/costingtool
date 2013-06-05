@@ -10,11 +10,15 @@ class PressJobsController < InheritedResources::Base
   end
 
   def index
-    @press_types =  PressType.all || []
-    @jobs = current_user.jobs || []
-    current_user.press_types
-    @presses = current_user.press_types
-    @press_jobs = PressJob.generate_press_jobs(@jobs, @presses) if !PressJob.has_press_jobs(@jobs)
+    if !user_signed_in?
+      redirect_to new_user_session_path
+    else
+      @press_types =  PressType.all || []
+      @jobs = current_user.jobs || []
+      current_user.press_types
+      @presses = current_user.press_types
+      @press_jobs = PressJob.generate_press_jobs(@jobs, @presses) if !PressJob.has_press_jobs(@jobs)
+    end
   end
 
   def update
