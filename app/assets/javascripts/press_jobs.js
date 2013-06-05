@@ -37,7 +37,11 @@ function getPresses(pressList){
     return cleanList
 }
 
+$("input.press-job-values").change(function(){
+    $(this).parents("form").submit();
+})
 
+// Carousel arrow display logic
 $(".foundicon-right-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").click(function(){
     var slideOne = $(".first-job")
     var slideTwo = $($(".other-jobs-container")[0])
@@ -99,8 +103,4 @@ function removeRightArrow(slide) {
     }
 }
 
-
-
-$("input.press-job-values").change(function(){
-    $(this).parents("form").submit();
-})
+// END - Carousel arrow display logic

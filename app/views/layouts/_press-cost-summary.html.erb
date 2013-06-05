@@ -32,34 +32,36 @@
         </table>
     <% end %>
   </div>
-  <div class="right-press">
-    <%= image_tag("#{PressJob.oldest(job.press_jobs).press_type.icon.url(:small) if PressJob.oldest(job.press_jobs).press_type.icon.present?}") %>
-    <h4 class="subheader"><%= PressJob.oldest(job.press_jobs).press_type.name %> </h4>
-    <%= form_for(PressJob.oldest(job.press_jobs), :remote => true) do |f| %>
-        <table class="press-job-values-table">
-          <tr>
-			<td width="200"><p style="font-size: small;">Monthly Press Cost</p></td>
-            <td width="100"><%= f.text_field :press_cost, :class => "press-job-values", :id => "update_press_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{PressJob.oldest(job.press_jobs).press_cost}" %></td>
-          </tr>
-          <tr>
-			<td width="200"><p style="font-size: small;"><%= job.job_size %> Cost / Sheet</p></td>
-            <td width="100"><%= f.text_field :cost_per_sheet, :class => "press-job-values", :id => "update_cost_per_sheet_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{PressJob.oldest(job.press_jobs).cost_per_sheet}" %></td>
-          </tr>
-          <tr>
-			<td width="200"><p style="font-size: small;">Monthly Labor Cost</p></td>
-            <td width="100"><%= f.text_field :labor_cost, :class => "press-job-values", :id => "update_labor_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{PressJob.oldest(job.press_jobs).labor_cost}" %></td>
-          </tr>
-          <tr>
-			<td width="200"><p style="font-size: small;">Monthly SPI</p></td>
-            <td width="100"><%= f.text_field :spi_cost, :class => "press-job-values", :id => "update_spi_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{PressJob.oldest(job.press_jobs).calculated_spi_cost}" %></td>
-          </tr>
-          <tr>
-            <td width="100"><p style="font-size: small;">Clicks Price</p></td>
-            <td width="100"><%= f.text_field :click_price, :class => "press-job-values", :id => "update_click_price_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{PressJob.oldest(job.press_jobs).click_price}" %></td>
-          </tr>
-        </table>
-    <% end %>
-  </div>
+  <% if PressJob.newest(job.press_jobs) != PressJob.oldest(job.press_jobs) %>
+      <div class="right-press">
+        <%= image_tag("#{PressJob.oldest(job.press_jobs).press_type.icon.url(:small) if PressJob.oldest(job.press_jobs).press_type.icon.present?}") %>
+        <h4 class="subheader"><%= PressJob.oldest(job.press_jobs).press_type.name %> </h4>
+        <%= form_for(PressJob.oldest(job.press_jobs), :remote => true) do |f| %>
+            <table class="press-job-values-table">
+              <tr>
+                <td width="200"><p style="font-size: small;">Monthly Press Cost</p></td>
+                <td width="100"><%= f.text_field :press_cost, :class => "press-job-values", :id => "update_press_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{PressJob.oldest(job.press_jobs).press_cost}" %></td>
+              </tr>
+              <tr>
+                <td width="200"><p style="font-size: small;"><%= job.job_size %> Cost / Sheet</p></td>
+                <td width="100"><%= f.text_field :cost_per_sheet, :class => "press-job-values", :id => "update_cost_per_sheet_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{PressJob.oldest(job.press_jobs).cost_per_sheet}" %></td>
+              </tr>
+              <tr>
+                <td width="200"><p style="font-size: small;">Monthly Labor Cost</p></td>
+                <td width="100"><%= f.text_field :labor_cost, :class => "press-job-values", :id => "update_labor_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{PressJob.oldest(job.press_jobs).labor_cost}" %></td>
+              </tr>
+              <tr>
+                <td width="200"><p style="font-size: small;">Monthly SPI</p></td>
+                <td width="100"><%= f.text_field :spi_cost, :class => "press-job-values", :id => "update_spi_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{PressJob.oldest(job.press_jobs).calculated_spi_cost}" %></td>
+              </tr>
+              <tr>
+                <td width="100"><p style="font-size: small;">Clicks Price</p></td>
+                <td width="100"><%= f.text_field :click_price, :class => "press-job-values", :id => "update_click_price_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{PressJob.oldest(job.press_jobs).click_price}" %></td>
+              </tr>
+            </table>
+        <% end %>
+      </div>
+  <% end %>
 
 </div>
 

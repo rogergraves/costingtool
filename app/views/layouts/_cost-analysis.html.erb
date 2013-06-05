@@ -53,55 +53,57 @@
           </tr>
         </table>
   </div>
-  <div class="right-press">
-    <%= image_tag("#{PressJob.oldest(job.press_jobs).press_type.icon.url(:small) if PressJob.oldest(job.press_jobs).press_type.icon.present?}") %>
-    <h4 class="subheader"><%= PressJob.oldest(job.press_jobs).press_type.name %> </h4>
-        <table class="cost-analysis-table">
-          <tr>
-            <td width="140"><p>Hardware</p></td>
-            <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).press_cost}"%></td>
-          </tr>
-          <tr>
-            <td width="140"><p>Media</p></td>
-            <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).calculated_media_cost.round(2)}"%></td>
-          </tr>
-          <tr>
-            <td width="140"><p>Labor</p></td>
-            <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).labor_cost}"%></td>
-          </tr>
-          <tr>
-            <td width="140"><p>Service</p></td>
-            <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).spi_cost.round(2)}"%></td>
-          </tr>
-          <tr>
-            <td width="140"><p>Clicks</p></td>
-            <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).calculated_clicks_cost.round(2)}"%></td>
-          </tr>
-          <tr>
-            <td width="140"><strong>Total</strong></td>
-            <td width="100"><strong><%= "$#{PressJob.oldest(job.press_jobs).calculated_total_cost.round(2)}"%></strong></td>
-          </tr>
-        </table>
-        <br />
-        <table class="cost-analysis-table">
-          <tr>
-            <td width="140"><p>Cost per Job</p></td>
-            <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).calculated_cost_per_job.round(2)}"%></td>
-          </tr>
-          <tr>
-            <td width="140"><p>Cost per Copy</p></td>
-            <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).calculated_cost_per_copy.round(2)}"%></td>
-          </tr>
-          <tr>
-            <td width="140"><p>No. jobs per month</p></td>
-            <td width="100"><%= "#{PressJob.oldest(job.press_jobs).number_of_jobs}"%></td>
-          </tr>
-          <tr>
-            <td width="140"><p>Copies per job</p></td>
-            <td width="100"><%= "#{PressJob.oldest(job.press_jobs).copies_per_job}"%></td>
-          </tr>
-        </table>
-  </div>
+  <% if PressJob.newest(job.press_jobs) != PressJob.oldest(job.press_jobs) %>
+      <div class="right-press">
+        <%= image_tag("#{PressJob.oldest(job.press_jobs).press_type.icon.url(:small) if PressJob.oldest(job.press_jobs).press_type.icon.present?}") %>
+        <h4 class="subheader"><%= PressJob.oldest(job.press_jobs).press_type.name %> </h4>
+            <table class="cost-analysis-table">
+              <tr>
+                <td width="140"><p>Hardware</p></td>
+                <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).press_cost}"%></td>
+              </tr>
+              <tr>
+                <td width="140"><p>Media</p></td>
+                <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).calculated_media_cost.round(2)}"%></td>
+              </tr>
+              <tr>
+                <td width="140"><p>Labor</p></td>
+                <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).labor_cost}"%></td>
+              </tr>
+              <tr>
+                <td width="140"><p>Service</p></td>
+                <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).spi_cost.round(2)}"%></td>
+              </tr>
+              <tr>
+                <td width="140"><p>Clicks</p></td>
+                <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).calculated_clicks_cost.round(2)}"%></td>
+              </tr>
+              <tr>
+                <td width="140"><strong>Total</strong></td>
+                <td width="100"><strong><%= "$#{PressJob.oldest(job.press_jobs).calculated_total_cost.round(2)}"%></strong></td>
+              </tr>
+            </table>
+            <br />
+            <table class="cost-analysis-table">
+              <tr>
+                <td width="140"><p>Cost per Job</p></td>
+                <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).calculated_cost_per_job.round(2)}"%></td>
+              </tr>
+              <tr>
+                <td width="140"><p>Cost per Copy</p></td>
+                <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).calculated_cost_per_copy.round(2)}"%></td>
+              </tr>
+              <tr>
+                <td width="140"><p>No. jobs per month</p></td>
+                <td width="100"><%= "#{PressJob.oldest(job.press_jobs).number_of_jobs}"%></td>
+              </tr>
+              <tr>
+                <td width="140"><p>Copies per job</p></td>
+                <td width="100"><%= "#{PressJob.oldest(job.press_jobs).copies_per_job}"%></td>
+              </tr>
+            </table>
+      </div>
+  <% end %>
 
 </div>
 
