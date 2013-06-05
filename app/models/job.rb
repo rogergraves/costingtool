@@ -37,7 +37,7 @@ class Job < ActiveRecord::Base
   end
 
   def css_name
-    self.name.downcase.split(" ").join("-")
+    self.name.downcase.split(" ").join("-").sub(/\W/, '')
   end
 
   def copies_per_month
