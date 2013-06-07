@@ -11,6 +11,11 @@ $("span.custom.checkbox").click(function(){
     }
 })
 
+if($($(".other-jobs-container")[0]).length == 0){
+    $(".foundicon-right-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").hide();
+}
+
+
 
 $(".next-arrow.press-cost-summary").click(function(){
     var press_types = $(".custom.press-jobs-table label span.checked")
