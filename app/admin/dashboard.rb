@@ -66,8 +66,8 @@ ActiveAdmin.register_page "Dashboard" do
     column do
       panel "Tiers" do
         table_for(Tier.all) do
-          column("Name") { |tier| link_to tier.name, admin_ink_array_tier_path(tier.ink_array_id, tier.id) }
-          column("Ink Array") { |tier_ink_array| link_to tier_ink_array.ink_array.name, admin_click_table_ink_arrays_path(tier_ink_array.ink_array_id) }
+          column("Name") { |tier| link_to tier.name, admin_ink_array_tier_path(tier.ink_array_id, tier.id) if tier.ink_array.present? }
+          column("Ink Array") { |tier| link_to tier.ink_array.name, admin_click_table_ink_arrays_path(tier.ink_array_id) if tier.ink_array.present? }
         end
       end
     end
