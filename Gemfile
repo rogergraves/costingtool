@@ -14,6 +14,7 @@ gem "meta_search",    '>= 1.1.0.pre'              # Used for activeadmin. Allows
 gem "paperclip", "~> 3.4.1"                       # Easy upload management for ActiveRecord
 gem "aws-sdk", "~> 1.9.1"                         # Allows integration with AWS for S3 bucket uploads
 gem "rack-ssl-enforcer", "~> 0.2.5"               # Add easy ability to force SSL
+gem "highcharts-rails", "~> 3.0.2"                # Include highcharts javascript in asset pipeline
 
 group :assets do
   gem "uglifier", "~> 2.0.1"
