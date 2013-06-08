@@ -1,5 +1,5 @@
 class PressJob < ActiveRecord::Base
-  attr_accessible :job_id, :press_type_id, :press_cost, :media_cost, :labor_cost, :spi_cost, :clicks_cost, :press_type, :cost_per_sheet, :click_price
+  attr_accessible :job_id, :press_type_id, :press_cost, :media_cost, :labor_cost, :spi_cost, :clicks_cost, :press_type, :cost_per_sheet, :click_price, :press_price
   belongs_to :job
   belongs_to :press_type
 
@@ -160,9 +160,10 @@ class PressJob < ActiveRecord::Base
         new_press_job.clicks_cost  = new_press_job.calculated_clicks_cost
         new_press_job.spi_cost  = new_press_job.calculated_spi_cost
         new_press_job.labor_cost = 0
-        new_press_job.press_cost = 0
+        new_press_job.press_price = press.price
+        new_press_job.press_cost = press.price/60
         new_press_job.save!
-        end
+      end
     end
   end
 
@@ -227,6 +228,5 @@ class PressJob < ActiveRecord::Base
 
     valid_ink_array
   end
-
 
 end

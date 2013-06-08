@@ -10,8 +10,8 @@
     <%= form_for(PressJob.newest(job.press_jobs), :remote => true) do |f| %>
         <table class="press-job-values-table">
               <tr>
-                <td width="200"><p style="font-size: small;">Monthly Press Cost</p></td>
-                <td width="100"><%= f.text_field :press_cost, :class => "press-job-values", :id => "update_press_cost_#{PressJob.newest(job.press_jobs).id}", :placeholder => "$#{PressJob.newest(job.press_jobs).press_cost}" %></td>
+                <td width="200"><p style="font-size: small;">Press Price</p></td>
+                <td width="100"><%= f.text_field :press_price, :class => "press-job-values", :id => "update_press_price_#{PressJob.newest(job.press_jobs).id}", :placeholder => "$#{PressJob.newest(job.press_jobs).press_price}" %></td>
               </tr>
               <tr>
                 <td width="200"><p style="font-size: small;"><%= job.job_size %> Cost / Sheet</p></td>
@@ -39,8 +39,8 @@
         <%= form_for(PressJob.oldest(job.press_jobs), :remote => true) do |f| %>
             <table class="press-job-values-table">
               <tr>
-                <td width="200"><p style="font-size: small;">Monthly Press Cost</p></td>
-                <td width="100"><%= f.text_field :press_cost, :class => "press-job-values", :id => "update_press_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{PressJob.oldest(job.press_jobs).press_cost}" %></td>
+                <td width="200"><p style="font-size: small;">Press Price</p></td>
+                <td width="100"><%= f.text_field :press_price, :class => "press-job-values", :id => "update_press_price_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{PressJob.oldest(job.press_jobs).press_price}" %></td>
               </tr>
               <tr>
                 <td width="200"><p style="font-size: small;"><%= job.job_size %> Cost / Sheet</p></td>
