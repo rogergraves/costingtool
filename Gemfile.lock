@@ -112,6 +112,8 @@ GEM
       rubyzip
     heroku-api (0.3.11)
       excon (~> 0.22.1)
+    highcharts-rails (3.0.2)
+      railties (>= 3.1)
     hike (1.2.2)
     hstore-attributes (0.0.4)
       activerecord (>= 3.0)
@@ -250,6 +252,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.2.1)
   faker (~> 1.1.2)
   heroku (~> 2.37.2)
+  highcharts-rails (~> 3.0.2)
   hstore-attributes
   jquery-rails (~> 2.2.1)
   meta_search (>= 1.1.0.pre)

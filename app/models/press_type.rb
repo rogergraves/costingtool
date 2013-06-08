@@ -1,5 +1,5 @@
 class PressType < ActiveRecord::Base
-  attr_accessible :name, :icon, :duty_cycle, :spi, :click_table_id
+  attr_accessible :name, :icon, :duty_cycle, :spi, :click_table_id, :price, :labor
   has_many :press_jobs
   has_many :impositions, :dependent => :destroy
   belongs_to :click_table
@@ -13,7 +13,9 @@ class PressType < ActiveRecord::Base
 
   serialize :data, ActiveRecord::Coders::Hstore
   hstore :data, :accessors => {
-      :duty_cycle => :integer,      # Max usage of a press per month
-      :spi => :float                # Service Parts Insurance cost / month in USD
+      :duty_cycle => :integer,      # Max # of press clicks per month
+      :spi => :float,               # Service Parts Insurance cost / month in USD
+      :labor => :float,             # The labor in USD
+      :price => :float              # The total price of the press - this is divided by 60 in the calculations to display the monthly cost (in USD)
   }
 end

@@ -111,10 +111,12 @@ class PressJob < ActiveRecord::Base
   end
 
   def color_tier_price
+    return 0.00 if tier.nil?
     @color_tier_price ||= (tier.price || 0.00)
   end
 
   def black_tier_price
+    return 0.00 if tier.nil?
     @black_tier_price ||= (tier.black_price || 0.00)
   end
 

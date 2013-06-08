@@ -1,15 +1,23 @@
-$("span.custom.checkbox").click(function(){
-    if($("span.custom.checkbox.checked").length > 0) {
-        $(".press-jobs-table").mousemove(function(){
-            if($("span.custom.checkbox.checked").length === 0) {
-                $(".next-page").fadeOut();
-            }
-        })
-    }
-    else if($(".next-page").length < 2) {
+var can_user_check_this = function(this_is_checked) {
+    var total_checked = $('.custom.checkbox.checked').length;
+
+    this_is_checked ? total_checked++ : total_checked--; // Adjust for length being delayed (this listener code is run before box is actually checked)
+
+    if(total_checked > 2) {
+        return false; // Too many selected, so don't allow it to be checked
+    } else if(total_checked > 0) {
         $(".next-page").fadeIn();
+    } else {
+        $(".next-page").fadeOut();
     }
-})
+
+    return true;
+}
+
+$("label.press-checkbox").click(function() {
+    var this_is_checked = !$($(this).context.children[1]).hasClass("checked");
+    return can_user_check_this(this_is_checked);
+});
 
 if($($(".other-jobs-container")[0]).length == 0){
     $(".foundicon-right-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").hide();
@@ -29,6 +37,7 @@ $(".next-arrow.press-cost-summary").click(function(){
             document.location = "/press_jobs"
         },
         error:function(request) {
+            console.log("failed request: ", request);
             alert("fail")
         }
     });

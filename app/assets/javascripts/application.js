@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require highcharts
 //= require_tree .
 
 $(document).foundation();
@@ -62,4 +63,10 @@ switch (stage) {
         $(".step.press-cost-summary").addClass("selected-step")
         $(".step.cost-analysis").addClass("selected-step")
         break;
+    case "/dashboards":
+        $(".step.job-basket").addClass("selected-step")
+        $(".step.press-select").addClass("selected-step")
+        $(".step.press-cost-summary").addClass("selected-step")
+        $(".step.cost-analysis").addClass("selected-step")
+        $(".step.dashboard").addClass("selected-step")
 }

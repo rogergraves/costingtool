@@ -26,6 +26,8 @@ module ApplicationHelper
         return 3
       when '/cost_analyses'
         return 4
+      when '/dashboards'
+        return 5
     end
   end
 end
