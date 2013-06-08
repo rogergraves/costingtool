@@ -10,27 +10,23 @@
       <div class="completion-steps">
         <%= render 'layouts/steps' %>
       </div>
-      <h3 class="page-title">Cost Analysis</h3>
+      <h3 class="page-title">Dashboard</h3>
       <div class="first-job">
         <%= render :partial => 'layouts/cost-analysis', :locals => { :job => @jobs.first } %>
       </div>
       <div class="other-jobs">
         <% @jobs[1..-1].each do |job| %>
-            <div class="other-jobs-container">
-              <%= render :partial => 'layouts/cost-analysis', :locals => { :job => job } %>
-            </div>
+          <div class="other-jobs-container">
+            <%= render :partial => 'layouts/cost-analysis', :locals => { :job => job } %>
+          </div>
         <% end %>
       </div>
     </div>
 
     <div class="progress-arrows">
       <div class="previous-page">
-        <%= link_to '<i class="foundicon-left-arrow icon-medium back-arrow"></i>'.html_safe, press_jobs_path %>
+        <%= link_to '<i class="foundicon-left-arrow icon-medium back-arrow"></i>'.html_safe, cost_analyses_path %>
         <p class="back-text"> Back </p>
-      </div>
-      <div class="next-page">
-        <%= link_to '<i class="foundicon-right-arrow icon-medium next-arrow cost-analysis"></i>'.html_safe, dashboards_path %>
-        <p class="next-text"> Continue </p>
       </div>
     </div>
   </div>
