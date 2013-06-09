@@ -14,10 +14,14 @@ ActiveAdmin.register Tier do
                                                                                                 tier.id) }
     column :volume_range_start
     column :volume_range_end
-    column :price
+    column :price do |tier|
+      number_to_currency tier.price
+    end
     if ink_array.black > 0
-      column :black_price, :label => "Price: Black"
+      column "Price: Black", :black_price do |tier|
+        number_to_currency tier.black_price
       end
+    end
   end
 
   show :title => :name do
@@ -26,12 +30,15 @@ ActiveAdmin.register Tier do
       row :name, :label => "Tier Level"
       row :volume_range_start
       row :volume_range_end
-      row :price
-      if ink_array.black > 0
-        row :black_price, :label => "Price: Black"
+      row :price do |tier|
+        number_to_currency tier.price
       end
-      strong em { link_to "Back to View All (#{ink_array.name})", admin_click_table_ink_array_path(ink_array
-                                                                                             .click_table_id, ink_array.id) }
+      if ink_array.black > 0
+        row "Price: Black", :black_price do |tier|
+          number_to_currency tier.black_price
+        end
+      end
+      strong em { link_to "Back to View All (#{ink_array.name})", admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
     end
   end
 

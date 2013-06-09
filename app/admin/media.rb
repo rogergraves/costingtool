@@ -3,15 +3,18 @@ ActiveAdmin.register Media do
     config.clear_sidebar_sections!
 
   index :title => :name do
-      column :name
-    column :cost_per_sheet
-    default_actions
+    column :name
+    column :cost_per_sheet do |media|
+      number_to_currency media.cost_per_sheet
+    end
   end
 
   show :title => :name do
     attributes_table do
       row :name
-      row :cost_per_sheet
+      row :cost_per_sheet do |media|
+        number_to_currency media.cost_per_sheet
+      end
       strong em { link_to 'View All Media Costs', admin_media_path() }
     end
   end
