@@ -1,15 +1,18 @@
 <div class="step job-basket">
-  <%= current_process_step > 1 ? link_to("1. Job Basket", jobs_path) : "1. Job Basket" %>
+  <%= current_process_step > 1 ? link_to("1. Basket", jobs_path) : "1. Basket" %>
 </div>
 <div class="step press-select">
-  <%= current_process_step > 2 ? link_to("2. Press Select", new_press_job_path) : "2. Press Select" %>
+  <%= current_process_step > 2 ? link_to("2. Press", new_press_job_path) : "2. Select" %>
 </div>
 <div class="step press-cost-summary">
-  <%= current_process_step > 3 ? link_to("3. Press Summary", press_jobs_path) : "3. Press Summary" %>
+  <%= current_process_step > 3 ? link_to("3. Summary", press_jobs_path) : "3. Summary" %>
 </div>
-<div class="step cost-analysis ">
-  <%= current_process_step > 4 ? link_to("4. Cost Analysis", cost_analyses_path) : "4. Cost Analysis" %>
+<div class="step cost-analysis">
+  <%= current_process_step > 3 ? link_to("4. Costs", cost_analyses_path) : "4. Costs" %>
 </div>
-<div class="step dashboard ">
-  <%= current_process_step > 5 ? link_to("5. Dashboard", cost_analyses_path) : "5. Dashboard" %>
+<div class="step dashboard">
+  <%= current_process_step > 3 ? link_to("5. Dashboard", dashboards_path) : "5. Dashboard" %>
+</div>
+<div class="step roi">
+  <%= current_process_step > 3 ? link_to("6. ROI", roi_index_path) : "6. ROI" %>
 </div>

@@ -5,7 +5,7 @@
 
 $(document).ready(function() {
 
-    var revenue_array = function() {
+    var cost_array = function() {
         var starting_value = 1000000 + Math.floor(Math.random()*500000);
         var increase_by = 3+Math.floor(Math.random()*5);
         var last_value = starting_value;
@@ -20,7 +20,7 @@ $(document).ready(function() {
         return costs;
     };
 
-    var cost_array = function() {
+    var revenue_array = function() {
         var starting_value = 500000 + Math.floor(Math.random()*200000);
         var increase_by = 10+Math.floor(Math.random()*20);
         var last_value = starting_value;
@@ -81,7 +81,7 @@ $(document).ready(function() {
             }, {
                 name: 'Revenue',
                 data: revenue_array(),
-                color: '#2f7ed8'
+                color: '#2F7ED8'
             }]
         });
     }

@@ -4,6 +4,7 @@ Costingtool::Application.routes.draw do
   resources :press_jobs, :only => [:index, :new, :create, :show, :update]
   resources :cost_analyses, :only => [:index, :update]
   resources :dashboards, :only => [:index]
+  resources :roi, :only => [:index]
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

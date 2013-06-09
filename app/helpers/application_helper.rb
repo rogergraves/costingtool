@@ -16,18 +16,18 @@ module ApplicationHelper
         return 1
       when "/"
         return 1
-      when "/jobs"
+      when jobs_path
         return 1
-      when '/jobs'
-        return 1
-      when '/press_jobs/new'
+      when new_press_job_path
         return 2
-      when '/press_jobs'
+      when press_jobs_path
         return 3
-      when '/cost_analyses'
+      when cost_analyses_path
         return 4
-      when '/dashboards'
+      when dashboards_path
         return 5
+      when '/roi'
+        return 6
     end
   end
 end

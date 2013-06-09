@@ -1,0 +1,44 @@
+<div class="press-cost-summary-container">
+  <div class="press-cost-summary-navigation" >
+    <%= link_to '<i class="foundicon-left-arrow icon-tiny next-arrow press-roi-carousel"></i>'.html_safe, "#" %>
+    <h3 class="subheader inline-header" id="press_1_header" style="display: none"><%= presses.first.name %></h3>
+    <h3 class="subheader inline-header" id="press_2_header" style="display: none"><%= presses.last.name %></h3>
+    <%= link_to '<i class="foundicon-right-arrow icon-tiny next-arrow press-roi-carousel"></i>'.html_safe, "#" %>
+  </div>
+  <br>
+  <div id="press_1" style="max-width: 90%; height: 320px;" style="display: none"></div>
+  <div id="press_2" style="max-width: 90%; height: 320px;" style="display: none"></div>
+
+  <table id="press_1_table" class="roi-table" style="display: none">
+    <tr>
+      <th>ROI</th>
+      <th>Payback Period (Months)</th>
+      <th>Total Profit</th>
+      <th>Total Costs</th>
+      <th>Production Life (Months)</th>
+    </tr>
+    <tr>
+      <td>26%</td>
+      <td>47</td>
+      <td>$2,338,446</td>
+      <td>$9,046,159</td>
+      <td>84</td>
+    </tr>
+  </table>
+  <table id="press_2_table" class="roi-table" style="display: none">
+    <tr>
+      <th>ROI</th>
+      <th>Payback Period (Months)</th>
+      <th>Total Profit</th>
+      <th>Total Costs</th>
+      <th>Production Life (Months)</th>
+    </tr>
+    <tr>
+      <td>18%</td>
+      <td>66</td>
+      <td>$1,769,961</td>
+      <td>$9,614,644</td>
+      <td>84</td>
+    </tr>
+  </table>
+</div>

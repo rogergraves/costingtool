@@ -1,4 +1,3 @@
-                          dashboard_index GET        /dashboard/index(.:format)                                            dashboard#index
                                      jobs GET        /jobs(.:format)                                                       jobs#index
                                           POST       /jobs(.:format)                                                       jobs#create
                                   new_job GET        /jobs/new(.:format)                                                   jobs#new
@@ -15,6 +14,7 @@
                             cost_analyses GET        /cost_analyses(.:format)                                              cost_analyses#index
                            cost_analyasis PUT        /cost_analyses/:id(.:format)                                          cost_analyses#update
                                dashboards GET        /dashboards(.:format)                                                 dashboards#index
+                                roi_index GET        /roi(.:format)                                                        roi#index
                    new_admin_user_session GET        /admin/login(.:format)                                                active_admin/devise/sessions#new
                        admin_user_session POST       /admin/login(.:format)                                                active_admin/devise/sessions#create
                destroy_admin_user_session DELETE|GET /admin/logout(.:format)                                               active_admin/devise/sessions#destroy
