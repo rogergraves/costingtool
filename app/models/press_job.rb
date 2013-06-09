@@ -24,7 +24,7 @@ class PressJob < ActiveRecord::Base
   end
 
   def calculated_total_cost
-    press_cost + calculated_media_cost + labor_cost + spi_cost + calculated_clicks_cost
+    (press_cost || 0.0) + (calculated_media_cost || 0.0) + (labor_cost || 0.0) + (spi_cost || 0.0) + (calculated_clicks_cost || 0.0)
   end
 
   def calculated_cost_per_copy
@@ -161,7 +161,7 @@ class PressJob < ActiveRecord::Base
         new_press_job.spi_cost  = new_press_job.calculated_spi_cost
         new_press_job.labor_cost = 0
         new_press_job.press_price = press.price
-        new_press_job.press_cost = press.price/60
+        new_press_job.press_cost = press.price.to_f/60
         new_press_job.save!
       end
     end
