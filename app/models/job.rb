@@ -25,7 +25,7 @@ class Job < ActiveRecord::Base
       :job_percentage => :integer
   }
 
-  validates_numericality_of :number_of_jobs, :copies_per_job
+  validates_numericality_of :number_of_jobs, :copies_per_job, :multicolor_clicks, :black, :number_of_pages, :plex, :sale_price, :annual_growth, :job_percentage
 
   def translate_form_inputs
     self.black ? self.black = 1 : self.black = 0
