@@ -30,4 +30,8 @@ module ApplicationHelper
         return 6
     end
   end
+
+  def enforce_float_zeros value, precision
+    "%.#{precision}f" % value
+  end
 end

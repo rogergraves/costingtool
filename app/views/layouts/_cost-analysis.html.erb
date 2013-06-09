@@ -10,38 +10,38 @@
         <table class="cost-analysis-table">
           <tr>
             <td width="140"><p>Hardware</p></td>
-            <td width="100"><%= "$#{PressJob.newest(job.press_jobs).press_cost}"%></td>
+            <td width="100"><%= "#{number_to_currency PressJob.newest(job.press_jobs).press_cost}"%></td>
           </tr>
           <tr>
             <td width="140"><p>Media</p></td>
-            <td width="100"><%= "$#{PressJob.newest(job.press_jobs).calculated_media_cost.to_f.round(2)}"%></td>
+            <td width="100"><%= "#{number_to_currency PressJob.newest(job.press_jobs).calculated_media_cost.to_f.round(2)}"%></td>
           </tr>
           <tr>
             <td width="140"><p>Labor</p></td>
-            <td width="100"><%= "$#{PressJob.newest(job.press_jobs).labor_cost}"%></td>
+            <td width="100"><%= "#{number_to_currency PressJob.newest(job.press_jobs).labor_cost}"%></td>
           </tr>
           <tr>
             <td width="140"><p>Service</p></td>
-            <td width="100"><%= "$#{PressJob.newest(job.press_jobs).spi_cost.to_f.round(2)}"%></td>
+            <td width="100"><%= "#{number_to_currency PressJob.newest(job.press_jobs).spi_cost.to_f.round(2)}"%></td>
           </tr>
           <tr>
             <td width="140"><p>Clicks</p></td>
-            <td width="100"><%= "$#{PressJob.newest(job.press_jobs).calculated_clicks_cost.to_f.round(2)}"%></td>
+            <td width="100"><%= "#{number_to_currency PressJob.newest(job.press_jobs).calculated_clicks_cost.to_f.round(2)}"%></td>
           </tr>
           <tr>
             <td width="140"><strong>Total</strong></td>
-            <td width="100"><strong><%= "$#{PressJob.newest(job.press_jobs).calculated_total_cost.to_f.round(2)}"%></strong></td>
+            <td width="100"><strong><%= "#{number_to_currency PressJob.newest(job.press_jobs).calculated_total_cost.to_f.round(2)}"%></strong></td>
           </tr>
         </table>
         <br />
         <table class="cost-analysis-table">
           <tr>
             <td width="140"><p>Cost per Job</p></td>
-            <td width="100"><%= "$#{PressJob.newest(job.press_jobs).calculated_cost_per_job.to_f.round(2)}"%></td>
+            <td width="100"><%= "#{number_to_currency PressJob.newest(job.press_jobs).calculated_cost_per_job.to_f.round(2)}"%></td>
           </tr>
           <tr>
             <td width="140"><p>Cost per Copy</p></td>
-            <td width="100"><%= "$#{PressJob.newest(job.press_jobs).calculated_cost_per_copy.to_f.round(2)}"%></td>
+            <td width="100"><%= "#{number_to_currency PressJob.newest(job.press_jobs).calculated_cost_per_copy.to_f.round(2)}"%></td>
           </tr>
           <tr>
             <td width="140"><p>No. jobs per month</p></td>
@@ -60,38 +60,38 @@
             <table class="cost-analysis-table">
               <tr>
                 <td width="140"><p>Hardware</p></td>
-                <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).press_cost}"%></td>
+                <td width="100"><%= "#{number_to_currency PressJob.oldest(job.press_jobs).press_cost}"%></td>
               </tr>
               <tr>
                 <td width="140"><p>Media</p></td>
-                <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).calculated_media_cost.to_f.round(2)}"%></td>
+                <td width="100"><%= "#{number_to_currency PressJob.oldest(job.press_jobs).calculated_media_cost.to_f.round(2)}"%></td>
               </tr>
               <tr>
                 <td width="140"><p>Labor</p></td>
-                <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).labor_cost}"%></td>
+                <td width="100"><%= "#{number_to_currency PressJob.oldest(job.press_jobs).labor_cost}"%></td>
               </tr>
               <tr>
                 <td width="140"><p>Service</p></td>
-                <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).spi_cost.to_f.round(2)}"%></td>
+                <td width="100"><%= "#{number_to_currency PressJob.oldest(job.press_jobs).spi_cost.to_f.round(2)}"%></td>
               </tr>
               <tr>
                 <td width="140"><p>Clicks</p></td>
-                <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).calculated_clicks_cost.to_f.round(2)}"%></td>
+                <td width="100"><%= "#{number_to_currency PressJob.oldest(job.press_jobs).calculated_clicks_cost.to_f.round(2)}"%></td>
               </tr>
               <tr>
                 <td width="140"><strong>Total</strong></td>
-                <td width="100"><strong><%= "$#{PressJob.oldest(job.press_jobs).calculated_total_cost.round(2)}"%></strong></td>
+                <td width="100"><strong><%= "#{number_to_currency PressJob.oldest(job.press_jobs).calculated_total_cost.round(2)}"%></strong></td>
               </tr>
             </table>
             <br />
             <table class="cost-analysis-table">
               <tr>
                 <td width="140"><p>Cost per Job</p></td>
-                <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).calculated_cost_per_job.to_f.round(2)}"%></td>
+                <td width="100"><%= "#{number_to_currency PressJob.oldest(job.press_jobs).calculated_cost_per_job.to_f.round(2)}"%></td>
               </tr>
               <tr>
                 <td width="140"><p>Cost per Copy</p></td>
-                <td width="100"><%= "$#{PressJob.oldest(job.press_jobs).calculated_cost_per_copy.to_f.round(2)}"%></td>
+                <td width="100"><%= "#{number_to_currency PressJob.oldest(job.press_jobs).calculated_cost_per_copy.to_f.round(2)}"%></td>
               </tr>
               <tr>
                 <td width="140"><p>No. jobs per month</p></td>
