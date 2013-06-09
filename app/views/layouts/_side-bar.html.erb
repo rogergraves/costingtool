@@ -1,13 +1,11 @@
 <div class="job-pane">
   <h4>Jobs</h4>
   <ul >
-    <% if @jobs.present?  %>
-      <% @jobs.each do |job| %>
-            <p class="sidebar-list">
-            <%=  job.name %>
-            <%= link_to '<i class="foundicon-edit icon-small"></i>'.html_safe, "#", :class => "hover-reveal", :data => { "reveal-id" => "#{job.css_name}-modal"} %>
-            <%= link_to '<i class="foundicon-trash icon-small"></i>'.html_safe, job, method: :delete, data: { confirm: 'Are you sure?' }, :class => "hover-reveal" %></p>
-      <% end %>
+    <% @jobs.each do |job| %>
+          <p class="sidebar-list">
+          <%=  job.name %>
+          <%= link_to '<i class="foundicon-edit icon-small"></i>'.html_safe, "#", :class => "hover-reveal", :data => { "reveal-id" => "#{job.css_name}-modal"} %>
+          <%= link_to '<i class="foundicon-trash icon-small"></i>'.html_safe, job, method: :delete, data: { confirm: 'Are you sure?' }, :class => "hover-reveal" %></p>
     <% end %>
   </ul>
 </div>
