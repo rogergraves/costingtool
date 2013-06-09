@@ -26,7 +26,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Media Costs" do
           table_for(Media.all) do
             column ("Name") { |media| link_to media.name, admin_medium_path(media.id) }
-            column :cost_per_sheet do |media|
+            column "Cost per Sheet (USD)", :cost_per_sheet do |media|
               number_to_currency media.cost_per_sheet
             end
           end
@@ -68,10 +68,10 @@ ActiveAdmin.register_page "Dashboard" do
           table_for(Tier.all) do
             column("Ink Array") { |tier| link_to tier.ink_array.name, admin_click_table_ink_arrays_path(tier.ink_array_id) if tier.ink_array.present? }
             column("Name") { |tier| link_to tier.name, admin_ink_array_tier_path(tier.ink_array_id, tier.id) if tier.ink_array.present? }
-            column :price do |tier|
+            column "Price (USD)", :price do |tier|
               number_to_currency tier.price
             end
-            column "Black", :black_price do |tier|
+            column "Black Price (USD)", :black_price do |tier|
               number_to_currency tier.black_price
             end
           end

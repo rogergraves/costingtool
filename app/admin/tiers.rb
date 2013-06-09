@@ -14,11 +14,11 @@ ActiveAdmin.register Tier do
                                                                                                 tier.id) }
     column :volume_range_start
     column :volume_range_end
-    column :price do |tier|
+    column "Price (USD)", :price do |tier|
       number_to_currency tier.price
     end
     if ink_array.black > 0
-      column "Price: Black", :black_price do |tier|
+      column "Price: Black (USD)", :black_price do |tier|
         number_to_currency tier.black_price
       end
     end
@@ -30,11 +30,11 @@ ActiveAdmin.register Tier do
       row :name, :label => "Tier Level"
       row :volume_range_start
       row :volume_range_end
-      row :price do |tier|
+      row "Price (USD)", :price do |tier|
         number_to_currency tier.price
       end
       if ink_array.black > 0
-        row "Price: Black", :black_price do |tier|
+        row "Price: Black (USD)", :black_price do |tier|
           number_to_currency tier.black_price
         end
       end
@@ -49,9 +49,9 @@ ActiveAdmin.register Tier do
       f.input :name, :label => "Tier Level"
       f.input :volume_range_start, :label => "Volume Range Start", :min => 0, :default => 0
       f.input :volume_range_end, :label => "Volume Range End", :min => 0
-      f.input :price, :min => 0
+      f.input :price, :min => 0, :hint => "enter price in USD"
       if ink_array.black > 0
-        f.input :black_price, :label => "Price: Black"
+        f.input :black_price, :label => "Price: Black", :hint => "enter price in USD"
       end
     end
     f.buttons

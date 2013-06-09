@@ -64,7 +64,7 @@ ActiveAdmin.register PressType, { :sort_order => :id_asc } do
       f.input :name
       f.input :price, :label => "Total Press Price", :hint => 'Total Press Cost in USD'
       f.input :labor, :label => "Labor costs", :hint => 'Monthly Labor in USD'
-      f.input :spi, :label => "SPI", :hint => "SPI in USD"
+      f.input :spi, :label => "SPI", :hint => "Monthly SPI in USD"
       f.input :duty_cycle, :label => "Duty Cycle", :hint => 'max clicks per month'
       f.input :click_table, :as => :select, :collection => ClickTable.all
       if f.object.icon.present?

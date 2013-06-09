@@ -4,7 +4,7 @@ ActiveAdmin.register Media do
 
   index :title => :name do
     column :name
-    column :cost_per_sheet do |media|
+    column "Cost per Sheet (USD)", :cost_per_sheet do |media|
       number_to_currency media.cost_per_sheet
     end
   end
@@ -12,7 +12,7 @@ ActiveAdmin.register Media do
   show :title => :name do
     attributes_table do
       row :name
-      row :cost_per_sheet do |media|
+      row "Cost per Sheet (USD)", :cost_per_sheet do |media|
         number_to_currency media.cost_per_sheet
       end
       strong em { link_to 'View All Media Costs', admin_media_path() }
@@ -22,7 +22,7 @@ ActiveAdmin.register Media do
   form do |f|
     f.inputs "Media" do
         f.input :name, :as => :select, :collection => Job.available_sizes, :include_blank => false
-      f.input :cost_per_sheet, :hint => "cost per sheet = cost per ream / sheets per ream", :min => 0
+      f.input :cost_per_sheet, :label => "Cost per Sheet (USD)", :hint => "cost per sheet = cost per ream / sheets per ream (enter in USD)", :min => 0
     end
     f.buttons
   end
