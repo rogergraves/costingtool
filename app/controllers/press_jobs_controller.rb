@@ -28,7 +28,10 @@ class PressJobsController < InheritedResources::Base
     if user_signed_in?
       respond_to do |format|
         format.js do
-          render :nothing => true, :status => 200 if @press_job.update_attributes(params[:press_job])
+          if @press_job.update_attributes(params[:press_job])
+            PressJob.propogate_changes(current_user)
+            render :nothing => true, :status => 200
+          end
         end
       end
     else

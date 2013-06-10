@@ -14,13 +14,6 @@
       <div class="first-job">
         <%= render :partial => 'layouts/press-cost-summary', :locals => { :job => @jobs.first } %>
       </div>
-      <div class="other-jobs">
-        <% @jobs[1..-1].each do |job| %>
-            <div class="other-jobs-container">
-              <%= render :partial => 'layouts/press-cost-summary', :locals => { :job => job } %>
-            </div>
-        <% end %>
-      </div>
     </div>
     <div class="progress-arrows">
       <div class="previous-page">
