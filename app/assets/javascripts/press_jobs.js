@@ -14,6 +14,10 @@ var can_user_check_this = function(this_is_checked) {
     return true;
 }
 
+if(window.location.href.slice(-1) === "#"){
+    document.location = window.location.href.slice(0,-1)
+}
+
 $("label.press-checkbox").click(function() {
     var this_is_checked = !$($(this).context.children[1]).hasClass("checked");
     return can_user_check_this(this_is_checked);
