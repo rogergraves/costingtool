@@ -13,7 +13,7 @@
       <h3 class="page-title">Select a press</h3>
       <form class="custom press-jobs-table">
         <% @presses.each do |press| %>
-            <label for="checkbox1" class="press-checkbox">
+            <label for="checkbox1" class="press-checkbox" id=<%= press.id %>>
               <input type="checkbox" id="checkbox1" style="display: none;">
               <span class="custom checkbox"></span> <%= press.name %>
             </label>

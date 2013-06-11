@@ -141,12 +141,7 @@ class PressJob < ActiveRecord::Base
   end
 
   def self.get_presses(params, user)
-    presses = params["presses"].split('"')
-    presses.each do |press|
-      if press.length < 2
-        presses.delete(press)
-      end
-    end
+    presses = params["presses"].split(',')
     user.current_step = "third"
     user.presses = presses
     user.save!

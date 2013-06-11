@@ -30,19 +30,19 @@ if($($(".other-jobs-container")[0]).length == 0){
 
 
 $(".next-arrow.press-cost-summary").click(function(){
-    var press_types = $(".custom.press-jobs-table label span.checked")
-    var presses = getPresses(press_types)
+    var press_types = []
+    $(".custom.press-jobs-table label span.checked").each(function() { press_types.push( $(this).parent().attr("id") )})
 
     $.ajax({
         type: "POST",
         url: "/press_jobs/log_presses",
-        data: { presses: JSON.stringify(presses)},
+        data: { presses: JSON.stringify(press_types)},
         success:function() {
             document.location = "/press_jobs"
         },
         error:function(request) {
             console.log("failed request: ", request);
-            alert("fail")
+            alert("There seems to be a problem, please refresh the page and try again")
         }
     });
 })

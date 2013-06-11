@@ -72,16 +72,16 @@ class User < ActiveRecord::Base
   end
 
   def press_types
-    presses = []
-    self.presses.split(",").each do |press|
-      presses.push(press.gsub(/[^0-9a-z ]/i, '').strip)
-    end
     press_ids = []
-    presses.each do |p|
-      assoc_press = PressType.where(:name => p).first
-      press_ids.push(assoc_press)
+    self.presses.split(",").each do |press|
+      press_ids.push(press.gsub(/[^\d]/i, '').strip.to_i)
     end
-    press_ids
+    presses = []
+    press_ids.each do |id|
+      assoc_press = PressType.where(:id => id).first
+      presses.push(assoc_press)
+    end
+    presses
   end
 
   def name
