@@ -69,10 +69,10 @@ ActiveAdmin.register_page "Dashboard" do
             column("Ink Array") { |tier| link_to tier.ink_array.name, admin_click_table_ink_arrays_path(tier.ink_array_id) if tier.ink_array.present? }
             column("Name") { |tier| link_to tier.name, admin_ink_array_tier_path(tier.ink_array_id, tier.id) if tier.ink_array.present? }
             column "Price (USD)", :price do |tier|
-              number_to_currency tier.price
+              number_to_currency tier.price, :precision => 5
             end
             column "Black Price (USD)", :black_price do |tier|
-              number_to_currency tier.black_price
+              number_to_currency tier.black_price, :precision => 5
             end
           end
         end

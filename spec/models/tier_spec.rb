@@ -9,6 +9,26 @@ describe Tier do
     tier.ink_array.should == ink_array
   end
 
+  it "is destroyed when its ink_array dies" do
+    tier = FactoryGirl.create(:tier)
+    ink_array = tier.ink_array
+    ink_array.should be_valid
+
+    ink_array.destroy
+
+    Tier.all.should_not include(tier)
+  end
+
+  it "is destroyed when its click table dies" do
+    tier = FactoryGirl.create(:tier)
+    click_table = tier.ink_array.click_table
+    click_table.should be_valid
+
+    click_table.destroy
+
+    Tier.all.should_not include(tier)
+  end
+
   it "must have a volume_range_start of greater or equal than zero" do
     tier = FactoryGirl.create(:tier)
     tier.volume_range_start = -1
