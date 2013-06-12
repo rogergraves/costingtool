@@ -35,6 +35,16 @@ class PressJob < ActiveRecord::Base
     calculated_cost_per_copy / number_of_jobs
   end
 
+  # Reports graph output ---------------------------------------------------------------------------------------
+
+  def dashboard_graph_costs
+    [[1, 1450487], [2, 1537516], [3, 1629767], [4, 1727553], [5, 1831206], [6, 1941078], [7, 2057543]].to_s
+  end
+
+  def dashboard_graph_revenue
+    [[1, 685946], [2, 816276], [3, 971369], [4, 1155929], [5, 1375556], [6, 1636911], [7, 1941078]].to_s
+  end
+
   # Calcs Support Methods --------------------------------------------------------------------------------------
 
   def click_price

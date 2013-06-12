@@ -76,11 +76,11 @@ $(document).ready(function() {
 
             series: [{
                 name: 'Costs',
-                data: cost_array(),
+                data: cost_array(), // PUT press_job.dashboard_graph_costs here
                 color: '#BF5E7B'
             }, {
                 name: 'Revenue',
-                data: revenue_array(),
+                data: revenue_array(), // PUT press_job.dashboard_graph_revenue here
                 color: '#2F7ED8'
             }]
         });
