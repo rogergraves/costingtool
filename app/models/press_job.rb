@@ -194,7 +194,7 @@ class PressJob < ActiveRecord::Base
     press_jobs.flatten
   end
 
-  def self.propogate_changes(user)
+  def self.propagate_changes(user)
     press_jobs = self.get_press_jobs(user)
     Rails.logger.info("press_jobs: #{press_jobs}")
     first_job = user.jobs.first
@@ -209,17 +209,13 @@ class PressJob < ActiveRecord::Base
         newest_press_job.update_attributes(
             :press_price => first_jobs_newest_press_job.press_price,
             :labor_cost => first_jobs_newest_press_job.labor_cost,
-            #:cost_per_sheet => first_jobs_newest_press_job.cost_per_sheet,
             :spi_cost => first_jobs_newest_press_job.spi_cost
-            #:click_price => first_jobs_newest_press_job.click_price
         )
         oldest_press_job = self.oldest(job.press_jobs)
         oldest_press_job.update_attributes(
             :press_price => first_jobs_oldest_press_job.press_price,
             :labor_cost => first_jobs_oldest_press_job.labor_cost,
-            #:cost_per_sheet => first_jobs_oldest_press_job.cost_per_sheet,
             :spi_cost => first_jobs_oldest_press_job.spi_cost
-            #:click_price => first_jobs_oldest_press_job.click_price
         )
       end
     end

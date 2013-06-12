@@ -21,6 +21,8 @@
             </div>
             <% end %>
       </div>
+      <div class="constant-values">
+        <%= render :partial => 'layouts/press-cost-summary-constants', :locals => { :job => @jobs.first } %>
     </div>
     <div class="progress-arrows">
       <div class="previous-page">

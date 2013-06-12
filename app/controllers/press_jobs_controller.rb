@@ -29,7 +29,7 @@ class PressJobsController < InheritedResources::Base
       respond_to do |format|
         format.js do
           if @press_job.update_attributes(params[:press_job])
-            PressJob.propogate_changes(current_user)
+            PressJob.propagate_changes(current_user)
             render :nothing => true, :status => 200
           end
         end
