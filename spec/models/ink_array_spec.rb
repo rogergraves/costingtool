@@ -9,6 +9,10 @@ describe InkArray do
     ink_array.click_table.should == click_table
   end
 
+  it "dies when its parent click table is destroyed" do
+
+  end
+
   it "can have many tiers" do
     ink_array = FactoryGirl.create(:ink_array)
     FactoryGirl.create(:tier, :ink_array => ink_array)
