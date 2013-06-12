@@ -1,4 +1,9 @@
 <div class="press-cost-summary-container">
+  <div class="press-cost-summary-navigation" >
+    <%= link_to '<i class="foundicon-left-arrow icon-tiny next-arrow press-cost-summary-carousel"></i>'.html_safe, "#" %>
+    <h3 class="subheader inline-header"><%= job.name %></h3>
+    <%= link_to '<i class="foundicon-right-arrow icon-tiny next-arrow press-cost-summary-carousel"></i>'.html_safe, "#" %>
+  </div>
   <div class="left-press">
     <%= image_tag("#{PressJob.newest(job.press_jobs).press_type.icon.url(:small) if PressJob.newest(job.press_jobs).press_type.icon.present?}") %>
     <h4 class="subheader"><%= PressJob.newest(job.press_jobs).press_type.name %> </h4>
