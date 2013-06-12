@@ -15,11 +15,11 @@ ActiveAdmin.register Tier do
     column :volume_range_start
     column :volume_range_end
     column "Price (USD)", :price do |tier|
-      number_to_currency tier.price
+      number_to_currency tier.price, :precision => 5
     end
     if ink_array.black > 0
       column "Price: Black (USD)", :black_price do |tier|
-        number_to_currency tier.black_price
+        number_to_currency tier.black_price, :precision => 5
       end
     end
   end
@@ -31,11 +31,11 @@ ActiveAdmin.register Tier do
       row :volume_range_start
       row :volume_range_end
       row "Price (USD)", :price do |tier|
-        number_to_currency tier.price
+        number_to_currency tier.price, :precision => 5
       end
       if ink_array.black > 0
         row "Price: Black (USD)", :black_price do |tier|
-          number_to_currency tier.black_price
+          number_to_currency tier.black_price, :precision => 5
         end
       end
       strong em { link_to "Back to View All (#{ink_array.name})", admin_click_table_ink_array_path(ink_array.click_table_id, ink_array.id) }
