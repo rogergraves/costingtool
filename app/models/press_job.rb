@@ -180,8 +180,8 @@ class PressJob < ActiveRecord::Base
         new_press_job.media_cost  = new_press_job.calculated_media_cost
         new_press_job.clicks_cost  = new_press_job.calculated_clicks_cost
         new_press_job.spi_cost  = new_press_job.calculated_spi_cost
-        new_press_job.labor_cost = 0
-        new_press_job.press_price = press.price
+        new_press_job.labor_cost = (press.labor || 0.0)
+        new_press_job.press_price = (press.price || 0.0)
         new_press_job.save!
       end
     end
