@@ -1,5 +1,5 @@
 class PressJob < ActiveRecord::Base
-  attr_accessible :job_id, :press_type_id, :press_cost, :media_cost, :labor_cost, :spi_cost, :clicks_cost, :press_type, :cost_per_sheet, :click_price, :press_price
+  attr_accessible :job_id, :press_type_id, :media_cost, :labor_cost, :spi_cost, :clicks_cost, :press_type, :cost_per_sheet, :click_price, :press_price
   belongs_to :job
   belongs_to :press_type
 
@@ -46,6 +46,22 @@ class PressJob < ActiveRecord::Base
   end
 
   # Calcs Support Methods --------------------------------------------------------------------------------------
+
+  def aggregated_job_monthly_cost
+    @aggregated_job_monthly_cost ||= (calculated_total_cost - press_cost - self[:spi_cost])
+  end
+
+  def press_cost
+    @press_cost ||= self[:press_price]/60
+  end
+
+  def spi_investment
+    @spi_investment ||= self[:spi_cost] * 7 * 12
+  end
+
+  def annual_growth
+    @annual_growth ||= self.job.annual_growth
+  end
 
   def click_price
     self[:click_price] || ((black_tier_price * black) + (color_tier_price * multicolor_clicks))
@@ -166,7 +182,6 @@ class PressJob < ActiveRecord::Base
         new_press_job.spi_cost  = new_press_job.calculated_spi_cost
         new_press_job.labor_cost = 0
         new_press_job.press_price = press.price
-        new_press_job.press_cost = press.price.to_f/60
         new_press_job.save!
       end
     end

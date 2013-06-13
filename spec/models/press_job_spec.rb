@@ -314,6 +314,35 @@ describe PressJob do
       it "#calculated_cost_per_job" do
         press_job.calculated_cost_per_job.should == (press_job.calculated_cost_per_copy / press_job.number_of_jobs)
       end
+
+      context "dashboard graph data" do
+        it "#press_cost" do
+          press_job.press_cost.should == press_job.press_price/60
+        end
+
+        it "#spi_investment" do
+          press_job.spi_investment.should == press_job.spi_cost * 7 * 12
+        end
+
+        it "#aggregated_job_monthly_cost" do
+          press_job.aggregated_job_monthly_cost.should == (press_job.calculated_total_cost - press_job.press_cost - press_job.spi_cost)
+        end
+
+        it "#annual_growth" do
+          press_job.annual_growth.should == press_job.job.annual_growth
+        end
+
+        it "#dashboard_graph_costs" do
+          data = []
+          last_year_aggregated_job_monthly_cost = press_job.aggregated_job_monthly_cost
+          (1..7).each do |year|
+            last_year_aggregated_job_monthly_cost = last_year_aggregated_job_monthly_cost + (last_year_aggregated_job_monthly_cost * press_job.annual_growth / 100)
+            data << [year, last_year_aggregated_job_monthly_cost.to_i]
+          end
+
+          data.to_s.should == press_job.dashboard_graph_costs
+        end
+      end
     end
 
   end
