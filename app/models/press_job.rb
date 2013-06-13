@@ -38,14 +38,40 @@ class PressJob < ActiveRecord::Base
   # Reports graph output ---------------------------------------------------------------------------------------
 
   def dashboard_graph_costs
-    [[1, 1450487], [2, 1537516], [3, 1629767], [4, 1727553], [5, 1831206], [6, 1941078], [7, 2057543]].to_s
+    graph_data = []
+    last_year_aggregated_job_monthly_cost = aggregated_job_monthly_cost
+    (1..7).each do |year|
+      last_year_aggregated_job_monthly_cost = last_year_aggregated_job_monthly_cost + (last_year_aggregated_job_monthly_cost * annual_growth / 100) if year > 1
+      graph_data << [year, last_year_aggregated_job_monthly_cost.to_i]
+    end
+
+    return graph_data.to_s
   end
 
   def dashboard_graph_revenue
-    [[1, 685946], [2, 816276], [3, 971369], [4, 1155929], [5, 1375556], [6, 1636911], [7, 1941078]].to_s
+    graph_data = []
+    last_year_revenue = annual_revenue
+    (1..7).each do |year|
+      last_year_revenue = last_year_revenue + (last_year_revenue * annual_growth / 100) if year > 1
+      graph_data << [year, last_year_revenue]
+    end
+
+    return graph_data.to_s
   end
 
   # Calcs Support Methods --------------------------------------------------------------------------------------
+
+  def annual_revenue
+    @annual_revenue ||= monthly_revenue * 12
+  end
+
+  def monthly_revenue
+    @monthly_revenue ||= number_of_jobs * sale_price
+  end
+
+  def sale_price
+    @sale_price ||= self.job.sale_price
+  end
 
   def aggregated_job_monthly_cost
     @aggregated_job_monthly_cost ||= (calculated_total_cost - press_cost - self[:spi_cost])
@@ -180,8 +206,8 @@ class PressJob < ActiveRecord::Base
         new_press_job.media_cost  = new_press_job.calculated_media_cost
         new_press_job.clicks_cost  = new_press_job.calculated_clicks_cost
         new_press_job.spi_cost  = new_press_job.calculated_spi_cost
-        new_press_job.labor_cost = 0
-        new_press_job.press_price = press.price
+        new_press_job.labor_cost = (press.labor || 0.0)
+        new_press_job.press_price = (press.price || 0.0)
         new_press_job.save!
       end
     end
