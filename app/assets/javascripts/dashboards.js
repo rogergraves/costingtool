@@ -86,3 +86,5 @@ $(document).ready(function() {
         });
     }
 });
+
+//PressJob.newest(job.press_jobs).dashboard_graph_costs, // PUT press_job.dashboard_graph_costs here

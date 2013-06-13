@@ -6,6 +6,7 @@ class DashboardsController < ApplicationController
       @press_types =  PressType.all || []
       @jobs = current_user.jobs || []
       @presses = current_user.press_types
+      @press_jobs = PressJob.get_press_jobs(current_user)
     end
 
   end
