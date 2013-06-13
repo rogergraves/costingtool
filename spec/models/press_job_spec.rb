@@ -336,11 +336,34 @@ describe PressJob do
           data = []
           last_year_aggregated_job_monthly_cost = press_job.aggregated_job_monthly_cost
           (1..7).each do |year|
-            last_year_aggregated_job_monthly_cost = last_year_aggregated_job_monthly_cost + (last_year_aggregated_job_monthly_cost * press_job.annual_growth / 100)
+            last_year_aggregated_job_monthly_cost = last_year_aggregated_job_monthly_cost + (last_year_aggregated_job_monthly_cost * press_job.annual_growth / 100) if year > 1
             data << [year, last_year_aggregated_job_monthly_cost.to_i]
           end
 
           data.to_s.should == press_job.dashboard_graph_costs
+        end
+
+        it "#sale_price" do
+          press_job.sale_price.should == press_job.job.sale_price
+        end
+
+        it "#monthly_revenue" do
+          press_job.monthly_revenue.should == press_job.number_of_jobs * press_job.sale_price
+        end
+
+        it "#annual_revenue" do
+          press_job.annual_revenue.should == press_job.monthly_revenue * 12
+        end
+
+        it "#dashboard_graph_revenue" do
+          data = []
+          last_year_revenue = press_job.annual_revenue
+          (1..7).each do |year|
+            last_year_revenue = last_year_revenue + (last_year_revenue * press_job.annual_growth / 100) if year > 1
+            data << [year, last_year_revenue.to_i]
+          end
+
+          data.to_s.should == press_job.dashboard_graph_revenue
         end
       end
     end
