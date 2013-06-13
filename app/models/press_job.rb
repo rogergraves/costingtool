@@ -38,7 +38,14 @@ class PressJob < ActiveRecord::Base
   # Reports graph output ---------------------------------------------------------------------------------------
 
   def dashboard_graph_costs
-    [[1, 1450487], [2, 1537516], [3, 1629767], [4, 1727553], [5, 1831206], [6, 1941078], [7, 2057543]].to_s
+    graph_data = []
+    last_year_aggregated_job_monthly_cost = aggregated_job_monthly_cost
+    (1..7).each do |year|
+      last_year_aggregated_job_monthly_cost = last_year_aggregated_job_monthly_cost + (last_year_aggregated_job_monthly_cost * annual_growth / 100)
+      graph_data << [year, last_year_aggregated_job_monthly_cost.to_i]
+    end
+
+    return graph_data.to_s
   end
 
   def dashboard_graph_revenue
