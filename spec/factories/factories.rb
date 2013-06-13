@@ -46,7 +46,7 @@ FactoryGirl.define do
   factory :press_job do
     job
     press_type
-    press_cost 3.00
+    press_price 1000000
     media_cost 2.99
     labor_cost 300.00
     spi_cost 1000.00
