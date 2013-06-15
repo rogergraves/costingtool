@@ -192,6 +192,30 @@ class PressJob < ActiveRecord::Base
     end
   end
 
+  def self.get_ids(press_jobs)
+    ids = []
+    press_jobs.each {|press_job| ids << press_job.id}
+    ids
+  end
+
+  def self.get_dashboard_costs(press_jobs)
+    costs = {}
+    press_jobs.each do |press_job|
+      press_job_tag = "#{press_job.id}"
+      costs[press_job_tag] = press_job.dashboard_graph_costs
+    end
+    costs
+  end
+
+  def self.get_dashboard_revenue(press_jobs)
+    revenue = {}
+    press_jobs.each do |press_job|
+      press_job_tag = "#{press_job.id}"
+      revenue[press_job_tag] = press_job.dashboard_graph_revenue
+    end
+    revenue
+  end
+
   def self.get_presses(params, user)
     presses = params["presses"].split(',')
     user.current_step = "third"

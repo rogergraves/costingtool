@@ -7,18 +7,18 @@
   <div class="left-press">
     <%= image_tag("#{PressJob.newest(job.press_jobs).press_type.icon.url(:small) if PressJob.newest(job.press_jobs).press_type.icon.present?}") %>
     <h4 class="subheader"><%= PressJob.newest(job.press_jobs).press_type.name %> </h4>
-    <div id="chart_<%= @graph_counter %>" style="width: 350px; height: 200px;"></div>
+    <div id="chart_<%= PressJob.newest(job.press_jobs).id %>" style="width: 350px; height: 200px;"></div>
   </div>
-  <% @graph_counter += 1 %>
   <% if PressJob.newest(job.press_jobs) != PressJob.oldest(job.press_jobs) %>
       <div class="right-press">
         <%= image_tag("#{PressJob.oldest(job.press_jobs).press_type.icon.url(:small) if PressJob.oldest(job.press_jobs).press_type.icon.present?}") %>
         <h4 class="subheader"><%= PressJob.oldest(job.press_jobs).press_type.name %> </h4>
-        <div id="chart_<%= @graph_counter %>" style="width: 350px; height: 200px;"></div>
+        <div id="chart_<%= PressJob.oldest(job.press_jobs).id %>" style="width: 350px; height: 200px;"></div>
       </div>
-    <% @graph_counter += 1 %>
 <% end %>
 </div>
 <script language="javascript">
-  window.total_graphs = <%= @graph_counter-1 %>;
+  window.press_job_ids = <%= @press_job_ids %>;
+  window.costs = <%=raw @dashboard_costs.to_json %>;
+  window.revenue = <%=raw @dashboard_revenue.to_json %>;
 </script>

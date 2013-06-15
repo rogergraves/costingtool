@@ -5,38 +5,21 @@
 
 $(document).ready(function() {
 
-    var cost_array = function() {
-        var starting_value = 1000000 + Math.floor(Math.random()*500000);
-        var increase_by = 3+Math.floor(Math.random()*5);
-        var last_value = starting_value;
-        var costs = [];
+    var press_job_ids = window.press_job_ids
+    var press_job_count = window.press_job_ids.length
 
-        for(var i = 0; i < 7; ++i) {
-            var this_value = last_value + last_value * increase_by / 100;
-            costs.push([i+1, this_value]);
-            last_value = this_value;
-        }
-
-        return costs;
+    var cost_array = function(chart_id) {
+        return window.costs[chart_id].toString();
     };
 
-    var revenue_array = function() {
-        var starting_value = 500000 + Math.floor(Math.random()*200000);
-        var increase_by = 10+Math.floor(Math.random()*20);
-        var last_value = starting_value;
-        var costs = [];
-
-        for(var i = 0; i < 7; ++i) {
-            var this_value = last_value + last_value * increase_by / 100;
-            costs.push([i+1, this_value]);
-            last_value = this_value;
-        }
-
-        return costs;
+    var revenue_array = function(chart_id) {
+        return window.revenue[chart_id].toString();
     };
 
-    for(var i = 0; i < window.total_graphs; ++i) {
-        $('#chart_'+(i+1)).highcharts({
+    for(var i = 0; i < press_job_count; ++i) {
+        var chart_id = press_job_ids[i]
+        var current_chart = $('#chart_'+ chart_id);
+        current_chart.highcharts({
             chart: {
                 type: 'spline'
             },
@@ -76,15 +59,14 @@ $(document).ready(function() {
 
             series: [{
                 name: 'Costs',
-                data: cost_array(), // PUT press_job.dashboard_graph_costs here
+                data: JSON.parse(cost_array(chart_id)),
                 color: '#BF5E7B'
             }, {
                 name: 'Revenue',
-                data: revenue_array(), // PUT press_job.dashboard_graph_revenue here
+                data: JSON.parse(revenue_array(chart_id )),
                 color: '#2F7ED8'
             }]
         });
     }
 });
 
-//PressJob.newest(job.press_jobs).dashboard_graph_costs, // PUT press_job.dashboard_graph_costs here

@@ -7,6 +7,9 @@ class DashboardsController < ApplicationController
       @jobs = current_user.jobs || []
       @presses = current_user.press_types
       @press_jobs = PressJob.get_press_jobs(current_user)
+      @press_job_ids = PressJob.get_ids(@press_jobs)
+      @dashboard_costs = PressJob.get_dashboard_costs(@press_jobs)
+      @dashboard_revenue = PressJob.get_dashboard_revenue(@press_jobs)
     end
 
   end
