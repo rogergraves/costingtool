@@ -101,7 +101,7 @@ $main-blue: #1082CC;
 
 .nav-wrapper {
   background: transparent;
-  width: 85%;
+  width: 60%;
   height: 50%;
   margin:5% auto;
 }
@@ -111,18 +111,6 @@ $main-blue: #1082CC;
   height: 650px;
   border-color: #e5e5e5 #dbdbdb transparent #d2d2d2;
   box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
-}
-
-.sidebar{
-  width: 25%;
-  background-color: #f1f3f5;
-  height: 90%;
-  padding: 15px;
-  float: left;
-}
-
-.sidebar-list{
-  margin-bottom: 0px;
 }
 
 .hover-reveal {
@@ -187,7 +175,7 @@ h5.brand {
   color: #999;
   display: inline-block;
   padding: 10px;
-  width: 15%;
+  width: 16%;
   background-color: #ccc;
   height: 100%;
   font-size: 75%;
