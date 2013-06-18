@@ -1,4 +1,4 @@
-<div class="edit-job-wrapper"">
+<div class="edit-job-wrapper">
   <%= form_for(single_job, :html => { :class => "custom edit-form" }) do |f| %>
       <div class="inline-errors"></div>
       <% if single_job.errors.any? %>
@@ -37,8 +37,7 @@
         <%= f.label :multicolor_clicks %>
       </div>
 
-      <label for="checkbox1" class="black-checkbox"><input type="checkbox" id="black-checkbox" name="job[black]" style="display: none;"><span class="custom checkbox"></span> Black</label>
-
+      <%= f.check_box :black %> Black
 
       <div class="field inline-field number_of_pages_edit_job">
         <%= f.text_field :number_of_pages, :id => "number_of_pages_edit_job_#{single_job.id}", :required => true %>

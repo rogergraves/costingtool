@@ -14,8 +14,8 @@
         <% @jobs.each do |job| %>
             <tr>
               <td width="20" style="white-space: nowrap"><%= job.job_percentage %> %</td>
-              <td width="250"><%= link_to "#{job.name}", "#", :data => { "reveal-id" => "#{job.css_name}-modal" } %></td>
-              <td width="40"><%= link_to 'Edit', "#", :data => { "reveal-id" => "#{job.css_name}-modal" } %></td>
+              <td width="250"><%= link_to "#{job.name}", "#", :data => { "reveal-id" => "#{job.id}-modal" } %></td>
+              <td width="40"><%= link_to 'Edit', "#", :data => { "reveal-id" => "#{job.id}-modal" } %></td>
               <td width="40"><%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
         <% end %>
@@ -33,3 +33,9 @@
 </div>
 
 
+<% @jobs.each do |job| %>
+    <%= content_tag :div, :id => "#{job.id}-modal",  :class => "reveal-modal tiny" do -%>
+        <%= render :partial => "jobs/edit-modal", :locals => { :single_job => job } %>
+        <a class="close-reveal-modal">&#215;</a>
+    <% end -%>
+<% end %>

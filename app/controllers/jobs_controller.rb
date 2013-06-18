@@ -46,7 +46,6 @@ class JobsController < InheritedResources::Base
       redirect_to new_user_session_path
     else
       @job = Job.new
-      Rails.logger.info("jobs: #{current_user.jobs}")
       @jobs = current_user.jobs || []
     end
   end

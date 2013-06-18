@@ -9,7 +9,7 @@ class Job < ActiveRecord::Base
   belongs_to :user
   has_many :press_jobs, :dependent => :destroy
 
-  before_save :translate_form_inputs
+  after_save :translate_form_inputs
 
   serialize :data, ActiveRecord::Coders::Hstore
   hstore :data, :accessors => {
@@ -28,7 +28,15 @@ class Job < ActiveRecord::Base
   validates_numericality_of :number_of_jobs, :copies_per_job, :multicolor_clicks, :number_of_pages, :sale_price, :annual_growth, :job_percentage
 
   def translate_form_inputs
-    self.black ? self.black = 1 : self.black = 0
+    if self.data["black"] == "off" || self.data["black"] == nil
+      self.data["black"] = 0
+      self.save
+    elsif data["black"] == "on"
+      self.data["black"] = 1
+      self.save
+    else
+    end
+
     self.data["plex"] == "Duplex" ? self.plex = 2 : self.plex = 1
   end
 
