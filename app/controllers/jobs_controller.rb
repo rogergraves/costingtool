@@ -53,6 +53,8 @@ class JobsController < InheritedResources::Base
   def empty_basket
     if user_signed_in?
       current_user.jobs.each {|job| job.destroy }
+      current_user.presses = nil if current_user.presses
+      current_user.save
     end
     redirect_to jobs_path
   end
