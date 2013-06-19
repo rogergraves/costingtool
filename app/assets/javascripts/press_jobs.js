@@ -5,8 +5,10 @@ var can_user_check_this = function(this_is_checked) {
 
     if(total_checked > 2) {
         return false; // Too many selected, so don't allow it to be checked
-    } else if(total_checked > 0) {
-        $(".next-page").fadeIn();
+    } else if(total_checked > 0 ) {
+        if($(".next-page.presses-exist").css('display') == "none"){
+            $(".next-page.press-selection").fadeIn();
+        }
     } else {
         $(".next-page").fadeOut();
     }

@@ -23,8 +23,8 @@
       </div>
     </div>
     <div class="progress-arrows">
-      <% if PressJob.has_press_jobs(@jobs) %>
-          <div class="next-page">
+      <% if current_user.presses %>
+          <div class="next-page presses-exist">
             <%= link_to '<i class="foundicon-right-arrow icon-medium next-arrow press-cost-summary"></i>'.html_safe, "#" %>
             <p class="next-text"> Continue </p>
           </div>
