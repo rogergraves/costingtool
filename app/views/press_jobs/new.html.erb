@@ -42,3 +42,8 @@
   </div>
 </div>
 
+
+<script language="javascript">
+    window.presses = <%=raw current_user.presses.to_json %>;
+    window.presses = window.presses.match(/\d+/g)
+</script>

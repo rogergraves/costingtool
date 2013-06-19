@@ -105,6 +105,10 @@ function cancelNewJob() {
     $(".jobs-area").show();
 }
 
+function checkBox(element) {
+    element.addClass("checked");
+}
+
 $(document).ready(function() {
     $('form').each(function() {
         var id = this.id
@@ -127,3 +131,12 @@ $(document).ready(function() {
         });
     });
 });
+
+window.onload = function () {
+    for( i = 0; i< window.presses.length; i++) {
+        console.log("this: ", $("label#" + window.presses[i]));
+        var selected = $("label#" + window.presses[i]);
+        console.log("selected.children()", selected.children("span"));
+        checkBox(selected.children("span"));
+    }
+}
