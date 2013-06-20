@@ -8,19 +8,21 @@
         <%= render 'layouts/steps' %>
       </div>
       <h3 class="page-title">Select a press</h3>
-      <div class="press-selection-form-container">
-          <form class="custom press-jobs-table">
-            <% @presses.each do |press| %>
-                <%= image_tag("#{press.icon.url(:small) if press.icon.present?}", :class => "press-selection-icon") %>
-                <label for="checkbox1" class="press-checkbox" id=<%= press.id %>>
-                  <input type="checkbox" id="checkbox1" style="display: none;">
-                  <%= press.name %> <span class="custom checkbox large-check"></span>
-                </label>
-                <br />
-            <% end %>
-          </form>
-          <br />
-      </div>
+      <form class="custom press-jobs-table">
+
+		<table class="icon-select-press">
+		  <% @presses.each do |press| %>
+				  <td style="font-size: small; text-align: center;" onclick="this.class='selected-step'"><%= image_tag ("#{press.icon.url(:medium)}") %>
+					<br>
+				  <%= press.name %>
+				  </td>
+			  <!--<input type="image" id="select-me-icon">-->
+			  <!--<span class="completion-steps"></span>-->
+			<!--</label>-->
+		<% end %>
+		</table>
+      </form>
+      <br />
     </div>
     <div class="progress-arrows">
       <% if current_user.presses %>
@@ -40,7 +42,7 @@
       </div>
     </div>
   </div>
-</div>
+<!--</div>-->
 
 
 <script language="javascript">

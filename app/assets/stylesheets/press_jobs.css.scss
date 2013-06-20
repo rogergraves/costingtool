@@ -6,11 +6,12 @@
 }
 
 .press-jobs-table {
-  margin: 0 auto;
-  width: 70%;
+  margin: auto;
+  float: center;
+  width: 95%;
   font-size: 20px;
   margin-bottom: 5px;
-  margin-left: 30%;
+  display: inline-block;
 }
 
 .next-page.press-selection {
@@ -19,7 +20,6 @@
 
 .press-checkbox {
   margin-bottom: 10px;
-  display: inline;
 }
 
 .press-cost-summary-container {
@@ -115,27 +115,4 @@ input.press-job-values:focus  {
   border-style: solid;
   font-family: "Consolas", "Menlo", "Courier", monospace;
   border-width: 1px;
-}
-
-.press-selection-icon {
- display: inline;
-  margin-bottom: 10px;
-}
-
-.large-check {
-  width: 26px !important;
-  height: 26px !important;
-}
-
-.large-check.checked:before {
-  content: "\2A2F";
-  color: #222222;
-  margin-top: -3px !important;
-  margin-left: 8px !important;
-}
-
-.press-selection-form-container {
-  width: 90%;
-  margin: 20px auto;
-
 }
