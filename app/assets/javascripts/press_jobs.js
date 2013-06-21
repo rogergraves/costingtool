@@ -8,10 +8,10 @@ function checkBox(element) {
 }
 
 function continueButtonShowing(){
-    if(($(".next-page.presses-exist").css('display') == "none" || $(".next-page.presses-exist").length == 0) || $(".next-page.press-selection").css('display') == "none"){
-        return false;
-    } else {
+    if($(".next-page.press-selection").css('display') != "none"){
         return true;
+    } else {
+        return false;
     }
 }
 
@@ -135,5 +135,8 @@ window.onload = function () {
     for( i = 0; i< window.presses.length; i++) {
         var selected = $("#" + window.presses[i]);
         checkBox(selected);
+    }
+    if(window.presses){
+        $(".next-page.press-selection").fadeIn();
     }
 }
