@@ -1,29 +1,35 @@
-var can_user_check_this = function(this_is_checked) {
-    var total_checked = $('.custom.checkbox.checked').length;
-
-    this_is_checked ? total_checked++ : total_checked--; // Adjust for length being delayed (this listener code is run before box is actually checked)
-
-    if(total_checked > 2) {
-        return false; // Too many selected, so don't allow it to be checked
-    } else if(total_checked > 0 ) {
-        if($(".next-page.presses-exist").length < 1 || $(".next-page.presses-exist").css('display') == "none"){
-            $(".next-page.press-selection").fadeIn();
-        }
-    } else {
-        $(".next-page").fadeOut();
-    }
-
-    return true;
-}
-
 if(window.location.href.slice(-1) === "#"){
     document.location = window.location.href.slice(0,-1)
 }
 
-$("label.press-checkbox").click(function() {
-    var this_is_checked = !$($(this).context.children[1]).hasClass("checked");
-    return can_user_check_this(this_is_checked);
+// Press selection display logic
+function checkBox(element) {
+    element.addClass("selected-press");
+}
+
+function continueButtonShowing(){
+    if($(".next-page.presses-exist").css('display') == "none" || $(".next-page.presses-exist").length == 0 || $(".next-page.presses-selection").css('display') == "none"){
+        return false;
+    } else {
+        return true;
+    }
+}
+
+$(".press-checkbox").click(function() {
+    if($(".press-checkbox.selected-press").length < 2 && !$(this).hasClass("selected-press")){
+        $(this).addClass("selected-press");
+        if(!continueButtonShowing()){
+            $(".next-page.press-selection").fadeIn();
+        }
+    } else if($(this).hasClass("selected-press")){
+        $(this).removeClass("selected-press")
+        if(continueButtonShowing() && $(".press-checkbox.selected-press").length == 0) {
+            $(".next-page").fadeOut();
+        }
+    }
 });
+
+// END - Press selection display logic
 
 if($($(".other-jobs-container")[0]).length == 0){
     $(".foundicon-right-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").hide();
@@ -33,7 +39,7 @@ if($($(".other-jobs-container")[0]).length == 0){
 
 $(".next-arrow.press-cost-summary").click(function(){
     var press_types = []
-    $(".custom.press-jobs-table label span.checked").each(function() { press_types.push( $(this).parent().attr("id") )})
+    $(".press-checkbox.selected-press").each(function() { press_types.push( $(this).attr("id") )})
 
     $.ajax({
         type: "POST",
@@ -124,3 +130,10 @@ function removeRightArrow(slide) {
 }
 
 // END - Carousel arrow display logic
+
+window.onload = function () {
+    for( i = 0; i< window.presses.length; i++) {
+        var selected = $("#" + window.presses[i]);
+        checkBox(selected);
+    }
+}

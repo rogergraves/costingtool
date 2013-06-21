@@ -12,7 +12,7 @@
 
 		<table class="icon-select-press">
 		  <% @presses.each do |press| %>
-				  <td style="font-size: small; text-align: center;" onclick="this.class='selected-step'"><%= image_tag ("#{press.icon.url(:medium)}") %>
+				  <td class="press-checkbox" id=<%= press.id %>> <%= image_tag ("#{press.icon.url(:medium)}") %>
 					<br>
 				  <%= press.name %>
 				  </td>

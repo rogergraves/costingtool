@@ -116,3 +116,13 @@ input.press-job-values:focus  {
   font-family: "Consolas", "Menlo", "Courier", monospace;
   border-width: 1px;
 }
+
+.press-checkbox {
+  font-size: small;
+  text-align: center;
+}
+
+.selected-press {
+  border: 2px solid #9dcde9;
+  border-radius: 5px;
+}
