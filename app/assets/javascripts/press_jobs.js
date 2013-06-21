@@ -8,7 +8,7 @@ function checkBox(element) {
 }
 
 function continueButtonShowing(){
-    if($(".next-page.presses-exist").css('display') == "none" || $(".next-page.presses-exist").length == 0 || $(".next-page.presses-selection").css('display') == "none"){
+    if(($(".next-page.presses-exist").css('display') == "none" || $(".next-page.presses-exist").length == 0) || $(".next-page.press-selection").css('display') == "none"){
         return false;
     } else {
         return true;
@@ -23,7 +23,7 @@ $(".press-checkbox").click(function() {
         }
     } else if($(this).hasClass("selected-press")){
         $(this).removeClass("selected-press")
-        if(continueButtonShowing() && $(".press-checkbox.selected-press").length == 0) {
+        if($(".press-checkbox.selected-press").length == 0) {
             $(".next-page").fadeOut();
         }
     }
