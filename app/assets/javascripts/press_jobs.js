@@ -64,8 +64,31 @@ function getPresses(pressList){
 }
 
 $("input.press-job-values").change(function(){
+    $("input.press-job-values").trigger('focusin');
     $(this).parents("form").submit();
-})
+    $("input.press-job-values").trigger('focusout');
+});
+
+$("input.press-job-values").focusout(function(){
+    var n = this.value;
+
+    if(n) {
+        var fixed = 0;
+        if($(this).hasClass('two-decimal')) fixed = 2;
+        if($(this).hasClass('five-decimal')) fixed = 5;
+
+        this.value = (parseFloat(n.currencyToFloat())).formatToCurrency('USD', fixed);
+    }
+});
+
+$("input.press-job-values").focusin(function() {
+    if(this.value) this.value = (this.value).currencyToFloat();
+});
+
+// Format everything nicely on load
+if($("input.press-job-values") && $("input.press-job-values").length > 0) {
+    $("input.press-job-values").trigger('focusout');
+}
 
 // Carousel arrow display logic
 $(".foundicon-right-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").click(function(){

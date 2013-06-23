@@ -100,6 +100,25 @@ Number.prototype.formatWithCommas = function(sep) {
     return n.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, sep || ',');
 }
 
+Number.prototype.formatToCurrency = function(cur, fixed) {
+    var n = this;
+
+    if(!cur) cur = 'USD';
+    if(!fixed) fixed = 2;
+
+    if(cur == 'USD') {
+        var sep = ',';
+
+        var parts = n.toString().split(".");
+        return '$'+parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
+    }
+}
+
+String.prototype.currencyToFloat = function() {
+    var n = this;
+    return (n.replace(/[^\d\.-]/g,''));
+}
+
 function cancelNewJob() {
     $(".new-job").hide();
     $(".jobs-area").show();

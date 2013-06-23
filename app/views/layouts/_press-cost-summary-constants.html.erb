@@ -4,15 +4,15 @@
         <table class="press-job-values-table">
           <tr>
             <td width="200"><p style="font-size: small;">Press Price</p></td>
-            <td width="100"><%= f.text_field :press_price, :class => "press-job-values", :id => "update_press_price_#{PressJob.newest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.newest(job.press_jobs).press_price, 0)}" %></td>
+            <td width="100"><%= f.text_field :press_price, :class => "press-job-values zero-decimal", :id => "update_press_price_#{PressJob.newest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.newest(job.press_jobs).press_price, 0)}" %></td>
           </tr>
           <tr>
             <td width="200"><p style="font-size: small;">Monthly Labor Cost</p></td>
-            <td width="100"><%= f.text_field :labor_cost, :class => "press-job-values", :id => "update_labor_cost_#{PressJob.newest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.newest(job.press_jobs).labor_cost, 0)}" %></td>
+            <td width="100"><%= f.text_field :labor_cost, :class => "press-job-values zero-decimal", :id => "update_labor_cost_#{PressJob.newest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.newest(job.press_jobs).labor_cost, 0)}" %></td>
           </tr>
           <tr>
             <td width="200"><p style="font-size: small;">Monthly SPI</p></td>
-            <td width="100"><%= f.text_field :spi_cost, :class => "press-job-values", :id => "update_spi_cost_#{PressJob.newest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.newest(job.press_jobs).calculated_spi_cost, 2)}" %></td>
+            <td width="100"><%= f.text_field :spi_cost, :class => "press-job-values zero-decimal", :id => "update_spi_cost_#{PressJob.newest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.newest(job.press_jobs).calculated_spi_cost, 2)}" %></td>
           </tr>
         </table>
     <% end %>
@@ -23,15 +23,15 @@
             <table class="press-job-values-table">
               <tr>
                 <td width="200"><p style="font-size: small;">Press Price</p></td>
-                <td width="100"><%= f.text_field :press_price, :class => "press-job-values", :id => "update_press_price_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.oldest(job.press_jobs).press_price, 0)}" %></td>
+                <td width="100"><%= f.text_field :press_price, :class => "press-job-values zero-decimal", :id => "update_press_price_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.oldest(job.press_jobs).press_price, 0)}" %></td>
               </tr>
               <tr>
                 <td width="200"><p style="font-size: small;">Monthly Labor Cost</p></td>
-                <td width="100"><%= f.text_field :labor_cost, :class => "press-job-values", :id => "update_labor_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.oldest(job.press_jobs).labor_cost, 0)}" %></td>
+                <td width="100"><%= f.text_field :labor_cost, :class => "press-job-values zero-decimal", :id => "update_labor_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.oldest(job.press_jobs).labor_cost, 0)}" %></td>
               </tr>
               <tr>
                 <td width="200"><p style="font-size: small;">Monthly SPI</p></td>
-                <td width="100"><%= f.text_field :spi_cost, :class => "press-job-values", :id => "update_spi_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.oldest(job.press_jobs).calculated_spi_cost, 2)}" %></td>
+                <td width="100"><%= f.text_field :spi_cost, :class => "press-job-values zero-decimal", :id => "update_spi_cost_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.oldest(job.press_jobs).calculated_spi_cost, 2)}" %></td>
               </tr>
             </table>
         <% end %>
