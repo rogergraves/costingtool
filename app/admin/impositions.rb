@@ -19,7 +19,7 @@ ActiveAdmin.register Imposition do
       row :job_size
       row :ups
     end
-    strong em { link_to "View All Presses", admin_press_types_path() }
+    strong em { link_to 'Create New Imposition', new_admin_imposition_path() }
   end
 
   form do |f|
