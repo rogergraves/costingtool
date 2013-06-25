@@ -104,3 +104,9 @@ $(".foundicon-right-arrow.icon-tiny.next-arrow.press-roi-carousel").click(functi
         $(".foundicon-left-arrow.icon-tiny.next-arrow.press-roi-carousel").show()
     }
 })
+
+window.onload = function () {
+    if($(".last-presstype").length == 0) {
+        $(".foundicon-right-arrow.icon-tiny.next-arrow.press-roi-carousel").hide()
+    }
+}

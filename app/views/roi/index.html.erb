@@ -11,9 +11,11 @@
       <div class="first-presstype">
         <%= render :partial => 'layouts/roi', :locals => { :presses => @presses, :press_job => PressJob.newest(@jobs.first.press_jobs) } %>
       </div>
-      <div class="last-presstype" style="display: none">
-        <%= render :partial => 'layouts/roi', :locals => { :presses => @presses, :press_job => PressJob.oldest(@jobs.first.press_jobs) } %>
-      </div>
+      <% if @press_jobs.length > 1 %>
+          <div class="last-presstype" style="display: none">
+            <%= render :partial => 'layouts/roi', :locals => { :presses => @presses, :press_job => PressJob.oldest(@jobs.first.press_jobs) } %>
+          </div>
+      <% end %>
     </div>
 
 

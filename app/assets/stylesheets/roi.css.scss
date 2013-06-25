@@ -1,6 +1,6 @@
 .roi-table {
   margin: 0 auto;
-  width: 80%;
+  width: 70%;
 }
 
 table.roi-table td th {
@@ -17,5 +17,11 @@ table.roi-table th {
 
 table.roi-table p {
   line-height: 25px;
+}
+
+.roi-chart {
+  margin: 0 auto;
+  height: 300px;
+  max-width: 70%;
 }
 
