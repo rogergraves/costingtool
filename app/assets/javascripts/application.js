@@ -63,19 +63,11 @@ switch (stage) {
         $(".step.press-cost-summary").addClass("selected-step")
         $(".step.cost-analysis").addClass("selected-step")
         break;
-    case "/dashboards":
-        $(".step.job-basket").addClass("selected-step")
-        $(".step.press-select").addClass("selected-step")
-        $(".step.press-cost-summary").addClass("selected-step")
-        $(".step.cost-analysis").addClass("selected-step")
-        $(".step.dashboard").addClass("selected-step")
-        break;
     case "/roi":
         $(".step.job-basket").addClass("selected-step")
         $(".step.press-select").addClass("selected-step")
         $(".step.press-cost-summary").addClass("selected-step")
         $(".step.cost-analysis").addClass("selected-step")
-        $(".step.dashboard").addClass("selected-step")
         $(".step.roi").addClass("selected-step")
         break;
 }
