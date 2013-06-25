@@ -31,8 +31,8 @@ FactoryGirl.define do
   factory :job do
     user
     sequence(:name) {|n| "Job #{n}" }
-    number_of_jobs (1000+Random.rand(1000))
-    copies_per_job (100+Random.rand(100))
+    number_of_jobs (2000+Random.rand(1000))
+    copies_per_job (500+Random.rand(100))
     job_size Job.available_sizes.sample
     multicolor_clicks Random.rand(6)
     black Random.rand(1)

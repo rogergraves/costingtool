@@ -205,6 +205,7 @@ describe PressJob do
 
           context :clicks_cost do
             it "if not stored locally, calculates" do
+              puts "!!!!!!! press_job: #{press_job.ai} @click_price: #{@click_price} !!!!!!!!!!!!"
               press_job.click_price.should == @click_price
             end
             it "can be overriden locally" do
@@ -365,6 +366,11 @@ describe PressJob do
 
           data.to_s.should == press_job.dashboard_graph_revenue
         end
+
+        it "#sum_costs"
+        it "#sum_revenues"
+        it "#net_profit"
+
       end
     end
 
