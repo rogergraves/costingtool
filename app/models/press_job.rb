@@ -61,6 +61,42 @@ class PressJob < ActiveRecord::Base
 
   # Calcs Support Methods --------------------------------------------------------------------------------------
 
+  def press_type_jobs
+    @press_type_jobs ||= self.job.press_jobs.where('press_type_id = ?', self.press_type.id)
+  end
+
+  def total_costs
+    @total_costs ||= total_costs!
+  end
+
+  def sum_revenues
+    @sum_revenues ||= sum_revenues!
+  end
+
+  def total_profit
+    @total_profit ||= total_profit!
+  end
+
+  def press_roi
+    35
+  end
+
+  def press_payback_period
+    47
+  end
+
+  def press_total_profit
+    2338446
+  end
+
+  def press_total_costs
+    9046529
+  end
+
+  def press_production_life
+    84
+  end
+
   def annual_revenue
     @annual_revenue ||= monthly_revenue * 12
   end
@@ -155,11 +191,11 @@ class PressJob < ActiveRecord::Base
   end
 
   def ink_array
-    @ink_array ||= calculate_ink_array
+    @ink_array ||= ink_array!
   end
 
   def tier
-    @tier ||= calculate_tier
+    @tier ||= tier!
   end
 
   def color_tier_price
@@ -296,11 +332,7 @@ class PressJob < ActiveRecord::Base
     end
   end
 
-
-  # ------------------------------------------------------------------------------------------------------------------
-  #private
-
-  def calculate_tier
+  def tier!
     ink_array.tiers.each do |tier|
       if tier.volume_range_start <= job_basket_pages_per_month
         if tier.volume_range_end.nil? || tier.volume_range_end.blank? || tier.volume_range_end >= job_basket_pages_per_month
@@ -310,7 +342,7 @@ class PressJob < ActiveRecord::Base
     end
   end
 
-  def calculate_ink_array
+  def ink_array!
     click_table.ink_arrays.each do |ink_array|
       if ink_array.color_range_start <= multicolor_clicks
         if ink_array.color_range_end.nil? || ink_array.color_range_end.blank? || (ink_array.color_range_end >= multicolor_clicks && ink_array.black == black)
@@ -320,4 +352,29 @@ class PressJob < ActiveRecord::Base
     end
   end
 
+  def total_costs!
+    total_costs = 0
+    last_year_costs = aggregated_job_monthly_cost
+    (1..7).each do |year|
+      last_year_costs = last_year_costs + (last_year_costs * annual_growth / 100) if year > 1
+      total_costs = total_costs + last_year_costs
+    end
+
+    return total_costs
+  end
+
+  def sum_revenues!
+    sum_revenues = 0
+    last_year_revenues = annual_revenue
+    (1..7).each do |year|
+      last_year_revenues = last_year_revenues + (last_year_revenues * annual_growth / 100) if year > 1
+      sum_revenues = sum_revenues + last_year_revenues
+    end
+
+    return sum_revenues
+  end
+
+  def total_profit!
+    sum_revenues - total_costs
+  end
 end

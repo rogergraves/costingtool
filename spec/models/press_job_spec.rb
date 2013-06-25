@@ -367,10 +367,55 @@ describe PressJob do
           data.to_s.should == press_job.dashboard_graph_revenue
         end
 
-        it "#sum_costs"
-        it "#sum_revenues"
-        it "#net_profit"
+        context "#press_type_jobs" do
+          it "with single press_job" do
+            press_job.press_type_jobs.first.should == press_job
+          end
 
+          it "with multiple press_jobs" do
+            press_job.press_type_jobs.count.should == 1
+            FactoryGirl.create(:press_job, :job => job, :press_type => press_type)
+            press_job.press_type_jobs.count.should == 2
+          end
+        end
+
+        context "Roi table" do
+          it "#sum_revenues" do
+            sum_revenues = 0
+            last_year_revenue = press_job.annual_revenue
+            (1..7).each do |year|
+              last_year_revenue = last_year_revenue + (last_year_revenue * press_job.annual_growth / 100) if year > 1
+              sum_revenues = sum_revenues + last_year_revenue
+            end
+
+            press_job.sum_revenues.should == sum_revenues
+          end
+
+          it "#roi" do
+
+          end
+
+          it "#payback_period"
+          it "#total_profit" do
+            press_job.total_profit.should == press_job.sum_revenues - press_job.total_costs
+          end
+          it "#total_costs" do
+            total_costs = 0
+            last_year_cost = press_job.aggregated_job_monthly_cost
+            (1..7).each do |year|
+              last_year_cost = last_year_cost + (last_year_cost * press_job.annual_growth / 100) if year > 1
+              total_costs = total_costs + last_year_cost
+            end
+
+            press_job.total_costs.should == total_costs
+          end
+
+          it "#press_roi"
+          it "#press_payback_period"
+          it "#press_total_profit"
+          it "#press_total_costs"
+          it "#press_production_life"
+        end
       end
     end
 
