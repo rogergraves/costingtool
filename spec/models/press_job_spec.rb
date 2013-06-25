@@ -36,7 +36,7 @@ describe PressJob do
   end
 
   let(:click_table) { FactoryGirl.create(:click_table) }
-  let(:job) { FactoryGirl.create(:job, :job_size => 'A4', :multicolor_clicks => 3) }
+  let(:job) { FactoryGirl.create(:job, :job_size => 'A4', :multicolor_clicks => 3, :black => 1) }
   let(:press_type) { FactoryGirl.create(:press_type, :click_table => click_table) }
   let(:press_job) { FactoryGirl.create(:press_job, :job => job, :press_type => press_type)}
 
@@ -205,7 +205,6 @@ describe PressJob do
 
           context :clicks_cost do
             it "if not stored locally, calculates" do
-              puts "!!!!!!! press_job: #{press_job.ai} @click_price: #{@click_price} !!!!!!!!!!!!"
               press_job.click_price.should == @click_price
             end
             it "can be overriden locally" do
@@ -358,7 +357,8 @@ describe PressJob do
 
         it "#dashboard_graph_revenue" do
           data = []
-          last_year_revenue = press_job.annual_revenue
+          last_year_revenue = 0
+          press_job.annual_revenue
           (1..7).each do |year|
             last_year_revenue = last_year_revenue + (last_year_revenue * press_job.annual_growth / 100) if year > 1
             data << [year, last_year_revenue.to_i]

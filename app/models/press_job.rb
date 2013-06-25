@@ -298,38 +298,26 @@ class PressJob < ActiveRecord::Base
 
 
   # ------------------------------------------------------------------------------------------------------------------
-  private
+  #private
 
   def calculate_tier
-    valid_tier = nil
     ink_array.tiers.each do |tier|
       if tier.volume_range_start <= job_basket_pages_per_month
         if tier.volume_range_end.nil? || tier.volume_range_end.blank? || tier.volume_range_end >= job_basket_pages_per_month
-          valid_tier = tier
-          break
+          return tier
         end
       end
     end
-    valid_tier = valid_tier || ink_array.tiers.first
-
-    valid_tier
   end
 
   def calculate_ink_array
-    valid_ink_array = nil
-
     click_table.ink_arrays.each do |ink_array|
       if ink_array.color_range_start <= multicolor_clicks
-        if ink_array.color_range_end.nil? || ink_array.color_range_end.blank? || ink_array.color_range_end >= multicolor_clicks && ink_array.black == black
-          valid_ink_array = ink_array
-          break
+        if ink_array.color_range_end.nil? || ink_array.color_range_end.blank? || (ink_array.color_range_end >= multicolor_clicks && ink_array.black == black)
+          return ink_array
         end
       end
     end
-
-    valid_ink_array = valid_ink_array ||  click_table.ink_arrays.first
-
-    valid_ink_array
   end
 
 end
