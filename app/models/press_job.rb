@@ -198,7 +198,7 @@ class PressJob < ActiveRecord::Base
     ids
   end
 
-  def self.get_dashboard_costs(press_jobs)
+  def self.get_roi_costs(press_jobs)
     costs = {}
     press_jobs.each do |press_job|
       press_job_tag = "#{press_job.id}"
@@ -207,7 +207,7 @@ class PressJob < ActiveRecord::Base
     costs
   end
 
-  def self.get_dashboard_revenue(press_jobs)
+  def self.get_roi_revenue(press_jobs)
     revenue = {}
     press_jobs.each do |press_job|
       press_job_tag = "#{press_job.id}"

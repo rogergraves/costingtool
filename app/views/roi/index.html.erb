@@ -8,8 +8,11 @@
         <%= render 'layouts/steps' %>
       </div>
       <h3 class="page-title">ROI</h3>
-      <div class="first-job">
-        <%= render :partial => 'layouts/roi', :locals => { :presses => @presses } %>
+      <div class="first-presstype">
+        <%= render :partial => 'layouts/roi', :locals => { :presses => @presses, :press_job => PressJob.newest(@jobs.first.press_jobs) } %>
+      </div>
+      <div class="last-presstype" style="display: none">
+        <%= render :partial => 'layouts/roi', :locals => { :presses => @presses, :press_job => PressJob.oldest(@jobs.first.press_jobs) } %>
       </div>
     </div>
 

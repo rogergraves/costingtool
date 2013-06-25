@@ -11,21 +11,21 @@ $(document).ready(function() {
     $('#press_1_table').fadeIn();
     $('#press_1_header').fadeIn();
 
-    var revenue_array = function(index) {
-        var costs = [[1200000, 1320000, 1452000, 1597200, 1756920, 1932612, 2125873], [587986, 809070, 1052263, 1319775, 1614038, 1937727, 2293786]];
+    var press_job_ids = window.press_job_ids;
+    var press_job_count = window.press_job_ids.length;
 
-        return costs[index-1];
+    var cost_array = function(chart_id) {
+        return window.costs[chart_id].toString();
     };
 
-    var cost_array = function(index) {
-        var costs = [[671878, 846495, 1038573, 1249858, 1482273, 1737929, 2019150], [1200000, 1320000, 1452000, 1597200, 1756920, 1932612, 2125873]];
-
-        return costs[index-1];
+    var revenue_array = function(chart_id) {
+        return window.revenue[chart_id].toString();
     };
 
-    for(var i = 1; i <= 2; ++i) {
-        console.log("$('#press_'+i)", $('#press_'+i));
-        $('#press_'+i).highcharts({
+    for(var i = 0; i < press_job_count; ++i) {
+        var chart_id = press_job_ids[i]
+        var current_chart = $('#chart_'+ chart_id);
+        current_chart.highcharts({
             chart: {
                 type: 'spline'
             },
@@ -65,11 +65,11 @@ $(document).ready(function() {
 
             series: [{
                 name: 'Costs',
-                data: cost_array(i),
+                data: JSON.parse(cost_array(chart_id)),
                 color: '#BF5E7B'
             }, {
                 name: 'Revenue',
-                data: revenue_array(i),
+                data: JSON.parse(revenue_array(chart_id)),
                 color: '#2f7ed8'
             }]
         });
@@ -81,29 +81,26 @@ $(document).ready(function() {
 
 
 // Carousel arrow display logic
-$(".foundicon-right-arrow.icon-tiny.next-arrow.press-roi-carousel").click(function(){
-
-    $(".foundicon-left-arrow.icon-tiny.next-arrow.press-roi-carousel").show();
-    $(".foundicon-right-arrow.icon-tiny.next-arrow.press-roi-carousel").hide();
-
-    $("#press_1").hide();
-    $("#press_1_header").hide();
-    $("#press_1_table").hide();
-    $("#press_2").fadeIn();
-    $("#press_2_header").show();
-    $("#press_2_table").fadeIn();
-});
-
-
 $(".foundicon-left-arrow.icon-tiny.next-arrow.press-roi-carousel").click(function(){
+    var slideOne = $(".first-presstype");
+    var slideTwo = $(".last-presstype");
 
-    $(".foundicon-left-arrow.icon-tiny.next-arrow.press-roi-carousel").hide();
-    $(".foundicon-right-arrow.icon-tiny.next-arrow.press-roi-carousel").show();
+    if(slideTwo.css("display") != "none"){
+        slideTwo.hide();
+        slideOne.fadeIn();
+        $(".foundicon-left-arrow.icon-tiny.next-arrow.press-roi-carousel").hide()
+        $(".foundicon-right-arrow.icon-tiny.next-arrow.press-roi-carousel").show()
+    }
+})
 
-    $("#press_2").hide();
-    $("#press_2_header").hide();
-    $("#press_2_table").hide();
-    $("#press_1").fadeIn();
-    $("#press_1_header").show();
-    $("#press_1_table").fadeIn();
-});
+$(".foundicon-right-arrow.icon-tiny.next-arrow.press-roi-carousel").click(function(){
+    var slideOne = $(".first-presstype");
+    var slideTwo = $(".last-presstype");
+
+    if(slideOne.css("display") != "none"){
+        $(".foundicon-right-arrow.icon-tiny.next-arrow.press-roi-carousel").hide()
+        slideOne.hide();
+        slideTwo.fadeIn();
+        $(".foundicon-left-arrow.icon-tiny.next-arrow.press-roi-carousel").show()
+    }
+})
