@@ -15,7 +15,7 @@
               </tr>
               <tr>
                 <td width="200"><p style="font-size: small;">Click Price</p></td>
-                <td width="100"><%= f.text_field :click_price, :class => "press-job-values two-decimal", :id => "update_click_price_#{PressJob.newest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.newest(job.press_jobs).click_price, 4)}" %></td>
+                <td width="100"><%= f.text_field :click_price, :class => "press-job-values two-decimal", :id => "update_click_price_#{PressJob.newest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.newest(job.press_jobs).click_price, 5)}" %></td>
               </tr>
         </table>
     <% end %>
@@ -32,7 +32,7 @@
               </tr>
               <tr>
                 <td width="100"><p style="font-size: small;">Clicks Price</p></td>
-                <td width="100"><%= f.text_field :click_price, :class => "press-job-values two-decimal", :id => "update_click_price_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.oldest(job.press_jobs).click_price, 4)}" %></td>
+                <td width="100"><%= f.text_field :click_price, :class => "press-job-values two-decimal", :id => "update_click_price_#{PressJob.oldest(job.press_jobs).id}", :placeholder => "$#{enforce_float_zeros(PressJob.oldest(job.press_jobs).click_price, 5)}" %></td>
               </tr>
             </table>
         <% end %>
