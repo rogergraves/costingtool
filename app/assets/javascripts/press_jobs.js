@@ -165,4 +165,10 @@ function preCheckBoxes() {
     }
 }
 
-$(window).load(preCheckBoxes());
+function formatPanels(){
+    if($(".right-press").length == 0){
+        $(".left-press").css("float", "none");
+    }
+}
+
+$(window).load(preCheckBoxes(), formatPanels());
