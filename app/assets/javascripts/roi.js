@@ -7,10 +7,6 @@ $(document).ready(function() {
 
     $(".foundicon-left-arrow.icon-tiny.next-arrow.press-roi-carousel").hide();
 
-    $('#press_1').fadeIn();
-    $('#press_1_table').fadeIn();
-    $('#press_1_header').fadeIn();
-
     var press_job_ids = window.press_job_ids;
     var press_job_count = window.press_job_ids.length;
 
