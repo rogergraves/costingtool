@@ -294,7 +294,7 @@ class PressJob < ActiveRecord::Base
   def self.has_press_jobs(jobs)
     has_job = false
     jobs.each do |job|
-      has_job = true if job.press_jobs.length > 1
+      has_job = true if job.press_jobs.length > 0
     end
     has_job
   end
