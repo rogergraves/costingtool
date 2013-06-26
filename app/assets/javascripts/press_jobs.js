@@ -151,15 +151,18 @@ function removeRightArrow(slide) {
         $(".foundicon-right-arrow.icon-tiny.next-arrow.press-cost-summary-carousel").hide()
     }
 }
-
 // END - Carousel arrow display logic
 
-window.onload = function () {
-    for( i = 0; i< window.presses.length; i++) {
-        var selected = $("#" + window.presses[i]);
-        checkBox(selected);
-    }
-    if(window.presses){
-        $(".next-page.press-selection").fadeIn();
+function preCheckBoxes() {
+    if (location.pathname == "/press_jobs/new"){
+        for( i = 0; i< window.presses.length; i++) {
+            var selected = $("#" + window.presses[i]);
+            checkBox(selected);
+        }
+        if(window.presses){
+            $(".next-page.press-selection").fadeIn();
+        }
     }
 }
+
+$(window).load(preCheckBoxes());

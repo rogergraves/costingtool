@@ -5,74 +5,76 @@
 
 $(document).ready(function() {
 
-    $(".foundicon-left-arrow.icon-tiny.next-arrow.press-roi-carousel").hide();
+    if(location.pathname == "/roi"){
+        $(".foundicon-left-arrow.icon-tiny.next-arrow.press-roi-carousel").hide();
 
-    var press_job_ids = window.press_job_ids;
-    var press_job_count = window.press_job_ids.length;
+        var press_job_ids = window.press_job_ids;
+        var press_job_count = window.press_job_ids.length;
 
-    var cost_array = function(chart_id) {
-        return window.costs[chart_id].toString();
-    };
+        var cost_array = function(chart_id) {
+            return window.costs[chart_id].toString();
+        };
 
-    var revenue_array = function(chart_id) {
-        return window.revenue[chart_id].toString();
-    };
+        var revenue_array = function(chart_id) {
+            return window.revenue[chart_id].toString();
+        };
 
-    for(var i = 0; i < press_job_count; ++i) {
-        var chart_id = press_job_ids[i]
-        var current_chart = $('#chart_'+ chart_id);
-        current_chart.highcharts({
-            chart: {
-                type: 'spline'
-            },
-            credits: {
-                enabled: false
-            },
-            title: {
-                text: null
-            },
-            xAxis: {
-                title: 'Year',
-                labels: {
-                    formatter: function() {
-                        return this.value;
-                    }
+        for(var i = 0; i < press_job_count; ++i) {
+            var chart_id = press_job_ids[i]
+            var current_chart = $('#chart_'+ chart_id);
+            current_chart.highcharts({
+                chart: {
+                    type: 'spline'
                 },
-                min: 0,
-                max: 7,
-                tickInterval: 1
-            },
-            yAxis: {
+                credits: {
+                    enabled: false
+                },
                 title: {
                     text: null
                 },
-                labels: {
+                xAxis: {
+                    title: 'Year',
+                    labels: {
+                        formatter: function() {
+                            return this.value;
+                        }
+                    },
+                    min: 0,
+                    max: 7,
+                    tickInterval: 1
+                },
+                yAxis: {
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        formatter: function() {
+                            return '$'+Highcharts.numberFormat(this.value, 0)
+                        }
+                    },
+                    min: 0
+                },
+                tooltip: {
                     formatter: function() {
-                        return '$'+Highcharts.numberFormat(this.value, 0)
+                        return '<b>' + this.series.name + '</b><br/>Year '+this.x+', $' + Highcharts.numberFormat(this.y);
                     }
                 },
-                min: 0
-            },
-            tooltip: {
-                formatter: function() {
-                    return '<b>' + this.series.name + '</b><br/>Year '+this.x+', $' + Highcharts.numberFormat(this.y);
-                }
-            },
 
-            series: [{
-                name: 'Costs',
-                data: JSON.parse(cost_array(chart_id)),
-                color: '#BF5E7B'
-            }, {
-                name: 'Revenue',
-                data: JSON.parse(revenue_array(chart_id)),
-                color: '#2f7ed8'
-            }]
-        });
+                series: [{
+                    name: 'Costs',
+                    data: JSON.parse(cost_array(chart_id)),
+                    color: '#BF5E7B'
+                }, {
+                    name: 'Revenue',
+                    data: JSON.parse(revenue_array(chart_id)),
+                    color: '#2f7ed8'
+                }]
+            });
+        }
+
+        $('#press_2').hide();
+
     }
-
-    $('#press_2').hide();
-
 });
 
 
@@ -101,8 +103,10 @@ $(".foundicon-right-arrow.icon-tiny.next-arrow.press-roi-carousel").click(functi
     }
 })
 
-window.onload = function () {
-    if($(".last-presstype").length == 0) {
+function hideArrow() {
+    if($(".last-presstype").length == 0 && location.pathname == "/roi") {
         $(".foundicon-right-arrow.icon-tiny.next-arrow.press-roi-carousel").hide()
-    }
+    };
 }
+
+$(window).load(hideArrow());
