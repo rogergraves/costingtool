@@ -39,3 +39,7 @@
         <a class="close-reveal-modal">&#215;</a>
     <% end -%>
 <% end %>
+
+<script type="text/javascript">
+  window.remaining_percentage = <%= User.remaining_job_percentage(@jobs) %>
+</script>

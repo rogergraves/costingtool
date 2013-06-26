@@ -1,7 +1,7 @@
 //# Place all the behaviors and hooks related to the matching controller here.
 //# All this logic will automatically be available in application.js.
 
-if ($(".jobs-table").length > 0 && $(".jobs-table tr").length === 0){
+if ($(".jobs-table").length > 0 && $(".jobs-table tr").length === 0 || window.remaining_percentage != 0 ){
     $(".jobs-area").fadeOut("slow", function(){
         $(".new-job").fadeIn();
         $("input#job_name").focus();
