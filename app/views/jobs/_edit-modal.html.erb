@@ -48,7 +48,7 @@
         <%= f.select(:plex, [ "Simplex", "Duplex"], {:include_blank => false, :selected => single_job.data["plex"]}) %>
       </div>
 
-      <div class="field">
+      <div class="field sale_price_per_copy_edit_job">
         <%= f.text_field :sale_price, :required => true %>
         <%= f.label :sale_price_per_copy %>
       </div>

@@ -45,7 +45,13 @@ $('#number_of_pages_new_job').keydown(function(e) {
     var keyCode = e.keyCode || e.which;
     if (keyCode == 9) {
         $(".new-selector .custom.dropdown a.current").click();
-        $("input#job_sale_price").focus();
+        $(".new-selector .custom.dropdown a.current").focus();
+        $(".new-selector .custom.dropdown a.current").keydown(function(e) {
+            var keyCode = e.keyCode || e.which;
+            if (keyCode == 13) {
+                $("input#job_sale_price").focus();
+            }
+        });
     }
 });
 
@@ -61,13 +67,21 @@ $('.copies_per_job_edit_job').keydown(function(e) {
 });
 
 $('.number_of_pages_edit_job').keydown(function(e) {
-    var form = $(e.target.form)
-    var selector = $(form.context[10].nextSibling.childNodes[1])
-    var next = $(form.context[11])
+    var form = $(e.target.form);
+    var selector = form.children(".number_of_pages_edit_job").children("input");
+    var dropdownButton = form.children(".plex").children(".custom.dropdown").children(".selector");
+    var dropdownInput = form.children(".plex").children(".custom.dropdown").children(".current");
+    var next = form.children(".sale_price_per_copy_edit_job").children("input");
     var keyCode = e.keyCode || e.which;
     if (keyCode == 9) {
-        selector.click();
-        next.focus();
+        dropdownButton.click();
+        dropdownInput.focus();
+        dropdownInput.keydown(function(e){
+            var keyCode = e.keyCode || e.which;
+            if (keyCode == 13) {
+                next.focus();
+            }
+        })
     }
 });
 
