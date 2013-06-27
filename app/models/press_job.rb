@@ -65,20 +65,36 @@ class PressJob < ActiveRecord::Base
     @press_type_jobs ||= self.job.press_jobs.where('press_type_id = ?', self.press_type.id)
   end
 
-  def total_costs
-    @total_costs ||= total_costs!
+  def sum_costs
+    @sum_costs ||= sum_costs!
   end
 
   def sum_revenues
     @sum_revenues ||= sum_revenues!
   end
 
-  def total_profit
-    @total_profit ||= total_profit!
-  end
+  #def net_profit
+  #  @net_profit ||= (sum_revenues - sum_costs)
+  #end
+  #
+  #def roi
+  #  @roi ||= (net_profit / sum_revenues)
+  #end
+  #
+#  def payback_period
+#    @payback_period ||= ((sum_revenues/net_profit)*12).ceil
+#  end
 
   def press_roi
-    35
+    total_sum_revenues = 0
+    total_sum_costs = 0
+    press_type_jobs.each do |pj|
+      logger.info "\n\n!!!!!!!!! press_job.id #{pj.id} sum_revenues, sum_costs = #{pj.sum_revenues}, #{pj.sum_costs} !!!!!!!!!!!\n"
+      total_sum_revenues+= pj.sum_revenues
+      total_sum_costs+= pj.sum_costs
+    end
+
+    (100*(total_sum_revenues-total_sum_costs)/total_sum_revenues).round()
   end
 
   def press_payback_period
@@ -352,29 +368,29 @@ class PressJob < ActiveRecord::Base
     end
   end
 
-  def total_costs!
-    total_costs = 0
+  def sum_costs!
+    sum_costs = 0
     last_year_costs = aggregated_job_monthly_cost
     (1..7).each do |year|
       last_year_costs = last_year_costs + (last_year_costs * annual_growth / 100) if year > 1
-      total_costs = total_costs + last_year_costs
+      sum_costs = sum_costs + last_year_costs
     end
 
-    return total_costs
+    return sum_costs
   end
 
   def sum_revenues!
-    sum_revenues = 0
+    revenues = 0
     last_year_revenues = annual_revenue
     (1..7).each do |year|
-      last_year_revenues = last_year_revenues + (last_year_revenues * annual_growth / 100) if year > 1
-      sum_revenues = sum_revenues + last_year_revenues
+      last_year_revenues+= (last_year_revenues * annual_growth / 100) if year > 1
+      revenues+= last_year_revenues
     end
 
     return sum_revenues
   end
 
   def total_profit!
-    sum_revenues - total_costs
+    sum_revenues - sum_costs
   end
 end

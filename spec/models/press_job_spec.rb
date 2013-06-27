@@ -39,6 +39,7 @@ describe PressJob do
   let(:job) { FactoryGirl.create(:job, :job_size => 'A4', :multicolor_clicks => 3, :black => 1) }
   let(:press_type) { FactoryGirl.create(:press_type, :click_table => click_table) }
   let(:press_job) { FactoryGirl.create(:press_job, :job => job, :press_type => press_type)}
+  let(:press_job_2) { FactoryGirl.create(:press_job, :job => job, :press_type => press_type)}
 
   it "stores press_cost, media_cost, labor_cost, spi_cost, clicks_cost" do
     press_job.valid?.should be_true
@@ -373,14 +374,19 @@ describe PressJob do
           end
 
           it "with multiple press_jobs" do
-            press_job.press_type_jobs.count.should == 1
-            FactoryGirl.create(:press_job, :job => job, :press_type => press_type)
             press_job.press_type_jobs.count.should == 2
+            FactoryGirl.create(:press_job, :job => job, :press_type => press_type)
+            press_job.press_type_jobs.count.should == 3
           end
         end
 
         context "Roi table" do
-          it "#sum_revenues" do
+          before do
+            press_job.valid?
+            press_job_2.valid?
+          end
+
+          def calculate_sum_revenues
             sum_revenues = 0
             last_year_revenue = press_job.annual_revenue
             (1..7).each do |year|
@@ -388,33 +394,67 @@ describe PressJob do
               sum_revenues = sum_revenues + last_year_revenue
             end
 
-            press_job.sum_revenues.should == sum_revenues
+            sum_revenues
           end
 
-          it "#roi" do
-
-          end
-
-          it "#payback_period"
-          it "#total_profit" do
-            press_job.total_profit.should == press_job.sum_revenues - press_job.total_costs
-          end
-          it "#total_costs" do
-            total_costs = 0
+          def calculate_sum_costs
+            sum_costs = 0
             last_year_cost = press_job.aggregated_job_monthly_cost
             (1..7).each do |year|
               last_year_cost = last_year_cost + (last_year_cost * press_job.annual_growth / 100) if year > 1
-              total_costs = total_costs + last_year_cost
+              sum_costs = sum_costs + last_year_cost
             end
 
-            press_job.total_costs.should == total_costs
+            sum_costs
           end
 
-          it "#press_roi"
-          it "#press_payback_period"
-          it "#press_total_profit"
-          it "#press_total_costs"
-          it "#press_production_life"
+          def calculate_net_profit
+            calculate_sum_revenues - calculate_sum_costs
+          end
+
+          it "#sum_revenues" do
+            press_job.sum_revenues.should == calculate_sum_revenues
+          end
+
+          it "#sum_costs" do
+            press_job.sum_costs.should == calculate_sum_costs
+          end
+
+          #it "#net_profit" do
+          #  press_job.net_profit.should == calculate_net_profit
+          #end
+          #
+          #it "#roi" do
+          #  press_job.roi.should == (calculate_net_profit / calculate_sum_revenues)
+          #end
+          #
+          #it "#payback_period" do
+          #  press_job.payback_period.should == ((calculate_sum_revenues/calculate_net_profit)*12).ceil
+          #end
+
+          context "press methods" do
+
+            it "#press_roi" do
+              puts "!!!!!!!!!!!!\n\tpress_job.id #{press_job.id} press_job.sum_revenues, press_job.sum_costs = #{press_job.sum_revenues}, #{press_job.sum_costs}"
+              puts "!!!!!!!!!!!!\n\tpress_job_2.id #{press_job_2.id} press_job_2.sum_revenues, press_job_2.sum_costs = #{press_job_2.sum_revenues}, #{press_job_2.sum_costs}"
+
+              total_sum_revenues = 0
+              total_sum_costs = 0
+
+              total_sum_revenues+= press_job_2.sum_revenues
+              total_sum_revenues+= press_job.sum_revenues
+              total_sum_costs+= press_job_2.sum_costs
+              total_sum_costs+= press_job.sum_costs
+
+              press_job.press_roi.should == (100*(total_sum_revenues - total_sum_costs)/total_sum_revenues).round()
+            end
+
+            it "#press_payback_period"
+            it "#press_total_profit"
+            it "#press_total_costs"
+            it "#press_production_life"
+          end
+
         end
       end
     end
