@@ -62,7 +62,12 @@ class PressJob < ActiveRecord::Base
   # Calcs Support Methods --------------------------------------------------------------------------------------
 
   def press_type_jobs
-    @press_type_jobs ||= self.job.press_jobs.where('press_type_id = ?', self.press_type.id)
+    @press_type_jobs ||= press_type_jobs!
+  end
+
+  def press_type_jobs!
+    #BUGBUG -- not working
+    self.job.press_jobs.find_all_by_press_type_id(self.press_type.id)
   end
 
   def sum_costs
@@ -86,15 +91,15 @@ class PressJob < ActiveRecord::Base
 #  end
 
   def press_roi
-    total_sum_revenues = 0
-    total_sum_costs = 0
-    press_type_jobs.each do |pj|
-      logger.info "\n\n!!!!!!!!! press_job.id #{pj.id} sum_revenues, sum_costs = #{pj.sum_revenues}, #{pj.sum_costs} !!!!!!!!!!!\n"
-      total_sum_revenues+= pj.sum_revenues
-      total_sum_costs+= pj.sum_costs
+    revenues = 0
+    costs = 0
+
+    self.press_type_jobs.each do |pj|
+      revenues+= pj.sum_revenues
+      costs+= pj.sum_costs
     end
 
-    (100*(total_sum_revenues-total_sum_costs)/total_sum_revenues).round()
+    (100*(revenues-costs)/revenues).round()
   end
 
   def press_payback_period
@@ -369,14 +374,14 @@ class PressJob < ActiveRecord::Base
   end
 
   def sum_costs!
-    sum_costs = 0
+    costs = 0
     last_year_costs = aggregated_job_monthly_cost
     (1..7).each do |year|
       last_year_costs = last_year_costs + (last_year_costs * annual_growth / 100) if year > 1
-      sum_costs = sum_costs + last_year_costs
+      costs+= last_year_costs
     end
 
-    return sum_costs
+    return costs
   end
 
   def sum_revenues!

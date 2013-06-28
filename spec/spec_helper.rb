@@ -19,7 +19,7 @@ RSpec.configure do |config|
   # config.mock_with :rr
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  #config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -35,21 +35,12 @@ RSpec.configure do |config|
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
   #     --seed 1234
-  config.order = "random"
+  config.order = "ans"
 
-  # Based on recommendation from RailsApps Tutorials
-  # (http://railsapps.github.io/tutorial-rails-devise-rspec-cucumber.html)
-  # in order to ensure a clean database after testing
+  # Adding the following because database_cleaner told me to...
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.before(:each) do
-    DatabaseCleaner.strategy = :transaction
-  end
-
-  config.before(:each, :js => true) do
     DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:transaction)
   end
 
   config.before(:each) do

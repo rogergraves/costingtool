@@ -56,14 +56,24 @@ FactoryGirl.define do
   factory :click_table do
     sequence(:description) { |n| "Table #{n}" }
     name Faker::Company.catch_phrase
+    factory :click_table_with_tier do
+      after(:create) do |instance|
+        create(:ink_array_with_tier, click_table: instance)
+      end
+    end
   end
 
   factory :ink_array do
     click_table
     sequence(:name) { |n| "Ink setup #{n}" }
-    color_range_start 3
-    color_range_end 3
+    color_range_start 0
+    color_range_end 6
     black 1
+    factory :ink_array_with_tier do
+      after(:create) do |instance|
+        create(:tier, ink_array: instance, volume_range_end: nil)
+      end
+    end
   end
 
   factory :tier do
@@ -72,6 +82,7 @@ FactoryGirl.define do
     volume_range_start 0
     volume_range_end 1000000
     price 1.50
+    black_price 1.00
   end
 
   factory :media do

@@ -35,11 +35,11 @@ describe PressJob do
                           })
   end
 
-  let(:click_table) { FactoryGirl.create(:click_table) }
+  let(:click_table) { FactoryGirl.create(:click_table_with_tier) }
   let(:job) { FactoryGirl.create(:job, :job_size => 'A4', :multicolor_clicks => 3, :black => 1) }
   let(:press_type) { FactoryGirl.create(:press_type, :click_table => click_table) }
   let(:press_job) { FactoryGirl.create(:press_job, :job => job, :press_type => press_type)}
-  let(:press_job_2) { FactoryGirl.create(:press_job, :job => job, :press_type => press_type)}
+  let(:press_job_2) { FactoryGirl.create(:press_job, :press_type => press_type)}
 
   it "stores press_cost, media_cost, labor_cost, spi_cost, clicks_cost" do
     press_job.valid?.should be_true
@@ -185,23 +185,11 @@ describe PressJob do
 
         context "Tier pricing" do
           before do
-            @black_tier_price = 1.00
-            @color_tier_price = 2.00
+            @black_tier_price = click_table.ink_arrays.first.tiers.first.black_price
+            @color_tier_price = click_table.ink_arrays.first.tiers.first.price
             @click_price = (@color_tier_price * job.multicolor_clicks) + (@black_tier_price * job.black)
-
-            # Make sure to let() objects instantiate
-            click_table.valid?
-            job.valid?
-            press_type.valid?
-            press_job.valid?
-
-            FactoryGirl.create(:ink_array, :click_table => click_table, :color_range_start => job.multicolor_clicks-2, :color_range_end => job.multicolor_clicks-1)
-            @valid_ink_array = FactoryGirl.create(:ink_array, :name => "Valid ink array", :click_table => click_table, :color_range_start => job.multicolor_clicks-1, :color_range_end => job.multicolor_clicks, :black => 1)
-            FactoryGirl.create(:ink_array, :click_table => click_table, :color_range_start => job.multicolor_clicks+1, :color_range_end => job.multicolor_clicks+2)
-
-            FactoryGirl.create(:tier, :ink_array => @valid_ink_array, :volume_range_start => 0, :volume_range_end => press_job.job_basket_pages_per_month-500)
-            @valid_tier = FactoryGirl.create(:tier, :name => "Correct Tier", :ink_array => @valid_ink_array, :volume_range_start => press_job.job_basket_pages_per_month-499, :volume_range_end => press_job.job_basket_pages_per_month+500, :price => @color_tier_price, :black_price => @black_tier_price)
-            FactoryGirl.create(:tier, :ink_array => @valid_ink_array, :volume_range_start => press_job.job_basket_pages_per_month+501, :volume_range_end => press_job.job_basket_pages_per_month+1000)
+            @valid_ink_array =  click_table.ink_arrays.first
+            @valid_tier = click_table.ink_arrays.first.tiers.first
           end
 
           context :clicks_cost do
@@ -224,12 +212,11 @@ describe PressJob do
             end
 
             it "#tier_multicolor_price" do
-              press_job.color_tier_price.should > 0
-              press_job.color_tier_price.should == 2.00
+              press_job.color_tier_price.should == @color_tier_price
             end
 
             it "#black_tier_price" do
-              press_job.black_tier_price.should == 1.00
+              press_job.black_tier_price.should == @black_tier_price
             end
           end
 
@@ -356,7 +343,7 @@ describe PressJob do
           press_job.annual_revenue.should == press_job.monthly_revenue * 12
         end
 
-        it "#dashboard_graph_revenue" do
+        xit "#dashboard_graph_revenue" do
           data = []
           last_year_revenue = 0
           press_job.annual_revenue
@@ -374,9 +361,15 @@ describe PressJob do
           end
 
           it "with multiple press_jobs" do
-            press_job.press_type_jobs.count.should == 2
-            FactoryGirl.create(:press_job, :job => job, :press_type => press_type)
-            press_job.press_type_jobs.count.should == 3
+            press_job.press_type_jobs.count.should == 1
+
+            new_job = FactoryGirl.create(:job, :job_size => 'A3', :multicolor_clicks => 4, :black => 1)
+            new_press_job = FactoryGirl.create(:press_job, :job => new_job, :press_type => press_type, :cost_per_sheet => 1.10)
+            puts "press_job.press_type_jobs!: #{press_job.press_type_jobs!.ai}"
+            puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+            puts "new_press_job.press_type_jobs!: #{new_press_job.press_type_jobs!.ai}"
+
+            press_job.press_type_jobs!.count.should == 2
           end
         end
 
@@ -438,15 +431,10 @@ describe PressJob do
               puts "!!!!!!!!!!!!\n\tpress_job.id #{press_job.id} press_job.sum_revenues, press_job.sum_costs = #{press_job.sum_revenues}, #{press_job.sum_costs}"
               puts "!!!!!!!!!!!!\n\tpress_job_2.id #{press_job_2.id} press_job_2.sum_revenues, press_job_2.sum_costs = #{press_job_2.sum_revenues}, #{press_job_2.sum_costs}"
 
-              total_sum_revenues = 0
-              total_sum_costs = 0
+              revenues = press_job_2.sum_revenues + press_job.sum_revenues
+              costs = press_job_2.sum_costs + press_job.sum_costs
 
-              total_sum_revenues+= press_job_2.sum_revenues
-              total_sum_revenues+= press_job.sum_revenues
-              total_sum_costs+= press_job_2.sum_costs
-              total_sum_costs+= press_job.sum_costs
-
-              press_job.press_roi.should == (100*(total_sum_revenues - total_sum_costs)/total_sum_revenues).round()
+              press_job.press_roi.should == (100*(revenues - costs)/revenues).round()
             end
 
             it "#press_payback_period"
