@@ -387,7 +387,7 @@ class PressJob < ActiveRecord::Base
       revenues+= last_year_revenues
     end
 
-    return sum_revenues
+    return revenues
   end
 
   def total_profit!
