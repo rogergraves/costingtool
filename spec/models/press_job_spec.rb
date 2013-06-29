@@ -203,6 +203,19 @@ describe PressJob do
           end
 
           context "setup" do
+            context "#tier" do
+              context "with valid tier" do
+                it "returns tier" do
+                  press_job.tier.should == @valid_tier
+                end
+              end
+              context "without valid tier" do
+                it "returns nil" do
+                  FactoryGirl.create(:press_job).tier.should be_nil
+                end
+              end
+            end
+
             it "#ink_array" do
               press_job.ink_array.should == @valid_ink_array
             end
@@ -365,9 +378,6 @@ describe PressJob do
 
             new_job = FactoryGirl.create(:job, :job_size => 'A3', :multicolor_clicks => 4, :black => 1)
             new_press_job = FactoryGirl.create(:press_job, :job => new_job, :press_type => press_type, :cost_per_sheet => 1.10)
-            puts "press_job.press_type_jobs!: #{press_job.press_type_jobs!.ai}"
-            puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-            puts "new_press_job.press_type_jobs!: #{new_press_job.press_type_jobs!.ai}"
 
             press_job.press_type_jobs!.count.should == 2
           end

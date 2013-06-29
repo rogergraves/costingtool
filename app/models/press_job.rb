@@ -354,23 +354,31 @@ class PressJob < ActiveRecord::Base
   end
 
   def tier!
-    ink_array.tiers.each do |tier|
-      if tier.volume_range_start <= job_basket_pages_per_month
-        if tier.volume_range_end.nil? || tier.volume_range_end.blank? || tier.volume_range_end >= job_basket_pages_per_month
-          return tier
+    if ink_array.present? && ink_array.tiers.present?
+      ink_array.tiers.each do |tier|
+        if tier.volume_range_start <= job_basket_pages_per_month
+          if tier.volume_range_end.nil? || tier.volume_range_end.blank? || tier.volume_range_end >= job_basket_pages_per_month
+            return tier
+          end
         end
       end
     end
+
+    return nil
   end
 
   def ink_array!
-    click_table.ink_arrays.each do |ink_array|
-      if ink_array.color_range_start <= multicolor_clicks
-        if ink_array.color_range_end.nil? || ink_array.color_range_end.blank? || (ink_array.color_range_end >= multicolor_clicks && ink_array.black == black)
-          return ink_array
+    if click_table.present? && click_table.ink_arrays.present?
+      click_table.ink_arrays.each do |ink_array|
+        if ink_array.color_range_start <= multicolor_clicks
+          if ink_array.color_range_end.nil? || ink_array.color_range_end.blank? || (ink_array.color_range_end >= multicolor_clicks && ink_array.black == black)
+            return ink_array
+          end
         end
       end
     end
+
+    return nil
   end
 
   def sum_costs!
