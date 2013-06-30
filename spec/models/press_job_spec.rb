@@ -424,17 +424,27 @@ describe PressJob do
             press_job.sum_costs.should == calculate_sum_costs
           end
 
+          it "#net_profit" do
+            press_job.net_profit.should == press_job.sum_revenues - press_job.sum_costs
+          end
+
           context "press methods" do
+            let(:press_job_2) {FactoryGirl.create(:press_job, :job => FactoryGirl.create(:job, :user_id => press_job.job.user_id, :job_size => 'A3', :multicolor_clicks => 4, :black => 1), :press_type => press_type, :cost_per_sheet => 1.10)}
 
             it "#press_roi" do
-              press_job_2 = FactoryGirl.create(:press_job, :job => FactoryGirl.create(:job, :user_id => press_job.job.user_id, :job_size => 'A3', :multicolor_clicks => 4, :black => 1), :press_type => press_type, :cost_per_sheet => 1.10)
               revenues = press_job_2.sum_revenues + press_job.sum_revenues
               costs = press_job_2.sum_costs + press_job.sum_costs
 
               press_job.press_roi.should == (100*(revenues - costs)/revenues).round()
             end
 
-            it "#press_payback_period"
+            it "#press_payback_period" do
+              revenues = press_job_2.sum_revenues + press_job.sum_revenues
+              net_profits = press_job_2.net_profit + press_job.net_profit
+
+              press_job.press_payback_period.should == (12*(revenues / net_profits)).ceil
+            end
+
             it "#press_total_profit"
             it "#press_total_costs"
             it "#press_production_life"

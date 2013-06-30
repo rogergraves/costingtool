@@ -85,10 +85,10 @@ class PressJob < ActiveRecord::Base
     @sum_revenues ||= sum_revenues!
   end
 
-  #def net_profit
-  #  @net_profit ||= (sum_revenues - sum_costs)
-  #end
-  #
+  def net_profit
+    @net_profit ||= (sum_revenues - sum_costs)
+  end
+
   #def roi
   #  @roi ||= (net_profit / sum_revenues)
   #end
@@ -110,7 +110,15 @@ class PressJob < ActiveRecord::Base
   end
 
   def press_payback_period
-    47
+    revenues = 0
+    profits = 0
+
+    self.press_type_press_jobs.each do |pj|
+      revenues+= pj.sum_revenues
+      profits+= pj.net_profit
+    end
+
+    (12*(revenues / profits)).ceil
   end
 
   def press_total_profit
