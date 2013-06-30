@@ -409,7 +409,7 @@ describe PressJob do
               sum_costs = sum_costs + last_year_cost
             end
 
-            sum_costs
+            sum_costs.round()
           end
 
           def calculate_net_profit
