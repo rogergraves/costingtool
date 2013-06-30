@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe PressJob do
 
+  before do
+    Job.available_sizes.each {|size| FactoryGirl.create(:media, :name => size)}
+  end
+
   def generate_ups_for inc_press_type
     Job.available_sizes.each_with_index do |value, index|
       FactoryGirl.create(:imposition, :press_type => inc_press_type, :job_size => value, :ups => (Job.available_sizes.length-index))
@@ -39,7 +43,6 @@ describe PressJob do
   let(:job) { FactoryGirl.create(:job, :job_size => 'A4', :multicolor_clicks => 3, :black => 1) }
   let(:press_type) { FactoryGirl.create(:press_type, :click_table => click_table) }
   let(:press_job) { FactoryGirl.create(:press_job, :job => job, :press_type => press_type)}
-  let(:press_job_2) { FactoryGirl.create(:press_job, :press_type => press_type)}
 
   it "stores press_cost, media_cost, labor_cost, spi_cost, clicks_cost" do
     press_job.valid?.should be_true
@@ -47,12 +50,12 @@ describe PressJob do
 
   context :cost_per_sheet do
     it "returns what is stored in Media if not present locally" do
-      FactoryGirl.create(:media, :name => 'A4', :cost_per_sheet => 0.50)
+      Media.find_by_name('A4').update_attributes(:cost_per_sheet => 0.50)
       press_job.cost_per_sheet.should == 0.50
     end
 
     it "allows overriding by user" do
-      FactoryGirl.create(:media, :name => 'A4', :cost_per_sheet => 0.50)
+      Media.find_by_name('A4').update_attributes(:cost_per_sheet => 0.50)
       press_job.cost_per_sheet.should == 0.50
       press_job.update_attributes(:cost_per_sheet => 2.00)
       press_job.reload.cost_per_sheet.should == 2.00
@@ -82,7 +85,7 @@ describe PressJob do
           cost = 1.00
           Job.available_sizes.each_index do |index|
             cost += 0.10
-            FactoryGirl.create(:media, :cost_per_sheet => cost, :name => Job.available_sizes[index])
+            Media.find_by_name(Job.available_sizes[index]).update_attributes(:cost_per_sheet => cost)
           end
           press_job.cost_per_sheet.should == Media.find_by_name(press_job.job_size).cost_per_sheet
         end
@@ -132,7 +135,7 @@ describe PressJob do
           media_cost = cost_per_sheet * plex * number_of_pages * copies_per_month / ups
 
           FactoryGirl.create(:imposition, :press_type => press_type, :job_size => job_size, :ups => ups)
-          FactoryGirl.create(:media, :name => job_size, :cost_per_sheet => cost_per_sheet)
+          Media.find_by_name(job_size).update_attributes(:cost_per_sheet => cost_per_sheet)
           job.update_attributes({
                                     :job_size => job_size,
                                     :number_of_jobs => number_of_jobs,
@@ -291,7 +294,7 @@ describe PressJob do
         copies_per_month = number_of_jobs * copies_per_job
         ups = 1
 
-        FactoryGirl.create(:media, :name => job_size, :cost_per_sheet => cost_per_sheet)
+        Media.find_by_name(job_size).update_attributes(:cost_per_sheet => cost_per_sheet)
         job.update_attributes({
                                   :job_size => job_size,
                                   :number_of_jobs => number_of_jobs,
@@ -385,7 +388,6 @@ describe PressJob do
         context "Roi table" do
           before do
             press_job.valid?
-            press_job_2.valid?
           end
 
           def calculate_sum_revenues
@@ -422,24 +424,10 @@ describe PressJob do
             press_job.sum_costs.should == calculate_sum_costs
           end
 
-          #it "#net_profit" do
-          #  press_job.net_profit.should == calculate_net_profit
-          #end
-          #
-          #it "#roi" do
-          #  press_job.roi.should == (calculate_net_profit / calculate_sum_revenues)
-          #end
-          #
-          #it "#payback_period" do
-          #  press_job.payback_period.should == ((calculate_sum_revenues/calculate_net_profit)*12).ceil
-          #end
-
           context "press methods" do
 
             it "#press_roi" do
-              puts "!!!!!!!!!!!!\n\tpress_job.id #{press_job.id} press_job.sum_revenues, press_job.sum_costs = #{press_job.sum_revenues}, #{press_job.sum_costs}"
-              puts "!!!!!!!!!!!!\n\tpress_job_2.id #{press_job_2.id} press_job_2.sum_revenues, press_job_2.sum_costs = #{press_job_2.sum_revenues}, #{press_job_2.sum_costs}"
-
+              press_job_2 = FactoryGirl.create(:press_job, :job => FactoryGirl.create(:job, :user_id => press_job.job.user_id, :job_size => 'A3', :multicolor_clicks => 4, :black => 1), :press_type => press_type, :cost_per_sheet => 1.10)
               revenues = press_job_2.sum_revenues + press_job.sum_revenues
               costs = press_job_2.sum_costs + press_job.sum_costs
 

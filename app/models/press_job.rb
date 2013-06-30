@@ -101,7 +101,7 @@ class PressJob < ActiveRecord::Base
     revenues = 0
     costs = 0
 
-    self.press_type_jobs.each do |pj|
+    self.press_type_press_jobs.each do |pj|
       revenues+= pj.sum_revenues
       costs+= pj.sum_costs
     end
