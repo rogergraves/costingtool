@@ -398,7 +398,7 @@ describe PressJob do
               sum_revenues = sum_revenues + last_year_revenue
             end
 
-            sum_revenues
+            sum_revenues.round()
           end
 
           def calculate_sum_costs
@@ -451,7 +451,12 @@ describe PressJob do
               press_job.press_total_profit.should == net_profits
             end
 
-            it "#press_total_costs"
+            it "#press_total_costs" do
+              costs = press_job_2.sum_costs + press_job.sum_costs
+
+              press_job.press_total_costs.should == costs
+            end
+
             it "#press_production_life"
           end
 

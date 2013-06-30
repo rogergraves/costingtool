@@ -132,7 +132,12 @@ class PressJob < ActiveRecord::Base
   end
 
   def press_total_costs
-    9046529
+    costs = 0
+    self.press_type_press_jobs.each do |pj|
+      costs+= pj.sum_costs
+    end
+
+    costs
   end
 
   def press_production_life
@@ -410,7 +415,7 @@ class PressJob < ActiveRecord::Base
       costs+= last_year_costs
     end
 
-    return costs
+    return costs.round()
   end
 
   def sum_revenues!
@@ -421,7 +426,7 @@ class PressJob < ActiveRecord::Base
       revenues+= last_year_revenues
     end
 
-    return revenues
+    return revenues.round()
   end
 
   def total_profit!
