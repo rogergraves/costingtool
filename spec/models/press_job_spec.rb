@@ -425,7 +425,7 @@ describe PressJob do
           end
 
           it "#net_profit" do
-            press_job.net_profit.should == press_job.sum_revenues - press_job.sum_costs
+            press_job.net_profit.should == (press_job.sum_revenues - press_job.sum_costs).round()
           end
 
           context "press methods" do
@@ -445,7 +445,12 @@ describe PressJob do
               press_job.press_payback_period.should == (12*(revenues / net_profits)).ceil
             end
 
-            it "#press_total_profit"
+            it "#press_total_profit" do
+              net_profits = press_job_2.net_profit + press_job.net_profit
+
+              press_job.press_total_profit.should == net_profits
+            end
+
             it "#press_total_costs"
             it "#press_production_life"
           end

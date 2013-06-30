@@ -86,7 +86,7 @@ class PressJob < ActiveRecord::Base
   end
 
   def net_profit
-    @net_profit ||= (sum_revenues - sum_costs)
+    @net_profit ||= (sum_revenues - sum_costs).round()
   end
 
   #def roi
@@ -122,7 +122,13 @@ class PressJob < ActiveRecord::Base
   end
 
   def press_total_profit
-    2338446
+    profits = 0
+
+    self.press_type_press_jobs.each do |pj|
+      profits+= pj.net_profit
+    end
+
+    profits
   end
 
   def press_total_costs
