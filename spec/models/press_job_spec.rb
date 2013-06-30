@@ -368,18 +368,17 @@ describe PressJob do
           data.to_s.should == press_job.dashboard_graph_revenue
         end
 
-        context "#press_type_jobs" do
+        context "#press_type_press_jobs" do
           it "with single press_job" do
-            press_job.press_type_jobs.first.should == press_job
+            press_job.press_type_press_jobs.first.should == press_job
           end
 
           it "with multiple press_jobs" do
-            press_job.press_type_jobs.count.should == 1
+            press_job.press_type_press_jobs.count.should == 1
 
-            new_job = FactoryGirl.create(:job, :job_size => 'A3', :multicolor_clicks => 4, :black => 1)
-            new_press_job = FactoryGirl.create(:press_job, :job => new_job, :press_type => press_type, :cost_per_sheet => 1.10)
+            FactoryGirl.create(:press_job, :job => FactoryGirl.create(:job, :user_id => press_job.job.user_id, :job_size => 'A3', :multicolor_clicks => 4, :black => 1), :press_type => press_type, :cost_per_sheet => 1.10)
 
-            press_job.press_type_jobs!.count.should == 2
+            press_job.reload.press_type_press_jobs!.count.should == 2
           end
         end
 

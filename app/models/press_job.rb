@@ -61,13 +61,20 @@ class PressJob < ActiveRecord::Base
 
   # Calcs Support Methods --------------------------------------------------------------------------------------
 
-  def press_type_jobs
-    @press_type_jobs ||= press_type_jobs!
+  def press_type_press_jobs
+    @press_type_press_jobs ||= press_type_press_jobs!
   end
 
-  def press_type_jobs!
+  def press_type_press_jobs!
     #BUGBUG -- not working
-    self.job.press_jobs.find_all_by_press_type_id(self.press_type.id)
+    valid_press_jobs = []
+    self.job.user.jobs.each do |this_job|
+      this_job.press_jobs.each do |this_press_job|
+        valid_press_jobs << this_press_job if this_press_job.press_type == self.press_type
+      end
+    end
+
+    valid_press_jobs
   end
 
   def sum_costs
