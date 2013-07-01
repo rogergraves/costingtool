@@ -32,7 +32,7 @@ class PressJob < ActiveRecord::Base
   end
 
   def calculated_cost_per_job
-    calculated_cost_per_copy / number_of_jobs
+    calculated_total_cost / number_of_jobs
   end
 
   # Reports graph output ---------------------------------------------------------------------------------------
