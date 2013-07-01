@@ -359,16 +359,35 @@ describe PressJob do
           press_job.annual_revenue.should == press_job.monthly_revenue * 12
         end
 
-        xit "#dashboard_graph_revenue" do
-          data = []
-          last_year_revenue = 0
-          press_job.annual_revenue
-          (1..7).each do |year|
-            last_year_revenue = last_year_revenue + (last_year_revenue * press_job.annual_growth / 100) if year > 1
-            data << [year, last_year_revenue.to_i]
+        context "#dashboard_graph_revenue" do
+          let(:press_job_2) {FactoryGirl.create(:press_job, :job => FactoryGirl.create(:job, :user_id => press_job.job.user_id, :job_size => 'A3', :multicolor_clicks => 4, :black => 1), :press_type => press_type, :cost_per_sheet => 1.10)}
+
+          it "with single press_job" do
+            data = []
+            last_year_revenue = press_job.annual_revenue
+            (1..7).each do |year|
+              last_year_revenue*= (1 + press_job.annual_growth.to_f / 100) if year > 1
+              data << [year, last_year_revenue.round()]
+            end
+
+            data.to_s.should == press_job.dashboard_graph_revenue
           end
 
-          data.to_s.should == press_job.dashboard_graph_revenue
+          it "with multiple press_jobs" do
+            data = []
+            press_job_1_last_year_revenue = press_job.annual_revenue
+            press_job_2_last_year_revenue = press_job_2.annual_revenue
+            (1..7).each do |year|
+              if year > 1
+                press_job_1_last_year_revenue*= (1 + press_job.annual_growth.to_f / 100)
+                press_job_2_last_year_revenue*= (1 + press_job_2.annual_growth.to_f / 100)
+              end
+
+              data << [year, (press_job_1_last_year_revenue + press_job_2_last_year_revenue).round()]
+            end
+
+            press_job.dashboard_graph_revenue.should == data.to_s
+          end
         end
 
         context "#press_type_press_jobs" do

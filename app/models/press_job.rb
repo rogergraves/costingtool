@@ -50,10 +50,26 @@ class PressJob < ActiveRecord::Base
 
   def dashboard_graph_revenue
     graph_data = []
-    last_year_revenue = annual_revenue
+    press_jobs_last_year_revenues = []
+    press_type_press_jobs.each_with_index do |pj, index|
+      press_jobs_last_year_revenues[index] = pj.annual_revenue
+    end
+
+
     (1..7).each do |year|
-      last_year_revenue = last_year_revenue + (last_year_revenue * annual_growth / 100) if year > 1
-      graph_data << [year, last_year_revenue]
+      if year > 1
+        press_type_press_jobs.each_with_index do |pj, index|
+          press_jobs_last_year_revenues[index]*= (1 + pj.annual_growth.to_f / 100)
+        end
+
+      end
+
+      sum_of_last_year_revenues = 0
+      press_jobs_last_year_revenues.each_with_index do |revenue, index|
+        sum_of_last_year_revenues+= revenue
+      end
+
+      graph_data << [year, sum_of_last_year_revenues.round()]
     end
 
     return graph_data.to_s
