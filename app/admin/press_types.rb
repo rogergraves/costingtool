@@ -18,6 +18,8 @@ ActiveAdmin.register PressType, { :sort_order => :id_asc } do
       number_to_currency press.spi
     end
     column "Duty Cycle", :duty_cycle, :sortable => false
+    column :production_life_months, :sortable => false
+
     column :click_table
     #default_actions
   end
@@ -37,6 +39,7 @@ ActiveAdmin.register PressType, { :sort_order => :id_asc } do
             number_to_currency press.spi
           end
           row :duty_cycle, :label => "Duty Cycle (max clicks/mth)"
+          row :production_life_months
           row :click_table, :label => "Belongs to Click Table:"
           row :icon do
             image_tag(press.icon.url(:medium)) if press.icon.present?
@@ -65,6 +68,7 @@ ActiveAdmin.register PressType, { :sort_order => :id_asc } do
       f.input :price, :label => "Total Press Price", :hint => 'Total Press Cost in USD'
       f.input :labor, :label => "Labor costs", :hint => 'Monthly Labor in USD'
       f.input :spi, :label => "SPI", :hint => "Monthly SPI in USD"
+      f.input :production_life_months, :hint => "Expected production life of press (in months)"
       f.input :duty_cycle, :label => "Duty Cycle", :hint => 'max clicks per month'
       f.input :click_table, :as => :select, :collection => ClickTable.all
       if f.object.icon.present?

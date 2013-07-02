@@ -6,7 +6,7 @@ ActiveAdmin.register_page "Dashboard" do
   content :title => "Indigo ROI Overview" do
 
     columns do
-      column :span => 4 do
+      column :span => 5 do
         panel "Press Types" do
           table_for(PressType.all) do
             column :icon do |press|
@@ -16,6 +16,7 @@ ActiveAdmin.register_page "Dashboard" do
             column "Total Press Price (USD)", :price do |press|
               number_to_currency press.price
             end
+            column :production_life_months
             column :click_table
           end
           strong em { link_to "Add New Press Type", new_admin_press_type_path() }

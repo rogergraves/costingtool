@@ -1,5 +1,5 @@
 class PressType < ActiveRecord::Base
-  attr_accessible :name, :icon, :duty_cycle, :spi, :click_table_id, :price, :labor
+  attr_accessible :name, :icon, :duty_cycle, :spi, :click_table_id, :price, :labor, :production_life_months
   has_many :press_jobs
   has_many :impositions, :dependent => :destroy
   belongs_to :click_table
