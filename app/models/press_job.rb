@@ -148,7 +148,7 @@ class PressJob < ActiveRecord::Base
   end
 
   def press_production_life
-    84
+    @press_production_life ||= press_type.production_life_months
   end
 
   def annual_revenue

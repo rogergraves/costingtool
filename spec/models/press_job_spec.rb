@@ -316,7 +316,7 @@ describe PressJob do
       end
 
       it "#calculated_cost_per_job" do
-        press_job.calculated_cost_per_job.should == (press_job.calculated_cost_per_copy / press_job.number_of_jobs)
+        press_job.calculated_cost_per_job.should == (press_job.calculated_total_cost / press_job.number_of_jobs)
       end
 
       context "dashboard graph data" do
@@ -476,7 +476,10 @@ describe PressJob do
               press_job.press_total_costs.should == costs
             end
 
-            it "#press_production_life"
+            it "#press_production_life" do
+              press_type.update_attributes(:production_life_months => 70)
+              press_job.press_production_life.should == 70
+            end
           end
 
         end
