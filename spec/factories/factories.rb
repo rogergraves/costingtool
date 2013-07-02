@@ -17,7 +17,9 @@ FactoryGirl.define do
     name "#{Faker::Company.catch_phrase.split(' ').map(&:capitalize).join(' ')} Press"
     click_table
     duty_cycle 1000000000
-    spi 2000
+    spi 2000.0
+    price 900000.0
+    production_life_months 84
   end
 
   factory :imposition do

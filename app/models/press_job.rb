@@ -82,7 +82,6 @@ class PressJob < ActiveRecord::Base
   end
 
   def press_type_press_jobs!
-    #BUGBUG -- not working
     valid_press_jobs = []
     self.job.user.jobs.each do |this_job|
       this_job.press_jobs.each do |this_press_job|
@@ -104,14 +103,6 @@ class PressJob < ActiveRecord::Base
   def net_profit
     @net_profit ||= (sum_revenues - sum_costs).round()
   end
-
-  #def roi
-  #  @roi ||= (net_profit / sum_revenues)
-  #end
-  #
-#  def payback_period
-#    @payback_period ||= ((sum_revenues/net_profit)*12).ceil
-#  end
 
   def press_roi
     revenues = 0

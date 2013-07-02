@@ -2,12 +2,15 @@ require 'spec_helper'
 
 describe PressType do
 
-  let(:press) {FactoryGirl.create(:press_type, :name => "My Press", :spi => 1000)}
+  let(:press) {FactoryGirl.create(:press_type, :name => "My Press", :spi => 1000, :labor => 400, :price => 500000, :production_life_months => 84)}
 
   context "fields" do
     it "Press Factory works" do
       press.name.should == "My Press"
       press.spi.should == 1000
+      press.labor.should == 400
+      press.price.should == 500000
+      press.production_life_months.should == 84
     end
   end
 
