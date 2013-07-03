@@ -17,11 +17,11 @@
       <th>Production Life (Months)</th>
     </tr>
     <tr>
-      <td><%= press_job.press_roi%>%</td>
-      <td><%= press_job.press_payback_period%></td>
-      <td><%= press_job.press_total_profit%></td>
-      <td><%= press_job.press_total_costs%></td>
-      <td><%= press_job.press_production_life%></td>
+      <td><%= press_job.press_roi %>%</td>
+      <td><%= press_job.press_payback_period %></td>
+      <td><%= number_to_currency(press_job.press_total_profit, :precision => 0) %></td>
+      <td><%= number_to_currency(press_job.press_total_costs, :precision => 0) %></td>
+      <td><%= press_job.press_production_life %></td>
     </tr>
   </table>
 </div>
