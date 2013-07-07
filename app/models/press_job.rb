@@ -20,7 +20,6 @@ class PressJob < ActiveRecord::Base
   end
 
   def calculated_clicks_cost # :clicks_cost
-    puts "!!!!! calculated_clicks_cost run for #{self.id}, click_price: #{click_price}, number_of_sheets: #{number_of_sheets}, plex: #{plex} !!!!!!!!!!!!!!!!!!!!"
     click_price * number_of_sheets * plex
   end
 
