@@ -12,33 +12,6 @@ describe PressJob do
     end
   end
 
-  def generate_tiers_for inc_click_table
-    ink_arrays = []
-
-    ink_arrays << FactoryGirl.create(:ink_array, :click_table => inc_click_table, :color_range_start => 0, :color_range_end => 0, :black => 1)
-    ink_arrays << FactoryGirl.create(:ink_array, :click_table => inc_click_table, :color_range_start => 1, :color_range_end => 2, :black => 1)
-    ink_arrays << FactoryGirl.create(:ink_array, :click_table => inc_click_table, :color_range_start => 3, :color_range_end => 3, :black => 0)
-
-    ink_arrays.each do |ink_array|
-      FactoryGirl.create(:tier, :ink_array => ink_array, :volume_range_start => 0, :volume_range_end => 1000000)
-      FactoryGirl.create(:tier, :ink_array => ink_array, :volume_range_start => 1000001, :volume_range_end => 1500000)
-      FactoryGirl.create(:tier, :ink_array => ink_array, :volume_range_start => 1500001)
-    end
-  end
-
-  def generate_impositions_for(inc_press_type, number_of_pages = 50, job_size = 'B2',
-      number_of_jobs = 2000, copies_per_job = 10, plex = 1, ups = 1)
-
-    FactoryGirl.create(:imposition, :press_type => inc_press_type, :job_size => job_size, :ups => ups)
-    job.update_attributes({
-                              :job_size => job_size,
-                              :number_of_jobs => number_of_jobs,
-                              :copies_per_job => copies_per_job,
-                              :number_of_pages => number_of_pages,
-                              :plex => plex,
-                          })
-  end
-
   let(:click_table) { FactoryGirl.create(:click_table_with_tier) }
   let(:job) { FactoryGirl.create(:job, :job_size => 'A4', :multicolor_clicks => 3, :black => 1) }
   let(:press_type) { FactoryGirl.create(:press_type, :click_table => click_table) }
@@ -171,7 +144,14 @@ describe PressJob do
           plex = 1
           ups = 1
 
-          generate_impositions_for(press_type, number_of_pages, job_size, number_of_jobs, copies_per_job, plex, ups)
+          FactoryGirl.create(:imposition, :press_type => press_type, :job_size => job_size, :ups => ups)
+          job.update_attributes({
+                                    :job_size => job_size,
+                                    :number_of_jobs => number_of_jobs,
+                                    :copies_per_job => copies_per_job,
+                                    :number_of_pages => number_of_pages,
+                                    :plex => plex,
+                                })
 
           number_of_sheets = (number_of_pages * number_of_jobs * copies_per_job / ups).ceil
 
