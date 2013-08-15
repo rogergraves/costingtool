@@ -55,11 +55,11 @@
     </div>
     <div class="field">
       <%= f.text_field :annual_growth, :placeholder => "%", :required => true %>
-      <%= f.label :annual_growth %>
+      <%= f.label "Annual growth (%)" %>
     </div>
     <div class="field">
       <%= f.text_field :job_percentage, :placeholder => User.remaining_job_percentage(@jobs), :required => true %>
-      <%= f.label :job_percentage %>
+      <%= f.label "Job percentage (%)" %>
     </div>
     <div class="actions">
       <%= f.submit "Create Job", :class => "login-button medium button radius custom-expand", :style => "width: 180px; margin-top: 1em;" %>

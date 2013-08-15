@@ -49,7 +49,7 @@ ActiveAdmin.register Tier do
       f.input :name, :label => "Tier Level"
       f.input :volume_range_start, :label => "Volume Range Start", :min => 0, :default => 0
       f.input :volume_range_end, :label => "Volume Range End", :min => 0
-      f.input :price, :min => 0, :hint => "enter price in USD"
+      f.input :price, :label => "Color Price", :min => 0, :hint => "enter price in USD"
       if ink_array.black > 0
         f.input :black_price, :label => "Price: Black", :hint => "enter price in USD"
       end
