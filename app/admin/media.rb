@@ -7,6 +7,7 @@ ActiveAdmin.register Media do
     column "Cost per Sheet (USD)", :cost_per_sheet do |media|
       number_to_currency media.cost_per_sheet
     end
+    default_actions
   end
 
   show :title => :name do
