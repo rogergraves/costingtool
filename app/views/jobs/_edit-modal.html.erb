@@ -50,15 +50,15 @@
 
       <div class="field sale_price_per_copy_edit_job">
         <%= f.text_field :sale_price, :required => true %>
-        <%= f.label :sale_price_per_copy %>
+        <%= f.label "Sale price per copy ($)" %>
       </div>
       <div class="field">
         <%= f.text_field :annual_growth, :placeholder => "%", :required => true %>
-        <%= f.label :annual_growth %>
+        <%= f.label "Annual growth (%)" %>
       </div>
       <div class="field">
         <%= f.text_field :job_percentage, :placeholder => "%", :required => true %>
-        <%= f.label :job_percentage %>
+        <%= f.label "Job percentage (%)" %>
       </div>
       <div class="actions">
         <%= f.submit "Edit Job", :class => "login-button medium button radius custom-expand" %>

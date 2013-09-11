@@ -43,7 +43,7 @@ ActiveAdmin.register InkArray do
             column("Tier Level", :sort_by => :name) { |tier| link_to tier.name, admin_ink_array_tier_path(tier.ink_array_id, tier.id) }
             column :volume_range_start
             column :volume_range_end
-            column :price
+            column "Color Price", :price
             if ink_array.black > 0
                 column :black_price
             end
